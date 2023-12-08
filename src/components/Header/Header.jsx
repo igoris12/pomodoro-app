@@ -1,10 +1,11 @@
-import React from 'react'
+import React from 'react';
+import './Header.scss';
 
 function Header() {
   return (
-    <div>
+    <header className='header'>
       Header 
-    </div>
+    </header>
   )
 }
 
