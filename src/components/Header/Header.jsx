@@ -2,11 +2,10 @@ import React from "react";
 import "./Header.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-
 function Header() {
   return (
     <header className="header">
-      <a href="/timer">
+      <a className="logo" href="/timer">
         <svg
           width="84"
           height="30"
@@ -52,9 +51,15 @@ function Header() {
           ></path>
         </svg>
       </a>
-      <button className="hamburger">
+      <button className="hamburger active">
         <RxHamburgerMenu />
       </button>
+      <nav>
+        <a href="$">1</a>
+        <a href="$">2</a>
+        <a href="$">3</a>
+
+      </nav>
     </header>
   );
 }
