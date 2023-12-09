@@ -1,18 +1,20 @@
 import React from "react";
 import './Navigation.scss';
+import NavigationLink from "./NavigationLink";
+import { IoMdClose } from "react-icons/io";
 function Navigation({active, closeNavigation}) {
   return (
     <div className={active === true ? "navigation" : "navigation hidden"}>
       <nav>
-        <button className="close" onClick={closeNavigation}>x</button>
+        <button className="close" onClick={closeNavigation}><IoMdClose /></button>
         <div className="logo">logo</div>
         <div className="links">
-          <div>
-            <a href="$">1</a>
-            <a href="$">2</a>
+          <div className="navigationLinks">
+            <NavigationLink/>
+            <NavigationLink/>
           </div>
           <div>
-            <a href="$">3</a>
+            <NavigationLink/>
           </div>
         </div>
       </nav>

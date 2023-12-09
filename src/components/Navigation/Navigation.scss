@@ -6,6 +6,7 @@
     bottom: 0;
     left: 0;
     transition: 300ms all;
+    background-color: blue;
     nav {
         float: right;
         background-color: white;
@@ -15,7 +16,44 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        .close {
+            color: rgba(0, 0, 0, 0.54);
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            border: 0;
+            font-size: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.04);;
+            }
+        }
+        .logo {
+            display: none;
+        }
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            .navigationLinks {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 50px;
+                margin-bottom: 50px;
+            }
+         
+        }
     }
     &.hidden {
         background-color: transparent;
@@ -40,7 +78,9 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-    
+            .close {
+                display: none;
+            }
         }
     }
 }
