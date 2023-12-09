@@ -2,7 +2,7 @@ import React from "react";
 import "./Header.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
 
-function Header() {
+function Header({openNavigation}) {
   return (
     <header className="header">
       <a className="logo" href="/timer">
@@ -51,7 +51,7 @@ function Header() {
           ></path>
         </svg>
       </a>
-      <button className="hamburger active">
+      <button className="hamburger active" onClick={openNavigation}>
         <RxHamburgerMenu />
       </button>
     </header>

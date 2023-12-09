@@ -1,10 +1,10 @@
 import React from "react";
 import './Navigation.scss';
-function Navigation() {
+function Navigation({active, closeNavigation}) {
   return (
-    <div className="navigation">
+    <div className={active === true ? "navigation" : "navigation hidden"}>
       <nav>
-        <button className="close">x</button>
+        <button className="close" onClick={closeNavigation}>x</button>
         <div className="logo">logo</div>
         <div className="links">
           <div>
