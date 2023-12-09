@@ -1,9 +1,9 @@
 import React from 'react';
 import './NavigationLink.scss';
-function NavigationLink() {
+function NavigationLink({icon, text}) {
   return (
     <button className='navigationLink'>
-      <span>icon</span> text
+      {icon} {text}
     </button>
   )
 }
