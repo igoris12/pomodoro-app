@@ -54,18 +54,6 @@ function Header() {
       <button className="hamburger active">
         <RxHamburgerMenu />
       </button>
-      <nav>
-        <div className="logo">logo</div>
-        <div className="links">
-          <div>
-            <a href="$">1</a>
-            <a href="$">2</a>
-          </div>
-          <div>
-            <a href="$">3</a>
-          </div>
-        </div>
-      </nav>
     </header>
   );
 }

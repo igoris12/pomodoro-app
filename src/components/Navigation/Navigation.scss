@@ -1,0 +1,41 @@
+.navigation {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: 300ms all;
+    nav {
+        float: right;
+        background-color: white;
+        width: 225px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    &.hidden {
+        background-color: transparent;
+        transform: translateX(225px);
+    }
+    
+}
+
+@media screen and (min-width: 900px) {
+    .navigaiton {
+        position: relative;
+        nav {
+            float: left;
+            width: 225px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+    
+        }
+    }
+}
