@@ -6,7 +6,6 @@
     bottom: 0;
     left: 0;
     transition: 300ms all;
-    background-color: blue;
     nav {
         float: right;
         background-color: white;
@@ -44,6 +43,7 @@
             align-items: center;
             justify-content: center;
             flex-direction: column;
+            width: 100%;
             .navigationLinks {
                 display: flex;
                 flex-direction: column;
@@ -51,6 +51,9 @@
                 justify-content: center;
                 gap: 50px;
                 margin-bottom: 50px;
+            }
+            div {
+                width: 100%;
             }
          
         }

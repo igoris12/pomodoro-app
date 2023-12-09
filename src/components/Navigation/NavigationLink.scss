@@ -1,3 +1,18 @@
+@import '../../style/scss/variables.scss';
 .navigationLink {
-    background-color: red;
+    background-color: white;
+    width: 100%;
+    font-size: 16px;
+    font-family: $primaryFont;
+    border: none;
+    padding: 8px 16px 8px 60px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    float: left;
+    font-weight: 400;
+    svg {
+        width: 32px ;
+        height: 32px;
+    }
 }

@@ -4,7 +4,7 @@ import NavigationLink from "./NavigationLink";
 import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
-import { CiLight } from "react-icons/ci";
+import { MdOutlineLightMode } from "react-icons/md";
 function Navigation({ active, closeNavigation }) {
   return (
     <div className={active === true ? "navigation" : "navigation hidden"}>
@@ -19,7 +19,7 @@ function Navigation({ active, closeNavigation }) {
             <NavigationLink icon={<FiSettings />} text={"Setting"} />
           </div>
           <div>
-            <NavigationLink icon={<CiLight />} text={"Light mone"} />
+            <NavigationLink icon={<MdOutlineLightMode />} text={"Light mone"} />
           </div>
         </div>
       </nav>
