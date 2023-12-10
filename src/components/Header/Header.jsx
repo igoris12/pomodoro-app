@@ -1,11 +1,12 @@
 import React from "react";
 import "./Header.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { Link } from "react-router-dom";
 
-function Header({openNavigation}) {
+function Header({ openNavigation }) {
   return (
     <header className="header">
-      <a className="logo" href="/timer">
+      <Link className="logo" to="/">
         <svg
           width="84"
           height="30"
@@ -50,7 +51,7 @@ function Header({openNavigation}) {
             fill="#2D27DC"
           ></path>
         </svg>
-      </a>
+      </Link>
       <button className="hamburger active" onClick={openNavigation}>
         <RxHamburgerMenu />
       </button>
