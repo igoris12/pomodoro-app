@@ -12,7 +12,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
   return (
     <div className={active === true ? "navigation active" : "navigation"}>
       <nav className={!true === darkMode ? '': 'dark'}>
-        <button className="close" onClick={closeNavigation}>
+        <button className={!true === darkMode ? 'close': 'close dark'} onClick={closeNavigation}>
           <IoMdClose />
         </button>
         <Link to="/" className="logo">
