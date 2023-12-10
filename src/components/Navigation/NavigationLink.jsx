@@ -1,10 +1,10 @@
 import React from 'react';
 import './NavigationLink.scss';
-function NavigationLink({icon, text}) {
+import { Link } from "react-router-dom";
+
+function NavigationLink({icon, text, to}) {
   return (
-    <button className='navigationLink'>
-      {icon} {text}
-    </button>
+      <Link to={to} className='navigationLink'>{icon} {text}</Link>
   )
 }
 

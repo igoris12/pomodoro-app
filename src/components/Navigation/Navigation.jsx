@@ -5,6 +5,8 @@ import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
 import { MdOutlineLightMode } from "react-icons/md";
+import { Link } from "react-router-dom";
+
 function Navigation({ active, closeNavigation }) {
   return (
     <div className={active === true ? "navigation active" : "navigation"}>
@@ -12,7 +14,7 @@ function Navigation({ active, closeNavigation }) {
         <button className="close" onClick={closeNavigation}>
           <IoMdClose />
         </button>
-        <div className="logo">
+        <Link to="/" className="logo">
           <svg
             width="120"
             height="43"
@@ -57,11 +59,15 @@ function Navigation({ active, closeNavigation }) {
               fill="#2D27DC"
             ></path>
           </svg>
-        </div>
+        </Link>
         <div className="links">
           <div className="navigationLinks">
-            <NavigationLink icon={<LuAlarmClock />} text={"Timer"} />
-            <NavigationLink icon={<FiSettings />} text={"Settings"} />
+            <NavigationLink icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
+            <NavigationLink
+              icon={<FiSettings />}
+              text={"Settings"}
+              to={"/settings"}
+            />
           </div>
           <div>
             <NavigationLink icon={<MdOutlineLightMode />} text={"Light mone"} />
