@@ -4,14 +4,19 @@ import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
+  const [darckMode, setDarckMode] = useState(false);
+
 
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
+  const toggleDarckMode = () => {
+    setDarckMode(!darckMode);
+  }
   return (
     <div className="App">
       <Router>
-        <Header openNavigation={toggleMobileHeaderActive} />
+        <Header openNavigation={toggleMobileHeaderActive} darckMode={darckMode} />
         <Navigation
           active={mobileHeaderActive}
           closeNavigation={toggleMobileHeaderActive}
