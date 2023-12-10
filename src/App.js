@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation/Navigation";
 
 function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
-  const [test, setTest] = useState(false);
+
 
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
@@ -16,7 +16,7 @@ function App() {
         active={mobileHeaderActive}
         closeNavigation={toggleMobileHeaderActive}
       />
-      <main className={test === true ? "main" : "main active"} onClick={()=>setTest(!test)}>main</main>
+      <main>main</main>
     </div>
   );
 }

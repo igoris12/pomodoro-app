@@ -21,7 +21,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     .close {
       color: rgba(0, 0, 0, 0.54);
       position: absolute;
@@ -71,8 +70,7 @@
     left: -225px;
     transform: translateX(0px);
     z-index: 0;
-    nav {
-    }
+    
   }
   
 }
@@ -84,12 +82,12 @@
     border-right: 1px solid;
     border-color: rgba(0, 0, 0, 0.3);
     box-shadow: none;
+    opacity: 1;
+    transform:  none;
     &.active {
       transform: none;
       opacity: 1;
-      nav {
-        transform: none;
-      }
+      left: auto;
     }
     nav {
       width: 225px;
