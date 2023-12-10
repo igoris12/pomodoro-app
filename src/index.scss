@@ -1,3 +1,22 @@
 @import './style/scss/variables.scss';
 @import './style/css/restart.css';
 @import './style/scss/App.scss';
+
+/// test clean affter 
+.main {
+    cursor: pointer;
+    background-color: red;
+    transition: background-color 0.5s ease-out;
+    transition: transform 0.5s ease-out, background-color 0.5s ease-out , opacity 0.5s ease-out;
+    opacity: 0.5;
+
+    transform: translateX(50px);
+    &.active {
+        // background-color: blue;
+    transform: translateX(0px);
+    opacity:1;
+
+
+        
+    }
+}

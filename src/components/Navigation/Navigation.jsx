@@ -7,7 +7,7 @@ import { FiSettings } from "react-icons/fi";
 import { MdOutlineLightMode } from "react-icons/md";
 function Navigation({ active, closeNavigation }) {
   return (
-    <div className={active === true ? "navigation" : "navigation hidden"}>
+    <div className={active === true ? "navigation active" : "navigation"}>
       <nav>
         <button className="close" onClick={closeNavigation}>
           <IoMdClose />
