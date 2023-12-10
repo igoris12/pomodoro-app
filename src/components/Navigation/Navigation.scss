@@ -79,8 +79,7 @@
   .navigation {
     position: relative;
     transition: 0s all;
-    border-right: 1px solid;
-    border-color: rgba(0, 0, 0, 0.3);
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
     box-shadow: none;
     opacity: 1;
     transform:  none;
@@ -90,7 +89,7 @@
       left: auto;
     }
     nav {
-      width: 225px;
+      width: 255px;
       height: 100%;
       display: flex;
       flex-direction: column;

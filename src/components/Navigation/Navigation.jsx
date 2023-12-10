@@ -61,7 +61,7 @@ function Navigation({ active, closeNavigation }) {
         <div className="links">
           <div className="navigationLinks">
             <NavigationLink icon={<LuAlarmClock />} text={"Timer"} />
-            <NavigationLink icon={<FiSettings />} text={"Setting"} />
+            <NavigationLink icon={<FiSettings />} text={"Settings"} />
           </div>
           <div>
             <NavigationLink icon={<MdOutlineLightMode />} text={"Light mone"} />
