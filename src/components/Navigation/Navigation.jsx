@@ -4,13 +4,14 @@ import NavigationLink from "./NavigationLink";
 import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
-import { MdOutlineLightMode } from "react-icons/md";
+import { MdOutlineLightMode ,MdNightsStay } from "react-icons/md";
+
 import { Link } from "react-router-dom";
 
-function Navigation({ active, closeNavigation }) {
+function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
   return (
     <div className={active === true ? "navigation active" : "navigation"}>
-      <nav>
+      <nav className={!true === darkMode ? '': 'dark'}>
         <button className="close" onClick={closeNavigation}>
           <IoMdClose />
         </button>
@@ -62,15 +63,15 @@ function Navigation({ active, closeNavigation }) {
         </Link>
         <div className="links">
           <div className="navigationLinks">
-            <NavigationLink icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
-            <NavigationLink
+            <NavigationLink darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
+            <NavigationLink darkMode={darkMode}
               icon={<FiSettings />}
               text={"Settings"}
               to={"/settings"}
             />
           </div>
-          <div>
-            <NavigationLink icon={<MdOutlineLightMode />} text={"Light mone"} />
+          <div onClick={toggleLightMode} >
+            <NavigationLink darkMode={darkMode} icon={!darkMode === true ? < MdOutlineLightMode /> : < MdNightsStay />} text={!darkMode === true ? "Light mone" : 'Dark mode'} />
           </div>
         </div>
       </nav>

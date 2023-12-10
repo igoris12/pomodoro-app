@@ -3,9 +3,9 @@ import "./Header.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
-function Header({ openNavigation, darckMode}) {
+function Header({ openNavigation, darkMode}) {
   return (
-    <header className={!darckMode === true ? "header" : "header darck"}>
+    <header className={!darkMode === true ? "header" : "header dark"}>
       <Link className="logo" to="/">
         <svg
           width="84"

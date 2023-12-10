@@ -1,6 +1,6 @@
 @import '../../style/scss/variables.scss';
 .navigationLink {
-    background-color: white;
+    background-color: inherit;
     width: 100%;
     font-size: 16px;
     font-family: $primaryFont;
@@ -16,6 +16,12 @@
     cursor: pointer;
     color: rgb(87, 87, 87);
     text-decoration: none;
+    &.dark {
+        font-weight: bolder;
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+    }
     &:hover {
         background-color:  rgba(0, 0, 0, 0.04);
     }
