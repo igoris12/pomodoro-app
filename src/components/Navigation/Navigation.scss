@@ -1,0 +1,115 @@
+.navigation {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
+  0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+  opacity: 0;    
+  left: auto;
+  transform: translateX(225px);
+  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  nav {
+    float: right;
+    background-color: white;
+    width: 225px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .close {
+      color: rgba(0, 0, 0, 0.54);
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: white;
+      border: 0;
+      font-size: 24px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+      }
+    }
+    .logo {
+      display: none;
+      cursor: pointer;
+    }
+    .links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: 100%;
+      transition: transform 250ms ease-in-out;
+      .navigationLinks {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;
+        margin-bottom: 50px;
+      }
+      div {
+        width: 100%;
+      }
+    }
+  }
+  &.active {
+    opacity: 1;    
+    left: -225px;
+    transform: translateX(0px);
+    z-index: 0;
+    
+  }
+  
+}
+
+@media screen and (min-width: 900px) {
+  .navigation {
+    position: relative;
+    transition: 0s all;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+    box-shadow: none;
+    opacity: 1;
+    transform:  none;
+    &.active {
+      transform: none;
+      opacity: 1;
+      left: auto;
+    }
+    nav {
+      width: 255px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .close {
+        display: none;
+      }
+      .logo {
+        display: inline-block;
+        position: absolute;
+        top: 80px;
+        left: 60px;
+      }
+      .links {
+        height: 100%;
+        padding-top: 200px;
+        padding-bottom: 55px;
+        justify-content: space-between;
+      }
+    }
+  }
+}

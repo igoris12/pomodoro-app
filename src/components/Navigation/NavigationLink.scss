@@ -1,0 +1,26 @@
+@import '../../style/scss/variables.scss';
+.navigationLink {
+    background-color: white;
+    width: 100%;
+    font-size: 16px;
+    font-family: $primaryFont;
+    border: none;
+    padding: 8px 16px 8px 60px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    float: left;
+    font-weight: 400;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    color: rgb(87, 87, 87);
+    text-decoration: none;
+    &:hover {
+        background-color:  rgba(0, 0, 0, 0.04);
+    }
+    svg {
+        width: 32px ;
+        height: 32px;
+    }
+}
