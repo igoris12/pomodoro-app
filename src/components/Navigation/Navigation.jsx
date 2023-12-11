@@ -5,8 +5,8 @@ import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
 import { MdOutlineLightMode ,MdNightsStay } from "react-icons/md";
-
 import { Link } from "react-router-dom";
+import activeLink from "./js/activeLink";
 
 function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
   return (
@@ -62,8 +62,8 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
           </svg>
         </Link>
         <div className="links">
-          <div className="navigationLinks">
-            <NavigationLink darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
+          <div className="navigationLinks" onClick={(e) =>{activeLink(e, 'navigationLinks')}}>
+            <NavigationLink def={true} darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
             <NavigationLink darkMode={darkMode}
               icon={<FiSettings />}
               text={"Settings"}
