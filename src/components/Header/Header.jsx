@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Header({ openNavigation, darkMode}) {
   return (
     <header className={!darkMode === true ? "header" : "header dark"}>
-      <Link className="logo" to="/">
+      <Link className="logo" to="/pomodoro-app/timer">
         <svg
           width="84"
           height="30"

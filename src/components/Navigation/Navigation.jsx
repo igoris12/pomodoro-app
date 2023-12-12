@@ -5,8 +5,8 @@ import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
 import { MdOutlineLightMode ,MdNightsStay } from "react-icons/md";
-
 import { Link } from "react-router-dom";
+
 
 function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
   return (
@@ -15,7 +15,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
         <button className={!true === darkMode ? 'close': 'close dark'} onClick={closeNavigation}>
           <IoMdClose />
         </button>
-        <Link to="/" className="logo">
+        <Link to="/pomodoro-app/timer" className="logo">
           <svg
             width="120"
             height="43"
@@ -62,12 +62,12 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
           </svg>
         </Link>
         <div className="links">
-          <div className="navigationLinks">
-            <NavigationLink darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
+          <div className="navigationLinks" >
+            <NavigationLink  darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/pomodoro-app/timer"} />
             <NavigationLink darkMode={darkMode}
               icon={<FiSettings />}
               text={"Settings"}
-              to={"/settings"}
+              to={"/pomodoro-app/settings"}
             />
           </div>
           <div onClick={toggleLightMode} >
