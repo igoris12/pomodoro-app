@@ -1,19 +1,22 @@
 import React from "react";
 import "./NavigationLink.scss";
-import { Link } from "react-router-dom";
+import { NavLink  } from "react-router-dom";
 
 function NavigationLink({ icon, text, to, darkMode = false}) {
   return (
-    <Link
+    <NavLink
       to={to}
       className={
         !true === darkMode
           ? `navigationLink }`
           : `navigationLink dark }`
       }
+      // className={({ isActive, isPending }) =>
+      // isPending ? `pending navigationLink ${!true === darkMode ? '':'dark'}` : isActive ? "active navigationLink" : "navigationLink"
+      // }
     >
       {icon} {text}
-    </Link>
+    </NavLink>
   );
 }
 

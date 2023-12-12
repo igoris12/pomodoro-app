@@ -24,7 +24,7 @@ function App() {
           darkMode={darkMode}
         />
         <Routes>
-        <Route path="/" element={<main>main</main>} />
+        <Route path="/timer" element={<main>main</main>} />
         <Route path="/settings" element={<main>settings</main>} />
         </Routes>
       </Router>

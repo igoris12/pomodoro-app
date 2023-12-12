@@ -15,7 +15,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
         <button className={!true === darkMode ? 'close': 'close dark'} onClick={closeNavigation}>
           <IoMdClose />
         </button>
-        <Link to="/" className="logo">
+        <Link to="/timer" className="logo">
           <svg
             width="120"
             height="43"
@@ -63,7 +63,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
         </Link>
         <div className="links">
           <div className="navigationLinks" >
-            <NavigationLink  darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/"} />
+            <NavigationLink  darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/timer"} />
             <NavigationLink darkMode={darkMode}
               icon={<FiSettings />}
               text={"Settings"}
