@@ -1,0 +1,49 @@
+@import '../../style/scss/variables.scss';
+.timerProgressBar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .circle {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            transform: rotate(270deg);
+            circle {
+                width: 100%;
+                height: 100%;
+                fill: transparent;
+                stroke-width: 15;
+                stroke: #f06292;
+
+                transform: translate(8px, 8px);
+            }
+            .backCircle {
+                stroke: #2D27DC;
+                stroke-dasharray: 510;
+            }
+        }
+        .time {
+            position: absolute;
+            font-family: $primaryFont;
+            display: flex;
+            flex-direction: column;
+            font-size: 48px;
+            align-items: center;
+            font-weight: bolder;
+
+            span {
+                font-family: inherit;
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
