@@ -3,10 +3,10 @@ import './Timer.scss';
 import TimerProgressBar from './TimerProgressBar';
 function Timer() {
   return (
-    <mian className='timerContainer'>
+    <section className='timerContainer'>
       <TimerProgressBar/>
       <footer>footer</footer>
-    </mian>
+    </section>
   )
 }
 

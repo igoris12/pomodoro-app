@@ -25,8 +25,8 @@ function App() {
           darkMode={darkMode}
         />
         <Routes>
-        <Route path="/" element={<Timer/>} />
-        <Route path="/settings" element={<main>settings</main>} />
+        <Route path="/pomodoro-app/timer" element={<Timer/>} />
+        <Route path="/pomodoro-app/settings" element={<main>settings</main>} />
         </Routes>
       </Router>
     </div>
