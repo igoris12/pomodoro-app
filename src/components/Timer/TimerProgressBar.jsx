@@ -6,10 +6,12 @@ import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 function TimerProgressBar() {
   const [play, setPlay] = useState(false);
+  const [nextClick, setNextCkick] = useState(false);
 
-  const togglePlay = ()=> {
+  const togglePlay = () => {
     setPlay(!play);
-  }
+  };
+
   return (
     <section className="timerProgressBar">
       <div className="circle">
@@ -22,9 +24,16 @@ function TimerProgressBar() {
         </div>
       </div>
       <div className="timeControls">
-        <button className="restart"><VscDebugRestart/></button>
-        <button className="play" onClick={togglePlay}>{play ===  false ? <IoMdPlay/>:<IoPause/>}</button>
-        <button className="next" ><MdSkipNext/></button>
+        <button className="restart">
+          <VscDebugRestart />
+        </button>
+        <button className="play" onClick={togglePlay}>
+          {play === false ? <IoMdPlay /> : <IoPause />}
+        </button>
+        <button className="next">
+          <span  ></span>
+          <MdSkipNext />
+        </button>
       </div>
       <div>1 of 4 sessions</div>
     </section>
