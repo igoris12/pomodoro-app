@@ -6,7 +6,6 @@ import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 function TimerProgressBar() {
   const [play, setPlay] = useState(false);
-  const [nextClick, setNextCkick] = useState(false);
 
   const togglePlay = () => {
     setPlay(!play);
