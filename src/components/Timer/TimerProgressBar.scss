@@ -46,6 +46,44 @@
       }
     }
   }
+  .timeControls {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    button {
+        padding: 3px;
+        background-color: transparent;
+        border-radius: 50%; 
+        border: 0.8px solid gray;
+       cursor: pointer;
+       color: gray;
+       transition: 0.3;
+       &:hover {
+        background-color: rgba(45, 39, 220, 0.04);
+       }
+        &.play {
+            color: #2d27dc;
+            border-color: #2d27dc;
+            margin-left: 24px;
+            margin-right: 24px;
+            padding: 12px;
+            
+        }
+        &.next {
+            &:hover {
+                // animation: gradient 200ms;
+            }
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -73,3 +111,23 @@
     }
   }
 }
+
+
+// @keyframes gradient {
+//     0% {
+//       background: radial-gradient(circle at center, rgba(255, 255, 255, 0) 0%, #fff 0%, #fff 100%);
+//     }
+//     25% {
+//       background: radial-gradient(circle at center, rgba(214, 214, 214, 0.3) 24%, #fff 25%, #fff 100%);
+//     }
+//     50% {
+//       background: radial-gradient(circle at center, rgba(169, 167, 167, 0.5) 49%, #fff 50%, #fff 100%);
+//     }
+//     75% {
+//       background: radial-gradient(circle at center, rgba(147, 146, 146, 0.8) 74%, #fff 75%, #fff 100%);
+//     }
+//     100% {
+//       color: #fff;
+//       background: radial-gradient(circle at center, rgb(114, 114, 114) 99%, #fff 100%, #fff 100%);
+//     }
+//   }
