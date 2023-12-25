@@ -1,0 +1,45 @@
+@import "../../style/scss/variables.scss";
+
+.footer {
+  font-family: $primaryFont;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  p {
+    font-family: $primaryFont;
+    font-weight: 600;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    font-family: $primaryFont;
+    font-weight: 600;
+    svg {
+        fill: rgb(117, 117, 117);
+        font-size: 25px;
+    }
+  }
+  .coffee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(255, 200, 0);
+    padding: 8px 15px 8px 15px;
+    border-radius: 5px;
+    svg {
+        font-size: 30px;
+        fill: #000;
+    }
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    gap: 10px;
+  }
+}
