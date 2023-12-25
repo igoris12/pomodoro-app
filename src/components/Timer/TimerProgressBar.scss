@@ -6,15 +6,15 @@
     justify-content: center;
     .circle {
         position: relative;
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
         svg {
             position: relative;
-            width: 180px;
-            height: 180px;
+            width: 200px;
+            height: 200px;
             transform: rotate(270deg);
             circle {
                 width: 100%;
@@ -22,12 +22,12 @@
                 fill: transparent;
                 stroke-width: 15;
                 stroke: #f06292;
-
-                transform: translate(8px, 8px);
+                transform: translate(8px, 16px);
             }
             .backCircle {
                 stroke: #2D27DC;
-                stroke-dasharray: 510;
+                stroke-dasharray: 572;
+                stroke-dashoffset: 0;
             }
         }
         .time {
