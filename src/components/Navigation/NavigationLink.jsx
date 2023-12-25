@@ -1,15 +1,21 @@
 import React from "react";
 import "./NavigationLink.scss";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
-function NavigationLink({ icon, text, to, darkMode = false}) {
-  return (
-    <Link
+function NavigationLink({ icon, text, to = "", darkMode = false }) {
+  return "" !== to ? (
+    <NavLink
       to={to}
       className={
-        !true === darkMode
-          ? `navigationLink }`
-          : `navigationLink dark }`
+        !true === darkMode ? `navigationLink ` : `navigationLink dark`
+      }
+    >
+      {icon} {text}
+    </NavLink>
+  ) : (
+    <Link
+      className={
+        !true === darkMode ? `navigationLink ` : `navigationLink dark `
       }
     >
       {icon} {text}

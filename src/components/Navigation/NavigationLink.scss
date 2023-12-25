@@ -19,16 +19,6 @@
     &.active {
         color: black;
     }
-    &.dark {
-        
-        font-weight: bolder;
-        &:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-        }
-        &.active {
-            color: white;
-        }
-    }
     &:hover {
         background-color:  rgba(0, 0, 0, 0.04);
     }
