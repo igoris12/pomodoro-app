@@ -34,7 +34,7 @@ function TimerProgressBar() {
           <MdSkipNext />
         </button>
       </div>
-      <div>1 of 4 sessions</div>
+      <div className="info"><span>1 of 4</span><span>sessions</span></div>
     </section>
   );
 }

@@ -116,6 +116,17 @@
       }
     }
   }
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    span{
+      font-family: $primaryFont;
+      font-weight: 600;
+      font-size: 14px;
+    }
+  }
 }
 
 @media screen and (min-width: 900px) {
