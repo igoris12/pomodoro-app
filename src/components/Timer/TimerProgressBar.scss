@@ -1,49 +1,75 @@
-@import '../../style/scss/variables.scss';
+@import "../../style/scss/variables.scss";
 .timerProgressBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .circle {
+    position: relative;
+    width: 200px;
+    height: 200px;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    .circle {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        svg {
-            position: relative;
-            width: 200px;
-            height: 200px;
-            transform: rotate(270deg);
-            circle {
-                width: 100%;
-                height: 100%;
-                fill: transparent;
-                stroke-width: 15;
-                stroke: #f06292;
-                transform: translate(8px, 16px);
-            }
-            .backCircle {
-                stroke: #2D27DC;
-                stroke-dasharray: 572;
-                stroke-dashoffset: 0;
-            }
-        }
-        .time {
-            position: absolute;
-            font-family: $primaryFont;
-            display: flex;
-            flex-direction: column;
-            font-size: 48px;
-            align-items: center;
-            font-weight: bolder;
-
-            span {
-                font-family: inherit;
-                font-size: 14px;
-                text-transform: uppercase;
-            }
-        }
+    svg {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      transform: rotate(270deg);
+      circle {
+        width: 100%;
+        height: 100%;
+        fill: transparent;
+        stroke-width: 15;
+        stroke: #f06292;
+        transform: translate(8px, 16px);
+      }
+      .backCircle {
+        stroke: #2d27dc;
+        
+        stroke-dashoffset: 0;
+      }
     }
+    .time {
+      position: absolute;
+      font-family: $primaryFont;
+      display: flex;
+      flex-direction: column;
+      font-size: 48px;
+      align-items: center;
+      font-weight: bolder;
+
+      span {
+        font-family: inherit;
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .timerProgressBar {
+    margin-top: 36px;
+    .circle {
+      width: 300px;
+      height: 300px;
+      svg {
+        width: 300px;
+        height: 300px;
+        circle {
+            cx: 142;
+            cy:134;
+            r: 138;
+            stroke-width: 23;
+        }
+        .backCircle {
+            stroke-dasharray: 886;
+        }
+      }
+      .time {
+        font-size: 54px;
+      }
+    }
+  }
 }
