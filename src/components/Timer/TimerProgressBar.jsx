@@ -11,15 +11,20 @@ function TimerProgressBar( {darkMode}) {
     setPlay(!play);
   };
 
+  const [time, setTime] = useState(60 * 10 + 11);
+  const minutes = Math.floor(time / 60);
+  const seconds = time - minutes * 60;
+ const a = 572 - (572 / time) /60 / 60;
+ console.log(a);
   return (
     <section className={darkMode !== true ?"timerProgressBar": "timerProgressBar dark"}>
       <div className="circle">
         <svg>
           <circle cx={91} cy={84} r={91}></circle>
-          <circle className="backCircle" cx={91} cy={84} r={91}></circle>
+          <circle style={{strokeDashoffset: {a}}} className="backCircle" cx={91} cy={84} r={91}></circle>
         </svg>
         <div className="time">
-          25:00<span>break</span>
+          {minutes + ':' + seconds}<span>break</span>
         </div>
       </div>
       <div className="timeControls">
