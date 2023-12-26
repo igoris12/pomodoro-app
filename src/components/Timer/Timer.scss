@@ -1,0 +1,20 @@
+.timerContainer {
+    display: inline-block;
+    width: 100%;
+    height: calc( 100% - 64px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 64px;
+    &.dark {
+        background-color:  #111;;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .timerContainer {
+        height: 100%;
+    }
+  }
+  
