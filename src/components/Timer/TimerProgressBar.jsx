@@ -6,10 +6,17 @@ import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
-  const [time, setTime] = useState(62);
+  const [time, setTime] = useState(60 * 55);
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const a =  572 / 62 ;
+  const a =  572 / (60 * 55) ;
 
+  const minutes = Math.floor(time / 60);
+  const seconds = time - minutes * 60;
+
+
+  const formatting = (data)=> {
+   return data <= 9 ? "0" + data : data
+  }
   const togglePlay = () => {
     setPlay(!play);
   };
@@ -27,9 +34,6 @@ function TimerProgressBar({ darkMode }) {
 
   },[time,tistrokeDashoffsetme])
 
-  const minutes = Math.floor(time / 60);
-  const seconds = time - minutes * 60;
-  console.log(Math.floor(tistrokeDashoffsetme));
   return (
     <section
       className={
@@ -48,7 +52,7 @@ function TimerProgressBar({ darkMode }) {
           ></circle>
         </svg>
         <div className="time">
-          {minutes + ":" + seconds}
+          {formatting(minutes) + ":" + formatting(seconds)}
           <span>break</span>
         </div>
       </div>
