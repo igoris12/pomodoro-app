@@ -4,7 +4,7 @@ import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
-function TimerProgressBar() {
+function TimerProgressBar( {darkMode}) {
   const [play, setPlay] = useState(false);
 
   const togglePlay = () => {
@@ -12,7 +12,7 @@ function TimerProgressBar() {
   };
 
   return (
-    <section className="timerProgressBar">
+    <section className={darkMode !== true ?"timerProgressBar": "timerProgressBar dark"}>
       <div className="circle">
         <svg>
           <circle cx={91} cy={84} r={91}></circle>
