@@ -6,7 +6,7 @@ function Timer({darkMode}) {
   return (
     <section className={darkMode !== true ?'timerContainer': 'timerContainer dark'}>
       <TimerProgressBar darkMode={darkMode}/>
-      <Footer/>
+      <Footer darkMode={darkMode}/>
     </section>
   )
 }

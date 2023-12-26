@@ -8,6 +8,9 @@
   justify-content: center;
   padding-top: 20px;
   padding-bottom: 5px;
+  &.dark {
+    color: white;
+  }
   p {
     font-family: $primaryFont;
     font-weight: 600;
