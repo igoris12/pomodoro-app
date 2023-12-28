@@ -13,13 +13,12 @@ function TimerProgressBar({ darkMode }) {
     { time: 10, status: "brack", session: 5 },
   ];
   const [play, setPlay] = useState(false);
-  const [time, setTime] = useState(60 * 55);
+  const [session, setSession] = useState(0);
+  const [time, setTime] = useState(data[session]);
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-
-
-  const minutes = Math.floor(time / 60);
-  const seconds = time - minutes * 60;
-
+  const minutes = Math.floor(time.time / 60);
+  const seconds = time.time - minutes * 60;
+ console.log(session);
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
@@ -28,16 +27,22 @@ function TimerProgressBar({ darkMode }) {
   };
 
   useEffect(() => {
-    if (time <= 0 || play !== true) {
+    if (play !== true) {
+      return;
+    }
+    if (time.time <= 0  ) {
+      setSession((prevSession => prevSession + 1))
+      // setTime(data[session])
+      setStrokeDashoffset(0)
       return;
     }
     const timer = setInterval(() => {
-      setTime((prevSeconds) => prevSeconds - 1);
-      setStrokeDashoffset(tistrokeDashoffsetme + 572 / (60 * 55));
+      setTime((prevState)=> prevState = {...prevState, time: prevState.time - 1});
+      setStrokeDashoffset(tistrokeDashoffsetme + 572 / (data[session].time));
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [time, tistrokeDashoffsetme, play]);
+  }, [time, tistrokeDashoffsetme, play, session, data]);
 
   return (
     <section
