@@ -5,34 +5,39 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 function TimerProgressBar({ darkMode }) {
+  const data = [
+    { time: 10, status: "focus", session: 1 },
+    { time: 5, status: "brack", session: 2 },
+    { time: 10, status: "focus", session: 3 },
+    { time: 5, status: "brack", session: 4 },
+    { time: 10, status: "brack", session: 5 },
+  ];
   const [play, setPlay] = useState(false);
   const [time, setTime] = useState(60 * 55);
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const a =  572 / (60 * 55) ;
+
 
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
 
-
-  const formatting = (data)=> {
-   return data <= 9 ? "0" + data : data
-  }
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
+  };
   const togglePlay = () => {
     setPlay(!play);
   };
 
-  useEffect(()=> {
-    if (time <= 0) {
+  useEffect(() => {
+    if (time <= 0 || play !== true) {
       return;
     }
     const timer = setInterval(() => {
-      setTime(prevSeconds => prevSeconds - 1);
-      setStrokeDashoffset(tistrokeDashoffsetme + a);
-      }, 1000);
+      setTime((prevSeconds) => prevSeconds - 1);
+      setStrokeDashoffset(tistrokeDashoffsetme + 572 / (60 * 55));
+    }, 1000);
 
-      return () => clearInterval(timer);
-
-  },[time,tistrokeDashoffsetme])
+    return () => clearInterval(timer);
+  }, [time, tistrokeDashoffsetme, play]);
 
   return (
     <section
