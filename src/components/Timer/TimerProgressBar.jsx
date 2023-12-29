@@ -10,17 +10,16 @@ function TimerProgressBar({ darkMode, time, session, status, sessionCount, chang
   const [timeInSeconds, setTimeInSeconds] = useState(time);
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = timeInSeconds - minutes * 60;
-
+  console.log(time, status, session, timeInSeconds);
 
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
   const togglePlay = () => {
     setPlay(!play);
-    changeSession();
   };
 
-  // useEffect(() => {
+  useEffect(() => {
   //   if (play !== true) {
   //     return;
   //   }
@@ -40,7 +39,8 @@ function TimerProgressBar({ darkMode, time, session, status, sessionCount, chang
   //   }, 1000);
 
   //   return () => clearInterval(timer);
-  // }, [time, tistrokeDashoffsetme, play, session, data]);
+  setTimeInSeconds(time);
+  }, [time]);
 
   return (
     <section
@@ -71,7 +71,7 @@ function TimerProgressBar({ darkMode, time, session, status, sessionCount, chang
         <button className="play" onClick={togglePlay}>
           {play === false ? <IoMdPlay /> : <IoPause />}
         </button>
-        <button className="next">
+        <button className="next" onClick={changeSession}>
           <span></span>
           <MdSkipNext />
         </button>
