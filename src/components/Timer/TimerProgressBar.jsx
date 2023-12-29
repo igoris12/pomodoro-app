@@ -4,13 +4,23 @@ import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
-function TimerProgressBar({ darkMode, time, session, status, sessionCount, changeSession }) {
+function TimerProgressBar({
+  darkMode,
+  time,
+  session,
+  status,
+  sessionCount,
+  changeSession,
+  restartSessions,
+  timeInSeconds,
+  reduceTime
+}) {
   const [play, setPlay] = useState(false);
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const [timeInSeconds, setTimeInSeconds] = useState(time);
-  const minutes = Math.floor(timeInSeconds / 60);
-  const seconds = timeInSeconds - minutes * 60;
-  console.log(time, status, session, timeInSeconds);
+  // const [timeInSeconds, setTimeInSeconds] = useState(time);
+  const minutes = Math.floor(time / 60);
+  const seconds = time - minutes * 60;
+  console.log(timeInSeconds);
 
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
@@ -20,27 +30,19 @@ function TimerProgressBar({ darkMode, time, session, status, sessionCount, chang
   };
 
   useEffect(() => {
-  //   if (play !== true) {
-  //     return;
-  //   }
-  //   if (time.time <= 0  ) {
-  //     if (data.length -1 === session) {
-  //       console.log('end');
-  //       return
-  //     }
-  //     setSession((prevSession => prevSession + 1))
-  //     setStrokeDashoffset(0)
-  //     setTime(data[session])
-  //     return;
-  //   }
-  //   const timer = setInterval(() => {
-  //     setTime((prevState)=> prevState = {...prevState, time: prevState.time - 1});
-  //     setStrokeDashoffset(tistrokeDashoffsetme + 572 / (data[session].time));
-  //   }, 1000);
+    
 
-  //   return () => clearInterval(timer);
-  setTimeInSeconds(time);
-  }, [time]);
+    if (play !== true) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      reduceTime();
+    // setStrokeDashoffset(tistrokeDashoffsetme + 572 / (data[session].time));
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [time, play, reduceTime]);
 
   return (
     <section
@@ -65,13 +67,25 @@ function TimerProgressBar({ darkMode, time, session, status, sessionCount, chang
         </div>
       </div>
       <div className="timeControls">
-        <button className="restart">
+        <button
+          className={session === 1 ? "restart" : "restart active"}
+          onClick={() => {
+            setPlay(false);
+            restartSessions();
+          }}
+        >
           <VscDebugRestart />
         </button>
         <button className="play" onClick={togglePlay}>
           {play === false ? <IoMdPlay /> : <IoPause />}
         </button>
-        <button className="next" onClick={changeSession}>
+        <button
+          className="next"
+          onClick={() => {
+            setPlay(false);
+            changeSession();
+          }}
+        >
           <span></span>
           <MdSkipNext />
         </button>
