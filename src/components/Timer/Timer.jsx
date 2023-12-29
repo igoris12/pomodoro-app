@@ -16,7 +16,7 @@ function Timer({ darkMode }) {
   const changeSession = () => {
     if (session < data.length) {
       setSession((prev) => prev + 1);
-    }
+    } 
   };
 
   const restartSessions = () => {
@@ -24,7 +24,6 @@ function Timer({ darkMode }) {
       return;
     }
     setSession(1);
-    console.log("a");
   };
 
   const reduceTime = () => {

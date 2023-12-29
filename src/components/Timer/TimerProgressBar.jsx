@@ -13,14 +13,12 @@ function TimerProgressBar({
   changeSession,
   restartSessions,
   timeInSeconds,
-  reduceTime
+  reduceTime,
 }) {
   const [play, setPlay] = useState(false);
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  // const [timeInSeconds, setTimeInSeconds] = useState(time);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
-  console.log(timeInSeconds);
 
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
@@ -30,19 +28,28 @@ function TimerProgressBar({
   };
 
   useEffect(() => {
-    
-
     if (play !== true) {
       return;
     }
-
+    if (time <= 0) {
+      changeSession();
+      setStrokeDashoffset(0);
+      return;
+    }
     const timer = setInterval(() => {
       reduceTime();
-    // setStrokeDashoffset(tistrokeDashoffsetme + 572 / (data[session].time));
+      setStrokeDashoffset(tistrokeDashoffsetme + 572 / timeInSeconds);
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [time, play, reduceTime]);
+  }, [
+    time,
+    play,
+    reduceTime,
+    changeSession,
+    timeInSeconds,
+    tistrokeDashoffsetme,
+  ]);
 
   return (
     <section
@@ -62,7 +69,7 @@ function TimerProgressBar({
           ></circle>
         </svg>
         <div className="time">
-          {minutes + ":" + seconds}
+          {formatting(minutes) + ":" + formatting(seconds)}
           <span>{status}</span>
         </div>
       </div>
@@ -72,6 +79,7 @@ function TimerProgressBar({
           onClick={() => {
             setPlay(false);
             restartSessions();
+            setStrokeDashoffset(0);
           }}
         >
           <VscDebugRestart />
@@ -84,6 +92,7 @@ function TimerProgressBar({
           onClick={() => {
             setPlay(false);
             changeSession();
+            setStrokeDashoffset(0);
           }}
         >
           <span></span>
