@@ -17,11 +17,11 @@ function TimerProgressBar({
   reduceTime,
 }) {
   const [play, setPlay] = useState(false);
+  const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
-  const screenSize = useScreenSize();
-  console.log(screenSize);
+
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
@@ -43,7 +43,7 @@ function TimerProgressBar({
     }
     const timer = setInterval(() => {
       reduceTime();
-      setStrokeDashoffset(tistrokeDashoffsetme + 572 / timeInSeconds);
+      setStrokeDashoffset(tistrokeDashoffsetme + (screenSize.width >= 900 ? 886 : 572) / timeInSeconds);
     }, 1000);
 
     return () => clearInterval(timer);
@@ -54,6 +54,7 @@ function TimerProgressBar({
     changeSession,
     timeInSeconds,
     tistrokeDashoffsetme,
+    screenSize
   ]);
 
   return (
