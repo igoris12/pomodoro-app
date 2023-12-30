@@ -4,7 +4,7 @@ import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
-import useScreenSize from '../../js/useScreenSize.js';
+import useScreenSize from "../../js/useScreenSize.js";
 function TimerProgressBar({
   darkMode,
   time,
@@ -38,12 +38,15 @@ function TimerProgressBar({
         changeSession();
         setStrokeDashoffset(0);
       }, 1000);
-     
+
       return () => clearTimeout(timer);
     }
     const timer = setInterval(() => {
       reduceTime();
-      setStrokeDashoffset(tistrokeDashoffsetme + (screenSize.width >= 900 ? 886 : 572) / timeInSeconds);
+      setStrokeDashoffset(
+        tistrokeDashoffsetme +
+          (screenSize.width >= 900 ? 886 : 572) / timeInSeconds
+      );
     }, 1000);
 
     return () => clearInterval(timer);
@@ -54,7 +57,7 @@ function TimerProgressBar({
     changeSession,
     timeInSeconds,
     tistrokeDashoffsetme,
-    screenSize
+    screenSize,
   ]);
 
   return (
@@ -106,7 +109,9 @@ function TimerProgressBar({
         </button>
       </div>
       <div className="info">
-        <span>{session + " of " + Math.floor(sessionCount / 2)}</span>
+        <span>
+          {Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)}
+        </span>
         <span>sessions</span>
       </div>
     </section>
