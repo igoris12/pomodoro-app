@@ -4,11 +4,11 @@ import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
 function Timer({ darkMode }) {
   const [data, setData] = useState([
-    { time: 3, status: "focus", session: 1 },
-    { time: 5, status: "brack", session: 2 },
-    // { time: 10, status: "focus", session: 3 },
-    // { time: 5, status: "brack", session: 4 },
-    // { time: 10, status: "brack", session: 5 },
+    { time: 90, status: "focus", session: 1 },
+    { time: 33, status: "brack", session: 2 },
+    { time: 400, status: "focus", session: 3 },
+    { time: 60, status: "brack", session: 4 },
+    { time: 100, status: "big brake", session: 5 },
   ]);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data[session - 1].time);
@@ -23,7 +23,7 @@ function Timer({ darkMode }) {
     if (session === 1) {
       return;
     }
-    setSession(1);
+    setTime(data[session - 1].time)
   };
 
   const reduceTime = () => {

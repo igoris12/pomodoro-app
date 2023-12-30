@@ -81,7 +81,7 @@ function TimerProgressBar({
       </div>
       <div className="timeControls">
         <button
-          className={session === 1 ? "restart" : "restart active"}
+          className={time === timeInSeconds ? "restart" : "restart active"}
           onClick={() => {
             setPlay(false);
             restartSessions();
