@@ -4,6 +4,7 @@ import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
+import useScreenSize from '../../js/useScreenSize.js';
 function TimerProgressBar({
   darkMode,
   time,
@@ -19,7 +20,8 @@ function TimerProgressBar({
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
-
+  const screenSize = useScreenSize();
+  console.log(screenSize);
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
