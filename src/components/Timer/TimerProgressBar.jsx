@@ -4,6 +4,7 @@ import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
+import useScreenSize from "../../js/useScreenSize.js";
 function TimerProgressBar({
   darkMode,
   time,
@@ -16,6 +17,7 @@ function TimerProgressBar({
   reduceTime,
 }) {
   const [play, setPlay] = useState(false);
+  const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
@@ -32,13 +34,19 @@ function TimerProgressBar({
       return;
     }
     if (time <= 0) {
-      changeSession();
-      setStrokeDashoffset(0);
-      return;
+      const timer = setTimeout(() => {
+        changeSession();
+        setStrokeDashoffset(0);
+      }, 1000);
+
+      return () => clearTimeout(timer);
     }
     const timer = setInterval(() => {
       reduceTime();
-      setStrokeDashoffset(tistrokeDashoffsetme + 572 / timeInSeconds);
+      setStrokeDashoffset(
+        tistrokeDashoffsetme +
+          (screenSize.width >= 900 ? 886 : 572) / timeInSeconds
+      );
     }, 1000);
 
     return () => clearInterval(timer);
@@ -49,6 +57,7 @@ function TimerProgressBar({
     changeSession,
     timeInSeconds,
     tistrokeDashoffsetme,
+    screenSize,
   ]);
 
   return (
@@ -75,7 +84,7 @@ function TimerProgressBar({
       </div>
       <div className="timeControls">
         <button
-          className={session === 1 ? "restart" : "restart active"}
+          className={time === timeInSeconds ? "restart" : "restart active"}
           onClick={() => {
             setPlay(false);
             restartSessions();
@@ -100,7 +109,9 @@ function TimerProgressBar({
         </button>
       </div>
       <div className="info">
-        <span>{session + " of " + sessionCount}</span>
+        <span>
+          {Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)}
+        </span>
         <span>sessions</span>
       </div>
     </section>
