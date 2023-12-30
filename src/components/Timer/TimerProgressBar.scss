@@ -35,8 +35,9 @@
       }
       .backCircle {
         stroke: #2d27dc;
-
-        stroke-dashoffset: 0;
+        stroke-dasharray: 572;
+        stroke-dashoffset:0;
+        transition: stroke-dashoffset 0.8s;
       }
     }
     .time {
@@ -156,6 +157,7 @@
         }
         .backCircle {
           stroke-dasharray: 886;
+          stroke-dashoffset:886;
         }
       }
       .time {
