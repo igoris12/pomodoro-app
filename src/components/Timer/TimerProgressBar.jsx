@@ -32,9 +32,12 @@ function TimerProgressBar({
       return;
     }
     if (time <= 0) {
-      changeSession();
-      setStrokeDashoffset(0);
-      return;
+      const timer = setTimeout(() => {
+        changeSession();
+        setStrokeDashoffset(0);
+      }, 1000);
+     
+      return () => clearTimeout(timer);
     }
     const timer = setInterval(() => {
       reduceTime();
