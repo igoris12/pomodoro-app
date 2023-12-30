@@ -106,7 +106,7 @@ function TimerProgressBar({
         </button>
       </div>
       <div className="info">
-        <span>{session + " of " + sessionCount}</span>
+        <span>{session + " of " + Math.floor(sessionCount / 2)}</span>
         <span>sessions</span>
       </div>
     </section>
