@@ -4,5 +4,11 @@
     align-items: left;
     margin-top: 16px;
     margin-bottom: 16px;
-    
+    background-color: red;
+    position: relative;
+    gap: 20px;
+    .value {
+        position: absolute;
+        top: 40%;
+    }
 }
