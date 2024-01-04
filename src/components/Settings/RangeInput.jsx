@@ -6,7 +6,9 @@ function RangeInput({ value, max, min, name, text, defValue, change }) {
       <label htmlFor={name}>{text}</label>
       <span
         className="value"
-        style={{ left:  value  / max  * 100 - min  / max  * 100 + '%' }}
+        // style={{ left:  value  / max  * 100 - min  / max  * 100 + '%' }}
+        // style={{ left:  value  / max  * 100  + '%' }}
+
       
       >
         {value}
