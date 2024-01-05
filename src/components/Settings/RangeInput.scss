@@ -7,24 +7,7 @@
   position: relative;
   gap: 20px;
   width: 100%;
-  input {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 3px;
-    background-color: #2D27DC;
-    &::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 15px;
-        height: 15px;
-        background-color: #2D27DC;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: box-shadow 0.2s;
-        &:hover {
-            box-shadow: 0px 0px 1px 5px rgba(84, 62, 246, 0.4);
-        }
-    }
-  }
+
   .value {
     position: absolute;
     display: flex;
@@ -50,5 +33,51 @@
       transform: translateX(-50%) rotate(45deg);
       border-radius: 50% 50% 0 50%;
     }
+  }
+  input {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    &::-webkit-slider-thumb {
+      // -webkit-appearance: none;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+      z-index: 3;
+      position: relative;
+    }
+  }
+
+  .costomeElements {
+    height: 104px;
+    width: 15px;
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    .sliderThumb {
+      display: inline-block;
+      position: absolute;
+      bottom: -75px;
+      width: 15px;
+      height: 15px;
+      position: relative;
+      background-color: #2d27dc;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      &:hover {
+        box-shadow: 0px 0px 1px 5px rgba(84, 62, 246, 0.4);
+      }
+    }
+  }
+  .progressbar {
+    width: 50%;
+    height: 3px;
+    background-color: #2d27dc;
+    position: absolute;
+    left: 0;
+    bottom: 0;
   }
 }

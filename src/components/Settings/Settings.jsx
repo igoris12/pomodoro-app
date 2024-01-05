@@ -35,7 +35,7 @@ const Settings = ({ darkMode }) => {
           change={changeWorkDuration}
 
         />
-        <RangeInput
+        {/* <RangeInput
           text={"Short break duration"}
           min={1}
           max={30}
@@ -58,7 +58,7 @@ const Settings = ({ darkMode }) => {
           defValue={4}
           value={data.rounds}
           change={changeRounds}
-        />
+        /> */}
       </form>
       <Footer darkMode={darkMode} />
     </section>
