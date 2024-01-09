@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Timer from "./components/Timer/Timer";
+import Settings from "./components/Settings/Settings";
 function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -26,7 +27,7 @@ function App() {
         />
         <Routes>
         <Route path="/pomodoro-app/timer" element={<Timer darkMode={darkMode}/>} />
-        <Route path="/pomodoro-app/settings" element={<main>settings</main>} />
+        <Route path="/pomodoro-app/settings" element={<Settings darkMode={darkMode}/>} />
         </Routes>
       </Router>
     </div>
