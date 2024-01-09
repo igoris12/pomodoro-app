@@ -1,14 +1,25 @@
 import React from "react";
 import "./RangeInput.scss";
-function RangeInput({ value, max, min, name, text, defValue, change }) {
-  const a = (value / min) * 100 / ( max - min);
+function RangeInput({
+  value = 50,
+  max = 100,
+  min = 0,
+  name,
+  text,
+  defValue,
+  change,
+}) {
+
   return (
     <div className="rangeInput">
       <label htmlFor={name}>{text}</label>
       <span
         className="value"
-        style={{ left: (value / max) * 100 - (min / max) * 100   + "%" }}
-        // style={{ left:  value  / max  * 100  + '%' }}
+        style={{
+          left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
+            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+          }px))`,
+        }}
       >
         {value}
       </span>
@@ -20,19 +31,24 @@ function RangeInput({ value, max, min, name, text, defValue, change }) {
         value={value}
         onInput={change}
       />
-      {/* ((val - min) * 100) / (max - min) */}
-      {/* `calc(${newVal}% + (${8 - newVal * 0.15}px))`; */}
       <div
         className="costomeElements"
-        style={{ left: `calc(${a}% + (${8 - a * 0.15}px))`}}
+        style={{
+          left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
+            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+          }px))`,
+        }}
       >
         <span className="sliderThumb"></span>
       </div>
       <span
         className="progressbar"
-        style={{ width: (value / max) * 100 - (min / max) * 100 + "%" }}
+        style={{
+          width: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
+            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+          }px))`,
+        }}
       ></span>
-
       {/* <span className="min">{min}</span>
       <span className="max">{max}</span> */}
     </div>
