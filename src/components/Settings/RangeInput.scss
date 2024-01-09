@@ -37,41 +37,46 @@
   input {
     -webkit-appearance: none;
     width: 100%;
-    height: 3px;
+    height: 2px;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 15px;
-      height: 15px;
+      width: 12px;
+      height: 12px;
       cursor: pointer;
       z-index: 3;
       position: relative;
+      border-radius: 50%;
+      box-shadow: 0px 0px 0px 8px rgba(45, 39, 220, 0.16);
+      transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      &:hover {
+        box-shadow: 0px 0px 0px 8px rgba(45, 39, 220, 0.16);
+      }
     }
   }
 
   .costomeElements {
-    height: 104px;
-    width: 15px;
+    height: 22px;
+    width: 22px;
     position: absolute;
-    bottom: -20px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 2;
+
     .sliderThumb {
       display: inline-block;
       position: absolute;
-      bottom: -75px;
-      width: 15px;
-      height: 15px;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 12px;
+      height: 12px;
       position: relative;
       background-color: #2d27dc;
       border-radius: 50%;
       cursor: pointer;
-      transition: box-shadow 0.2s;
-      &:hover {
-        box-shadow: 0px 0px 1px 5px rgba(84, 62, 246, 0.4);
-      }
     }
   }
+
   .progressbar {
     width: 0%;
     height: 3px;

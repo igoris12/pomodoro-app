@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./RangeInput.scss";
 function RangeInput({
-  value = 50,
+  value = 1,
   max = 100,
   min = 0,
   name,
@@ -9,7 +9,22 @@ function RangeInput({
   defValue,
   change,
 }) {
-
+  ///this number variable is for slider Thumb layout be in best position
+  const [number, setNumber] = useState(7.5);
+  useEffect(() => {
+    if (Math.floor((max - min) / 2 > value)) {
+      setNumber(6);
+    }
+    if (Math.floor((max - min) / 2 < value)) {
+      setNumber(9);
+    }
+    if (
+      Math.floor((max - min) / 2.5 < value) &&
+      Math.floor((max - min) / 1.8 > value)
+    ) {
+      setNumber(7.5);
+    }
+  }, [value, max, min]);
   return (
     <div className="rangeInput">
       <label htmlFor={name}>{text}</label>
@@ -17,7 +32,7 @@ function RangeInput({
         className="value"
         style={{
           left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+            number - Number(((value - min) * 100) / (max - min)) * 0.15
           }px))`,
         }}
       >
@@ -35,7 +50,7 @@ function RangeInput({
         className="costomeElements"
         style={{
           left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+            number - Number(((value - min) * 100) / (max - min)) * 0.15
           }px))`,
         }}
       >
@@ -45,7 +60,7 @@ function RangeInput({
         className="progressbar"
         style={{
           width: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            8 - Number(((value - min) * 100) / (max - min)) * 0.15
+            number - Number(((value - min) * 100) / (max - min)) * 0.15
           }px))`,
         }}
       ></span>
