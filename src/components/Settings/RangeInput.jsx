@@ -28,6 +28,15 @@ function RangeInput({
   return (
     <div className="rangeInput">
       <label htmlFor={name}>{text}</label>
+
+      <input
+        type="range"
+        name={name}
+        min={min}
+        max={max}
+        value={value}
+        onInput={change}
+      />
       <span
         className="value"
         style={{
@@ -38,14 +47,6 @@ function RangeInput({
       >
         {value}
       </span>
-      <input
-        type="range"
-        name={name}
-        min={min}
-        max={max}
-        value={value}
-        onInput={change}
-      />
       <div
         className="costomeElements"
         style={{
@@ -64,8 +65,8 @@ function RangeInput({
           }px))`,
         }}
       ></span>
-      {/* <span className="min">{min}</span>
-      <span className="max">{max}</span> */}
+      <span className="min">{min} min</span>
+      <span className="max">{max} min</span>
     </div>
   );
 }
