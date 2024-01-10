@@ -64,8 +64,8 @@ function RangeInput({
           }px))`,
         }}
       ></span>
-      {/* <span className="min">{min}</span>
-      <span className="max">{max}</span> */}
+      <span className="min">{min} min</span>
+      <span className="max">{max} min</span>
     </div>
   );
 }
