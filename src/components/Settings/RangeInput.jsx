@@ -47,6 +47,14 @@ function RangeInput({
       >
         {value}
       </span>
+      <span
+        className="marker"
+        style={{
+          left: `calc(${Number(((defValue - min) * 100) / (max - min))}% + (${
+            7 - Number(((defValue - min) * 100) / (max - min)) * 0.15
+          }px))`,
+        }}
+      ></span>
       <div
         className="costomeElements"
         style={{

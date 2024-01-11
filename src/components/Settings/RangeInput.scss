@@ -48,6 +48,8 @@
     background-color: rgba(84, 62, 246, 0.38);
     border-radius: 1px;
     cursor: pointer;
+    padding-top: 1px;
+    padding-bottom: 1px;
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 12px;
@@ -62,7 +64,15 @@
       }
     }
   }
-
+ .marker {
+  position: absolute;
+  background-color: #fff;
+  opacity: 0.8;
+  width: 2px;
+  height: 2px;
+  bottom: 0;
+  z-index: 1;
+ }
   .costomeElements {
     height: 22px;
     width: 22px;
@@ -70,6 +80,7 @@
     bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 
     .sliderThumb {
       display: inline-block;
@@ -79,7 +90,6 @@
       transform: translateX(-50%) translateY(-50%);
       width: 12px;
       height: 12px;
-      position: relative;
       background-color: #2d27dc;
       border-radius: 50%;
       cursor: pointer;
