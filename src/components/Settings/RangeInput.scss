@@ -66,12 +66,15 @@
   }
  .marker {
   position: absolute;
-  background-color: #fff;
-  opacity: 0.8;
+  background-color: #2D27DC;
   width: 2px;
-  height: 2px;
+  height: 1.5px;
   bottom: 0;
   z-index: 1;
+  &.light {
+    background-color: #fff;
+    opacity: 0.8;
+  }
  }
   .costomeElements {
     height: 22px;
