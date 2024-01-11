@@ -47,6 +47,33 @@ function RangeInput({
       >
         {value}
       </span>
+      <span
+        className={value >= defValue ? "marker light" : "marker"}
+        style={{
+          left: `calc(${Number(((defValue - min) * 100) / (max - min))}% + (${
+            7 - Number(((defValue - min) * 100) / (max - min)) * 0.15
+          }px))`,
+        }}
+      >
+        <span className="min">{defValue} min</span>
+      </span>
+
+      <span
+        className={value >= min ? "marker light" : "marker"}
+        style={{
+          left: '1px',
+        }}
+      >
+        <span className="min">{min} min</span>
+      </span>
+      <span
+        className={value >= max ? "marker light" : "marker"}
+        style={{
+          right: '1px',
+        }}
+      >
+        <span className="max">{max} min</span>
+      </span>
       <div
         className="costomeElements"
         style={{
@@ -65,8 +92,8 @@ function RangeInput({
           }px))`,
         }}
       ></span>
-      <span className="min">{min} min</span>
-      <span className="max">{max} min</span>
+      {/* <span className="min">{min} min</span>
+      <span className="max">{max} min</span> */}
     </div>
   );
 }
