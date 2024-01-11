@@ -69,7 +69,7 @@ function RangeInput({
       <span
         className={value >= max ? "marker light" : "marker"}
         style={{
-          right: '0',
+          right: '1px',
         }}
       >
         <span className="max">{max} min</span>
