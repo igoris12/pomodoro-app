@@ -9,7 +9,10 @@
   position: relative;
   gap: 20px;
   width: 100%;
-
+  label {
+    font-family: $primaryFont;
+    font-size: 16px;
+  }
   .value {
     position: absolute;
     display: flex;
@@ -72,9 +75,11 @@
   bottom: 0;
   z-index: 1;
   border-radius: 1px;
+  opacity: 0.8;
+
   &.light {
     background-color: #fff;
-    opacity: 0.8;
+    opacity: 1;
   }
  }
   .costomeElements {
@@ -132,5 +137,14 @@
     top: -15px;
     opacity: 1;
   }
-  
+  &.dark {
+    label {
+      color: wheat;
+    }
+
+    .max,
+    .min {
+      color: wheat;
+    }
+  }
 }

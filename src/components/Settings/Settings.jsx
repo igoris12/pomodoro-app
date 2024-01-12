@@ -33,7 +33,7 @@ const Settings = ({ darkMode }) => {
           defValue={25}
           value={data.workDuration}
           change={changeWorkDuration}
-
+          darkMode={darkMode}
         />
         {/* <RangeInput
           text={"Short break duration"}

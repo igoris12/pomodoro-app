@@ -8,6 +8,7 @@ function RangeInput({
   text,
   defValue,
   change,
+  darkMode
 }) {
   ///this number variable is for slider Thumb layout be in best position
   const [number, setNumber] = useState(7.5);
@@ -26,7 +27,7 @@ function RangeInput({
     }
   }, [value, max, min]);
   return (
-    <div className="rangeInput">
+    <div className={darkMode !== true ? "rangeInput" : "rangeInput dark"}>
       <label htmlFor={name}>{text}</label>
 
       <input
