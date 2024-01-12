@@ -8,6 +8,7 @@ function RangeInput({
   text,
   defValue,
   change,
+  darkMode,
 }) {
   ///this number variable is for slider Thumb layout be in best position
   const [number, setNumber] = useState(7.5);
@@ -25,8 +26,15 @@ function RangeInput({
       setNumber(7.5);
     }
   }, [value, max, min]);
+
+  const percentCounterForPosition = (value, min, max, number) => {
+    const percent = Number(((value - min) * 100) / (max - min));
+    const pixels = number - Number(((value - min) * 100) / (max - min)) * 0.15;
+    return `calc(${percent}% + (${pixels}px))`;
+  };
+  
   return (
-    <div className="rangeInput">
+    <div className={darkMode !== true ? "rangeInput" : "rangeInput dark"}>
       <label htmlFor={name}>{text}</label>
 
       <input
@@ -40,9 +48,7 @@ function RangeInput({
       <span
         className="value"
         style={{
-          left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            number - Number(((value - min) * 100) / (max - min)) * 0.15
-          }px))`,
+          left: percentCounterForPosition(value, min, max, number),
         }}
       >
         {value}
@@ -50,9 +56,7 @@ function RangeInput({
       <span
         className={value >= defValue ? "marker light" : "marker"}
         style={{
-          left: `calc(${Number(((defValue - min) * 100) / (max - min))}% + (${
-            7 - Number(((defValue - min) * 100) / (max - min)) * 0.15
-          }px))`,
+          left: percentCounterForPosition(defValue, min, max, 7.5),
         }}
       >
         <span className="min">{defValue} min</span>
@@ -61,7 +65,7 @@ function RangeInput({
       <span
         className={value >= min ? "marker light" : "marker"}
         style={{
-          left: '1px',
+          left: "1px",
         }}
       >
         <span className="min">{min} min</span>
@@ -69,7 +73,7 @@ function RangeInput({
       <span
         className={value >= max ? "marker light" : "marker"}
         style={{
-          right: '1px',
+          right: "1px",
         }}
       >
         <span className="max">{max} min</span>
@@ -77,9 +81,7 @@ function RangeInput({
       <div
         className="costomeElements"
         style={{
-          left: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            number - Number(((value - min) * 100) / (max - min)) * 0.15
-          }px))`,
+          left: percentCounterForPosition(value, min, max, number),
         }}
       >
         <span className="sliderThumb"></span>
@@ -87,13 +89,9 @@ function RangeInput({
       <span
         className="progressbar"
         style={{
-          width: `calc(${Number(((value - min) * 100) / (max - min))}% + (${
-            number - Number(((value - min) * 100) / (max - min)) * 0.15
-          }px))`,
+          width: percentCounterForPosition(value, min, max, number),
         }}
       ></span>
-      {/* <span className="min">{min} min</span>
-      <span className="max">{max} min</span> */}
     </div>
   );
 }
