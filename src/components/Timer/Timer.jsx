@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import {TimerDataContext} from '../../App';
+import { TimerDataContext } from "../../App";
 import "./Timer.scss";
 import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
-function Timer({ darkMode}) {
-  const data = useContext(TimerDataContext);
+function Timer({ darkMode }) {
+  const [data] = useContext(TimerDataContext);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data[session - 1].time);
-
 
   const changeSession = () => {
     if (session === data.length) {
@@ -15,14 +14,14 @@ function Timer({ darkMode}) {
     }
     if (session < data.length) {
       setSession((prev) => prev + 1);
-    } 
+    }
   };
 
   const restartSessions = () => {
     if (session === 1) {
       return;
     }
-    setTime(data[session - 1].time)
+    setTime(data[session - 1].time);
   };
 
   const reduceTime = () => {

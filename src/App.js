@@ -10,39 +10,48 @@ export const TimerDataContext = createContext();
 function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [timerData, setData] = useState([
-    { time: 90, status: "focus 1", session: 1 },
-    { time: 5, status: "brack", session: 2 },
-    { time: 90, status: "focus 2", session: 3 },
-    { time: 5, status: "brack", session: 2 },
-    { time: 90, status: "focus 3", session: 1 },
-    { time: 5, status: "brack", session: 2 },
-    { time: 90, status: "focus 4", session: 1 },
-    { time: 100, status: "big brake", session: 5 },
+  const [timerData, setTimerData] = useState([
+    { time: 25 * 60, status: "focus", session: 1 },
+    { time: 5 * 60, status: "breack", session: 2 },
+    { time: 25 * 60, status: "focus", session: 3 },
+    { time: 5 * 60, status: "breack", session: 4 },
+    { time: 25 * 60, status: "focus", session: 5 },
+    { time: 5 * 60, status: "breack", session: 6 },
+    { time: 25 * 60, status: "focus", session: 7 },
+    { time: 20 * 60, status: "breack" },
   ]);
-
+  console.log(timerData);
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
   const toggleDarckMode = () => {
     setDarkMode(!darkMode);
-  }
+  };
   return (
     <div className="App">
-      <TimerDataContext.Provider value={timerData}>
-      <Router>
-        <Header openNavigation={toggleMobileHeaderActive} darkMode={darkMode} />
-        <Navigation
-          active={mobileHeaderActive}
-          closeNavigation={toggleMobileHeaderActive}
-          toggleLightMode={toggleDarckMode}
-          darkMode={darkMode}
-        />
-        <Routes>
-        <Route path="/pomodoro-app/timer" element={<Timer darkMode={darkMode}/>} />
-        <Route path="/pomodoro-app/settings" element={<Settings darkMode={darkMode}/>} />
-        </Routes>
-      </Router>
+      <TimerDataContext.Provider value={[timerData, setTimerData]}>
+        <Router>
+          <Header
+            openNavigation={toggleMobileHeaderActive}
+            darkMode={darkMode}
+          />
+          <Navigation
+            active={mobileHeaderActive}
+            closeNavigation={toggleMobileHeaderActive}
+            toggleLightMode={toggleDarckMode}
+            darkMode={darkMode}
+          />
+          <Routes>
+            <Route
+              path="/pomodoro-app/timer"
+              element={<Timer darkMode={darkMode} />}
+            />
+            <Route
+              path="/pomodoro-app/settings"
+              element={<Settings darkMode={darkMode} />}
+            />
+          </Routes>
+        </Router>
       </TimerDataContext.Provider>
     </div>
   );
