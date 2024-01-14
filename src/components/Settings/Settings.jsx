@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import { TimerDataContext } from "../../App";
 import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
@@ -11,6 +12,19 @@ const Settings = ({ darkMode }) => {
     longBreakDuration: 20,
   });
 
+  const [timerData ,setTimerData] = useContext(TimerDataContext);
+
+  useEffect(() => {
+    const dataArray = [];
+   
+    for (let i = 0; i < data.rounds; i++) {
+      dataArray.push({time: data.workDuration * 60, status: 'focus' + i, session: i})
+      dataArray.push({time: data.breakDuration * 60, status: 'brack' + i, session: i})
+    }
+    dataArray.push({time: data.longBreakDuration * 60, status: 'long brake'})
+    setTimerData(dataArray);
+  }, [data, setTimerData]);
+  
   const changeWorkDuration = (e) => {
     setData({ ...data, workDuration: e.target.value });
   };
@@ -43,7 +57,6 @@ const Settings = ({ darkMode }) => {
           value={data.breakDuration}
           change={changeBreakDuration}
           darkMode={darkMode}
-
         />
         <RangeInput
           text={"Long break duration"}
@@ -53,7 +66,6 @@ const Settings = ({ darkMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
-
         />
         <RangeInput
           text={"Rounds"}
@@ -63,7 +75,6 @@ const Settings = ({ darkMode }) => {
           value={data.rounds}
           change={changeRounds}
           darkMode={darkMode}
-
         />
       </form>
       <Footer darkMode={darkMode} />
