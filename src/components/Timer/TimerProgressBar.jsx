@@ -45,7 +45,7 @@ function TimerProgressBar({
       reduceTime();
       setStrokeDashoffset(
         tistrokeDashoffsetme +
-          (screenSize.width >= 900 ? 886 : 572) / timeInSeconds
+          (screenSize.width >= 900 ? 867 : 572) / timeInSeconds
       );
     }, 1000);
 
