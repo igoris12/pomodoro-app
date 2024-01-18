@@ -20,7 +20,6 @@ function App() {
     { time: 25 * 60, status: "focus", session: 7 },
     { time: 20 * 60, status: "breack" },
   ]);
-  console.log(timerData);
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
