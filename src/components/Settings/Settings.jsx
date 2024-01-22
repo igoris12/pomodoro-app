@@ -3,6 +3,7 @@ import { TimerDataContext } from "../../App";
 import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
+import ToggleButton from "../ToggleButton/ToggleButton";
 
 const Settings = ({ darkMode }) => {
   const [data, setData] = useState({
@@ -76,6 +77,7 @@ const Settings = ({ darkMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
+        <ToggleButton/>
       </form>
       <Footer darkMode={darkMode} />
     </section>
