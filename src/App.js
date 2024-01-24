@@ -11,7 +11,7 @@ function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [timerData, setTimerData] = useState([
-    { time: 25 * 60, status: "focus", session: 1 },
+    { time: 5, status: "focus", session: 1 },
     { time: 5 * 60, status: "breack", session: 2 },
     { time: 25 * 60, status: "focus", session: 3 },
     { time: 5 * 60, status: "breack", session: 4 },

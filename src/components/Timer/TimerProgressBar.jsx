@@ -5,6 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
+import audio from './audio/audio.js';
 function TimerProgressBar({
   darkMode,
   time,
@@ -32,6 +33,10 @@ function TimerProgressBar({
   useEffect(() => {
     if (play !== true) {
       return;
+    }
+    if (time === 0){
+    const sound = new Audio(audio[0]);
+    sound.play()
     }
     if (time <= 0) {
       const timer = setTimeout(() => {
