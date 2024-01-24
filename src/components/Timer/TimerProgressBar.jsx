@@ -5,7 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
-import audio from './audio/call-to-attention-123107.mp3'
+import audio from './audio/audio.js';
 function TimerProgressBar({
   darkMode,
   time,
@@ -35,7 +35,7 @@ function TimerProgressBar({
       return;
     }
     if (time === 0){
-    const sound = new Audio(audio);
+    const sound = new Audio(audio[0]);
     sound.play()
     }
     if (time <= 0) {
