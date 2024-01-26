@@ -1,7 +1,28 @@
-import React from "react";
+import { useState } from "react";
 import "./ToggleButton.scss";
+
 const ToggleButton = () => {
-  return <button className="ToggleButton">button</button>;
+  const [on, setOn] = useState(false);
+
+  const toggle = () => {
+    setOn(!on);
+  };
+
+  return (
+
+    <button
+      type="checkbox"
+      onClick={(e) => {
+        e.preventDefault();
+        toggle();
+      }}
+      className={on ? "toggleButton" : "toggleButton active"}
+    >
+
+     <span className="toggleButtonThumb"></span>
+     <span className="track"></span>
+    </button>
+  );
 };
 
 export default ToggleButton;
