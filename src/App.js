@@ -47,7 +47,12 @@ function App() {
             />
             <Route
               path="/pomodoro-app/settings"
-              element={<Settings darkMode={darkMode} />}
+              element={
+                <Settings
+                  darkMode={darkMode}
+                  toggleLightMode={toggleDarckMode}
+                />
+              }
             />
           </Routes>
         </Router>

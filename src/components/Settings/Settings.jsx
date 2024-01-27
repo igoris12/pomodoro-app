@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 
-const Settings = ({ darkMode }) => {
+const Settings = ({ darkMode , toggleLightMode }) => {
   const [data, setData] = useState({
     workDuration: 25,
     breakDuration: 5,
@@ -91,7 +91,7 @@ const Settings = ({ darkMode }) => {
           <ToggleButton text={"Timer in title"} darkMode={darkMode} />
           <ToggleButton text={"Notifications"} darkMode={darkMode} />
           <ToggleButton text={"Autostart"} darkMode={darkMode} />
-          <ToggleButton text={"Dark mode"} darkMode={darkMode} />
+          <ToggleButton text={"Dark mode"} clickFunction={toggleLightMode} darkMode={darkMode} />
         </div>
       </form>
       <Footer darkMode={darkMode} />
