@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ToggleButton.scss";
 
-const ToggleButton = ({ text, def }) => {
+const ToggleButton = ({ text, darkMode }) => {
   const [on, setOn] = useState(false);
 
   const toggle = () => {

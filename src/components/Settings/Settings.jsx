@@ -13,19 +13,27 @@ const Settings = ({ darkMode }) => {
     longBreakDuration: 20,
   });
 
-  const [timerData ,setTimerData] = useContext(TimerDataContext);
+  const [timerData, setTimerData] = useContext(TimerDataContext);
 
   useEffect(() => {
     const dataArray = [];
-   
+
     for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({time: data.workDuration * 60, status: 'focus' + i, session: i})
-      dataArray.push({time: data.breakDuration * 60, status: 'brack' + i, session: i})
+      dataArray.push({
+        time: data.workDuration * 60,
+        status: "focus" + i,
+        session: i,
+      });
+      dataArray.push({
+        time: data.breakDuration * 60,
+        status: "brack" + i,
+        session: i,
+      });
     }
-    dataArray.push({time: data.longBreakDuration * 60, status: 'long brake'})
+    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
     setTimerData(dataArray);
   }, [data, setTimerData]);
-  
+
   const changeWorkDuration = (e) => {
     setData({ ...data, workDuration: e.target.value });
   };
@@ -77,16 +85,16 @@ const Settings = ({ darkMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        <div className="buttonsGroup">
-        <ToggleButton text={'Timer in title'}/>
-        <ToggleButton text={'Notifications'}/>
-        <ToggleButton text={'Autostart'}/>
-        <ToggleButton text={'Dark mode'}/>
+        <div
+          className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
+        >
+          <ToggleButton text={"Timer in title"} darkMode={darkMode} />
+          <ToggleButton text={"Notifications"} darkMode={darkMode} />
+          <ToggleButton text={"Autostart"} darkMode={darkMode} />
+          <ToggleButton text={"Dark mode"} darkMode={darkMode} />
         </div>
-
       </form>
       <Footer darkMode={darkMode} />
-      
     </section>
   );
 };
