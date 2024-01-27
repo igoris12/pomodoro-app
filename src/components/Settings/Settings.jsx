@@ -77,9 +77,14 @@ const Settings = ({ darkMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        <ToggleButton/>
+        <ToggleButton text={'Timer in title'}/>
+        <ToggleButton text={'Notifications'}/>
+        <ToggleButton text={'Autostart'}/>
+        <ToggleButton text={'Dark mode'}/>
+
       </form>
       <Footer darkMode={darkMode} />
+      
     </section>
   );
 };

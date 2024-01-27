@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ToggleButton.scss";
 
-const ToggleButton = () => {
+const ToggleButton = ({ text, def }) => {
   const [on, setOn] = useState(false);
 
   const toggle = () => {
@@ -9,7 +9,6 @@ const ToggleButton = () => {
   };
 
   return (
-
     <button
       type="checkbox"
       onClick={(e) => {
@@ -18,9 +17,11 @@ const ToggleButton = () => {
       }}
       className={on ? "toggleButton" : "toggleButton active"}
     >
-
-     <span className="toggleButtonThumb"></span>
-     <span className="track"></span>
+      {text}
+      <div className={on ? "button" : "button active"}>
+        <span className="toggleButtonThumb"></span>
+        <span className="track"></span>
+      </div>
     </button>
   );
 };
