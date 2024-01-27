@@ -5,7 +5,7 @@ import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 
-const Settings = ({ darkMode }) => {
+const Settings = ({ darkMode , toggleLightMode }) => {
   const [data, setData] = useState({
     workDuration: 25,
     breakDuration: 5,
@@ -13,19 +13,27 @@ const Settings = ({ darkMode }) => {
     longBreakDuration: 20,
   });
 
-  const [timerData ,setTimerData] = useContext(TimerDataContext);
+  const [timerData, setTimerData] = useContext(TimerDataContext);
 
   useEffect(() => {
     const dataArray = [];
-   
+
     for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({time: data.workDuration * 60, status: 'focus' + i, session: i})
-      dataArray.push({time: data.breakDuration * 60, status: 'brack' + i, session: i})
+      dataArray.push({
+        time: data.workDuration * 60,
+        status: "focus" + i,
+        session: i,
+      });
+      dataArray.push({
+        time: data.breakDuration * 60,
+        status: "brack" + i,
+        session: i,
+      });
     }
-    dataArray.push({time: data.longBreakDuration * 60, status: 'long brake'})
+    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
     setTimerData(dataArray);
   }, [data, setTimerData]);
-  
+
   const changeWorkDuration = (e) => {
     setData({ ...data, workDuration: e.target.value });
   };
@@ -77,7 +85,14 @@ const Settings = ({ darkMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        <ToggleButton/>
+        <div
+          className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
+        >
+          <ToggleButton text={"Timer in title"} darkMode={darkMode} clickFunction={()=>{}}/>
+          <ToggleButton text={"Notifications"} darkMode={darkMode} clickFunction={()=>{}}/>
+          <ToggleButton text={"Autostart"} darkMode={darkMode} clickFunction={()=>{}} />
+          <ToggleButton text={"Dark mode"} clickFunction={toggleLightMode} def={darkMode}/>
+        </div>
       </form>
       <Footer darkMode={darkMode} />
     </section>
