@@ -4,7 +4,6 @@ import "./ToggleButton.scss";
 const ToggleButton = ({ text, clickFunction, def = false }) => {
   useEffect(() => {setOn(def)}, [def]);
   const [on, setOn] = useState(def);
-  console.log(def);
   const toggle = () => {
     setOn(!on);
   };
