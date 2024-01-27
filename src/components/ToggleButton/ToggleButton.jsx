@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./ToggleButton.scss";
 
-const ToggleButton = ({ text, clickFunction }) => {
-  const [on, setOn] = useState(false);
-
+const ToggleButton = ({ text, clickFunction, def = false }) => {
+  useEffect(() => {setOn(def)}, [def]);
+  const [on, setOn] = useState(def);
+  console.log(def);
   const toggle = () => {
     setOn(!on);
   };
@@ -16,10 +17,10 @@ const ToggleButton = ({ text, clickFunction }) => {
         toggle();
         clickFunction();
       }}
-      className={!on  ? "toggleButton" : "toggleButton active"}
+      className={on !== true ? "toggleButton" : "toggleButton active"}
     >
       {text}
-      <div className={!on ? "button" : "button active"}>
+      <div className={on !== true ? "button" : "button active"}>
         <span className="toggleButtonThumb"></span>
         <span className="track"></span>
       </div>
