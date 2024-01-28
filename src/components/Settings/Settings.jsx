@@ -31,7 +31,7 @@ const Settings = ({ darkMode , toggleLightMode }) => {
       });
     }
     dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData(dataArray);
+    setTimerData({timerData, time:dataArray});
   }, [data, setTimerData]);
 
   const changeWorkDuration = (e) => {
