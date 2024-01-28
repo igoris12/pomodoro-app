@@ -10,17 +10,23 @@ export const TimerDataContext = createContext();
 function App() {
   const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [timerData, setTimerData] = useState([
-    { time: 25 * 60, status: "focus", session: 1 },
-    { time: 5 * 60, status: "breack", session: 2 },
-    { time: 25 * 60, status: "focus", session: 3 },
-    { time: 5 * 60, status: "breack", session: 4 },
-    { time: 25 * 60, status: "focus", session: 5 },
-    { time: 5 * 60, status: "breack", session: 6 },
-    { time: 25 * 60, status: "focus", session: 7 },
-    { time: 20 * 60, status: "breack" },
-  ]);
-  console.log(timerData);
+  const [timerData, setTimerData] = useState({
+    time: [
+      { time: 5, status: "focus", session: 1 },
+      { time: 5 * 60, status: "breack", session: 2 },
+      { time: 25 * 60, status: "focus", session: 3 },
+      { time: 5 * 60, status: "breack", session: 4 },
+      { time: 25 * 60, status: "focus", session: 5 },
+      { time: 5 * 60, status: "breack", session: 6 },
+      { time: 25 * 60, status: "focus", session: 7 },
+      { time: 20 * 60, status: "breack" },
+    ],
+    settings:{
+      notification: false,
+      autostart: false,
+      timeInTitle: false
+    }
+  });
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
@@ -43,12 +49,17 @@ function App() {
           />
           <Routes>
             <Route
-              path="/pomodoro-app/timer"
+              path="/pomodoro-app"
               element={<Timer darkMode={darkMode} />}
             />
             <Route
               path="/pomodoro-app/settings"
-              element={<Settings darkMode={darkMode} />}
+              element={
+                <Settings
+                  darkMode={darkMode}
+                  toggleLightMode={toggleDarckMode}
+                />
+              }
             />
           </Routes>
         </Router>

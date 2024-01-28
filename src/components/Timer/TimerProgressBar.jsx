@@ -5,6 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
+import audio from './audio/audio.js';
 function TimerProgressBar({
   darkMode,
   time,
@@ -15,6 +16,8 @@ function TimerProgressBar({
   restartSessions,
   timeInSeconds,
   reduceTime,
+  callNotification,
+  notification
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
@@ -33,6 +36,14 @@ function TimerProgressBar({
     if (play !== true) {
       return;
     }
+    if (time === 0){
+    const sound = new Audio(audio[0]);
+
+    if (notification ) {
+      callNotification();
+    }
+    sound.play()
+    }
     if (time <= 0) {
       const timer = setTimeout(() => {
         changeSession();
@@ -45,7 +56,7 @@ function TimerProgressBar({
       reduceTime();
       setStrokeDashoffset(
         tistrokeDashoffsetme +
-          (screenSize.width >= 900 ? 886 : 572) / timeInSeconds
+          (screenSize.width >= 900 ? 867 : 572) / timeInSeconds
       );
     }, 1000);
 
