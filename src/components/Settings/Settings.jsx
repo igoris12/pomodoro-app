@@ -5,12 +5,13 @@ import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 
-const Settings = ({ darkMode , toggleLightMode }) => {
+const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
     workDuration: 25,
     breakDuration: 5,
     rounds: 4,
     longBreakDuration: 20,
+    notification: true,
   });
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
@@ -31,7 +32,7 @@ const Settings = ({ darkMode , toggleLightMode }) => {
       });
     }
     dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData({timerData, time:dataArray});
+    setTimerData({ timerData, time: dataArray });
   }, [data, setTimerData]);
 
   const changeWorkDuration = (e) => {
@@ -45,6 +46,11 @@ const Settings = ({ darkMode , toggleLightMode }) => {
   };
   const changeLongBreakDuration = (e) => {
     setData({ ...data, longBreakDuration: e.target.value });
+  };
+
+  const switchNotification = (e) => {
+    console.log(e.target.checked);
+    // setData({ ...data, notification: e.target.value });
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
@@ -88,10 +94,32 @@ const Settings = ({ darkMode , toggleLightMode }) => {
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
-          <ToggleButton text={"Timer in title"} darkMode={darkMode} clickFunction={()=>{}}/>
-          <ToggleButton text={"Notifications"} darkMode={darkMode} def={true} clickFunction={()=>{} }/>
-          <ToggleButton text={"Autostart"} darkMode={darkMode} clickFunction={()=>{}} />
-          <ToggleButton text={"Dark mode"} darkMode={darkMode} clickFunction={toggleLightMode} def={darkMode}/>
+          <ToggleButton
+            text={"Timer in title"}
+            name={"title"}
+            darkMode={darkMode}
+            clickFunction={() => {}}
+          />
+          <ToggleButton
+            text={"Notifications"}
+            name={"notifications"}
+            darkMode={darkMode}
+            def={true}
+            clickFunction={switchNotification}
+          />
+          <ToggleButton
+            text={"Autostart"}
+            name={"autostart"}
+            darkMode={darkMode}
+            clickFunction={() => {}}
+          />
+          <ToggleButton
+            text={"Dark mode"}
+            name={"darkMode"}
+            darkMode={darkMode}
+            clickFunction={toggleLightMode}
+            def={darkMode}
+          />
         </div>
       </form>
       <Footer darkMode={darkMode} />
