@@ -12,6 +12,13 @@
   width: 100%;
   padding: 6px;
   color: inherit;
+  &.dark {
+    .button {
+    
+      background-color: rgba($color: #fff, $alpha: 0.38);
+
+    }
+  }
   .button {
     width: 34px;
     height: 14px;

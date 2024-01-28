@@ -89,9 +89,9 @@ const Settings = ({ darkMode , toggleLightMode }) => {
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
           <ToggleButton text={"Timer in title"} darkMode={darkMode} clickFunction={()=>{}}/>
-          <ToggleButton text={"Notifications"} darkMode={darkMode} clickFunction={()=>{}}/>
+          <ToggleButton text={"Notifications"} darkMode={darkMode} def={true} clickFunction={()=>{} }/>
           <ToggleButton text={"Autostart"} darkMode={darkMode} clickFunction={()=>{}} />
-          <ToggleButton text={"Dark mode"} clickFunction={toggleLightMode} def={darkMode}/>
+          <ToggleButton text={"Dark mode"} darkMode={darkMode} clickFunction={toggleLightMode} def={darkMode}/>
         </div>
       </form>
       <Footer darkMode={darkMode} />
