@@ -32,7 +32,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       });
     }
     dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData({ timerData, time: dataArray });
+    setTimerData({ ...timerData, time: dataArray,settings: {...timerData.settings, notification: data.notification} });
   }, [data, setTimerData]);
 
   const changeWorkDuration = (e) => {
@@ -49,15 +49,14 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const switchNotification = (e) => {
-    console.log(e.target.checked);
-    // setData({ ...data, notification: e.target.value });
+    setData({ ...data, notification: e.target.checked });
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
         <RangeInput
           text={"Work duration"}
-          min={5}
+          min={0.05}
           max={60}
           defValue={25}
           value={data.workDuration}
@@ -104,7 +103,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
             text={"Notifications"}
             name={"notifications"}
             darkMode={darkMode}
-            def={true}
+            def={data.notification}
             clickFunction={switchNotification}
           />
           <ToggleButton
