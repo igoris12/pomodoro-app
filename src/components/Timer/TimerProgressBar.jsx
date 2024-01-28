@@ -16,6 +16,8 @@ function TimerProgressBar({
   restartSessions,
   timeInSeconds,
   reduceTime,
+  callNotification,
+  notification
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
@@ -36,6 +38,10 @@ function TimerProgressBar({
     }
     if (time === 0){
     const sound = new Audio(audio[0]);
+
+    if (notification ) {
+      callNotification();
+    }
     sound.play()
     }
     if (time <= 0) {
