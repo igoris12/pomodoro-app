@@ -19,13 +19,14 @@ function TimerProgressBar({
   callNotification,
   notification,
   autoplay,
+  timeInTitle
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
-
+  console.log(timeInTitle);
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
@@ -59,7 +60,10 @@ function TimerProgressBar({
       }, 1000);
       return () => clearTimeout(timer);
     }
-    document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+    
+    if (timeInTitle) {
+      document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+    }
 
     const timer = setInterval(() => {
       reduceTime();
@@ -79,6 +83,7 @@ function TimerProgressBar({
     tistrokeDashoffsetme,
     screenSize,
     autoplay,
+    timeInTitle
   ]);
 
   return (
@@ -110,6 +115,9 @@ function TimerProgressBar({
             setPlay(false);
             restartSessions();
             setStrokeDashoffset(0);
+            if (timeInTitle) {
+              document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+            }
           }}
         >
           <VscDebugRestart />

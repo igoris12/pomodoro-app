@@ -53,6 +53,8 @@ function Timer({ darkMode }) {
         reduceTime={reduceTime}
         notification={data.settings.notification}
         autoplay={data.settings.autoplay}
+        timeInTitle={data.settings.timeInTitle}
+
       />
       <Footer darkMode={darkMode} />
     </section>
