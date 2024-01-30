@@ -12,7 +12,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     rounds: 4,
     longBreakDuration: 20,
     notification: true,
+    autoplay: false
   });
+  console.log(data.autoplay);
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
 
@@ -51,6 +53,10 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   const switchNotification = (e) => {
     setData({ ...data, notification: e.target.checked });
   };
+
+  const switchAutoplay = (e)=> {
+    setData({ ...data, autoplay: e.target.checked });
+  }
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
@@ -110,7 +116,8 @@ const Settings = ({ darkMode, toggleLightMode }) => {
             text={"Autostart"}
             name={"autostart"}
             darkMode={darkMode}
-            clickFunction={() => {}}
+            def={data.autoplay}
+            clickFunction={switchAutoplay}
           />
           <ToggleButton
             text={"Dark mode"}
