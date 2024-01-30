@@ -52,6 +52,7 @@ function Timer({ darkMode }) {
         timeInSeconds={data.time[session - 1].time}
         reduceTime={reduceTime}
         notification={data.settings.notification}
+        autoplay={data.settings.autoplay}
       />
       <Footer darkMode={darkMode} />
     </section>

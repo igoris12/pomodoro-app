@@ -14,7 +14,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     notification: true,
     autoplay: false
   });
-  console.log(data.autoplay);
+
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
 
@@ -34,7 +34,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       });
     }
     dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData({ ...timerData, time: dataArray,settings: {...timerData.settings, notification: data.notification} });
+    setTimerData({ ...timerData, time: dataArray,settings: {...timerData.settings, notification: data.notification, autoplay: data.autoplay} });
   }, [data, setTimerData]);
 
   const changeWorkDuration = (e) => {

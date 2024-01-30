@@ -23,10 +23,11 @@ function App() {
     ],
     settings:{
       notification: true,
-      autostart: false,
+      autoplay: false,
       timeInTitle: false
     }
   });
+  // console.log(timerData.settings.autoplay);
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
