@@ -37,6 +37,7 @@ function TimerProgressBar({
     if (play !== true) {
       return;
     }
+
     if (time === 0) {
       const sound = new Audio(audio[0]);
 
@@ -44,7 +45,7 @@ function TimerProgressBar({
         callNotification();
       }
       sound.play();
-     
+
       if (!autoplay) {
         togglePlay();
         changeSession();
@@ -56,9 +57,10 @@ function TimerProgressBar({
         changeSession();
         setStrokeDashoffset(0);
       }, 1000);
-
       return () => clearTimeout(timer);
     }
+    document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+
     const timer = setInterval(() => {
       reduceTime();
       setStrokeDashoffset(
@@ -76,7 +78,7 @@ function TimerProgressBar({
     timeInSeconds,
     tistrokeDashoffsetme,
     screenSize,
-    autoplay
+    autoplay,
   ]);
 
   return (
