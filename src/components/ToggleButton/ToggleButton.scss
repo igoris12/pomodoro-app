@@ -12,6 +12,9 @@
   width: 100%;
   padding: 6px;
   color: inherit;
+  input {
+    display: none;
+  }
   &.dark {
     .button {
     
