@@ -19,7 +19,7 @@ function App() {
       { time: 25 * 60, status: "focus", session: 5 },
       { time: 5 * 60, status: "breack", session: 6 },
       { time: 25 * 60, status: "focus", session: 7 },
-      { time: 20 * 60, status: "breack" },
+      { time: 20 * 60, status: "breack long" },
     ],
     settings:{
       notification: true,
@@ -27,7 +27,7 @@ function App() {
       timeInTitle: false
     }
   });
-  // console.log(timerData.settings.autoplay);
+
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };

@@ -23,10 +23,7 @@ function Timer({ darkMode }) {
   };
 
   const restartSessions = () => {
-    if (session === 1) {
-      return;
-    }
-    setTime(data.time[session - 1].time);
+      setTime(data.time[session - 1].time);
   };
 
   const reduceTime = () => {
