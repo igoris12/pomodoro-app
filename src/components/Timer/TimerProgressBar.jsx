@@ -5,7 +5,7 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
-import audio from './audio/audio.js';
+import audio from "./audio/audio.js";
 function TimerProgressBar({
   darkMode,
   time,
@@ -17,14 +17,16 @@ function TimerProgressBar({
   timeInSeconds,
   reduceTime,
   callNotification,
-  notification
+  notification,
+  autoplay,
+  timeInTitle
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
   const minutes = Math.floor(time / 60);
   const seconds = time - minutes * 60;
-
+  console.log(timeInTitle);
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
@@ -36,22 +38,33 @@ function TimerProgressBar({
     if (play !== true) {
       return;
     }
-    if (time === 0){
-    const sound = new Audio(audio[0]);
 
-    if (notification ) {
-      callNotification();
-    }
-    sound.play()
+    if (time === 0) {
+      const sound = new Audio(audio[0]);
+
+      if (notification) {
+        callNotification();
+      }
+      sound.play();
+
+      if (!autoplay) {
+        togglePlay();
+        changeSession();
+        setStrokeDashoffset(0);
+      }
     }
     if (time <= 0) {
       const timer = setTimeout(() => {
         changeSession();
         setStrokeDashoffset(0);
       }, 1000);
-
       return () => clearTimeout(timer);
     }
+    
+    if (timeInTitle) {
+      document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+    }
+
     const timer = setInterval(() => {
       reduceTime();
       setStrokeDashoffset(
@@ -69,6 +82,8 @@ function TimerProgressBar({
     timeInSeconds,
     tistrokeDashoffsetme,
     screenSize,
+    autoplay,
+    timeInTitle
   ]);
 
   return (
@@ -100,6 +115,9 @@ function TimerProgressBar({
             setPlay(false);
             restartSessions();
             setStrokeDashoffset(0);
+            if (timeInTitle) {
+              document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+            }
           }}
         >
           <VscDebugRestart />
