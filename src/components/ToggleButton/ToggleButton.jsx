@@ -4,7 +4,7 @@ const ToggleButton = ({ text, clickFunction, def = false, darkMode, name }) => {
 
 
   return (
-    <>
+    
       <label
         htmlFor={name}
         className={!darkMode === true ? "toggleButton" : "toggleButton dark"}
@@ -24,7 +24,7 @@ const ToggleButton = ({ text, clickFunction, def = false, darkMode, name }) => {
           checked={def}
         />
       </label>
-    </>
+    
   );
 };
 

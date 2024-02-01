@@ -4,6 +4,7 @@ import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
+import SelectInput from "../SelectInput/SelectInput";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -108,6 +109,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
+
+        <SelectInput/>
+
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >

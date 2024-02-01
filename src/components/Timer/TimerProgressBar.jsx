@@ -46,11 +46,11 @@ function TimerProgressBar({
 
     if (time === 0) {
       const sound = new Audio(audio[0]);
+      sound.play();
 
       if (notification) {
         callNotification();
       }
-      sound.play();
 
       if (!autoplay) {
         togglePlay();
