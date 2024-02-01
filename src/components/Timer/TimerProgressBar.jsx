@@ -19,7 +19,7 @@ function TimerProgressBar({
   callNotification,
   notification,
   autoplay,
-  timeInTitle
+  timeInTitle,
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
@@ -34,6 +34,11 @@ function TimerProgressBar({
     setPlay(!play);
   };
 
+  const infoText = (session, sessionCount) => {
+    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
+      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+  };
   useEffect(() => {
     if (play !== true) {
       return;
@@ -60,9 +65,11 @@ function TimerProgressBar({
       }, 1000);
       return () => clearTimeout(timer);
     }
-    
+
     if (timeInTitle) {
-      document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+      document.title = `${
+        formatting(minutes) + ":" + formatting(seconds)
+      } | 👨‍💻 Pamedoro`;
     }
 
     const timer = setInterval(() => {
@@ -83,7 +90,7 @@ function TimerProgressBar({
     tistrokeDashoffsetme,
     screenSize,
     autoplay,
-    timeInTitle
+    timeInTitle,
   ]);
 
   return (
@@ -116,7 +123,9 @@ function TimerProgressBar({
             restartSessions();
             setStrokeDashoffset(0);
             if (timeInTitle) {
-              document.title = `${formatting(minutes) + ":" + formatting(seconds)} | 👨‍💻 Pamedoro`;
+              document.title = `${
+                formatting(minutes) + ":" + formatting(seconds)
+              } | 👨‍💻 Pamedoro`;
             }
           }}
         >
@@ -139,7 +148,7 @@ function TimerProgressBar({
       </div>
       <div className="info">
         <span>
-          {Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)}
+          {infoText(session, sessionCount)}
         </span>
         <span>sessions</span>
       </div>
