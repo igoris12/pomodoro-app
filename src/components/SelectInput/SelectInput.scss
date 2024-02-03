@@ -1,9 +1,9 @@
-@import '../../style/scss/variables.scss';
+@import "../../style/scss/variables.scss";
 .selectInput {
-   width: 100%;
-   height: auto;
-   position: relative;
-   span {
+  width: 100%;
+  height: auto;
+  position: relative;
+  span {
     background-color: red;
     position: absolute;
     top: 0;
@@ -13,14 +13,19 @@
     transform: translateY(-50%);
     background-color: white;
     padding: 0 5px;
-   }
-    select {
-        width: 100%;
-        height: 56px;
-        padding: 18px 32px 18px 14px;
-        border: 1px solid rgba($color: #000000, $alpha: 0.5);
-        border-radius: 4px;
-        font-family: $primaryFont;
-        font-size: 16px;
+  }
+  select {
+    width: 100%;
+    height: 56px;
+    padding: 18px 32px 18px 14px;
+    border: 1px solid rgba($color: #000000, $alpha: 0.5);
+    border-radius: 4px;
+    font-family: $primaryFont;
+    font-size: 16px;
+    option {
+      font-family: $primaryFont;
+      font-size: 16px;
+
     }
+  }
 }
