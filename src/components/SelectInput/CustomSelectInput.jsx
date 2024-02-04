@@ -2,14 +2,22 @@ import React, { useState } from "react";
 import "./CustomSelectInput.scss";
 // import './CustomSelectInput.js'
 
-// selectBtn.addEventListener("click", () => {
-//   // add/remove active class on the container element
-//   customSelect.classList.toggle("active");
-//   // update the aria-expanded attribute based on the current state
-//   selectBtn.setAttribute(
-//     "aria-expanded",
-//     selectBtn.getAttribute("aria-expanded") === "true" ? "false" : "true"
-//   );
+// optionsList.forEach((option) => {
+//   function handler(e) {
+//     // Click Events
+//     if (e.type === "click" && e.clientX !== 0 && e.clientY !== 0) {
+//       selectedValue.textContent = this.children[1].textContent;
+//       customSelect.classList.remove("active");
+//     }
+//     // Key Events
+//     if (e.key === "Enter") {
+//       selectedValue.textContent = this.textContent;
+//       customSelect.classList.remove("active");
+//     }
+//   }
+
+//   option.addEventListener("keyup", handler);
+//   option.addEventListener("click", handler);
 // });
 function CustomSelectInput() {
   const [customSelectActive, setCustomSelectActive] = useState(false);
@@ -28,6 +36,7 @@ function CustomSelectInput() {
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
     >
+       <span className="name">Notificaiton sound</span>
       <button
         className="select-button"
         role="combobox"
@@ -43,7 +52,7 @@ function CustomSelectInput() {
         <span className="selected-value">{selected}</span>
         <span className="arrow"></span>
       </button>
-      <ul className="select-dropdown" role="listbox" id="select-dropdown">
+      <ul className="select-dropdown" role="listbox">
         {options.map((item) => {
           return (
             <li

@@ -5,7 +5,16 @@
   max-width: 100%;
   color: #000;
   margin-top: 3rem;
-
+  .name {
+    background-color: white;
+    padding: 0 4px;
+    font-size: 12px;
+    font-family: $primaryFont;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    transform: translateY(-50%);
+  }
   .select-button {
     width: 100%;
     background-color: #fff;
