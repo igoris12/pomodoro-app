@@ -55,6 +55,12 @@
       display: flex;
       gap: 1rem;
       align-items: center;
+      &.active {
+        label {
+        background-color: #dfdfdf;
+
+        }
+      } 
     }
 
     label {
@@ -68,19 +74,11 @@
       input {
         position: absolute;
           left: 0;
-          // opacity: 0;
-          
-          &:checked {
-            + {
-              label {
-                background-color: red;
-              }
-            }
-            background-color: red;
-          }
-      }
-      &:hover {
-        background-color: #dfdfdf;
+          opacity: 0;
+        }
+        &:hover {
+          background-color: #f2f2f2;
+
       }
     }
     &:focus-within {
@@ -112,16 +110,3 @@
     }
   }
 }
-
-
-
-
-// .select-dropdown li:hover,
-// .select-dropdown input:checked ~ label {
-//   background-color: #f2f2f2;
-// }
-
-// .select-dropdown input:focus ~ label {
-//   background-color: #dfdfdf;
-// }
-
