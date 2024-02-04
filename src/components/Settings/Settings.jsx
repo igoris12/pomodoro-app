@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import SelectInput from "../SelectInput/SelectInput";
+import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -73,6 +74,8 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
+      <CustomSelectInput/>
+
         <RangeInput
           text={"Work duration"}
           min={0.05}
@@ -110,7 +113,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           darkMode={darkMode}
         />
 
-        <SelectInput/>
+        {/* <SelectInput/> */}
 
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
