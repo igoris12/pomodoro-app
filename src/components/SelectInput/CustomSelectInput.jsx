@@ -20,13 +20,13 @@ function CustomSelectInput() {
   }
 
   return (
-    <div className="custom-select">
+    <div className={customSelectActive ?  "custom-select active": 'custom-select'}>
       <button
-        className={customSelectActive ? "select-button active" :  "select-button"}
+        className="select-button"
         role="combobox"
         aria-labelledby="select button"
         aria-haspopup="listbox"
-        aria-expanded="false"
+        aria-expanded={customSelectActive ? "true" : 'fasle'}
         aria-controls="select-dropdown"
         onClick={(e)=> {
           e.preventDefault();
