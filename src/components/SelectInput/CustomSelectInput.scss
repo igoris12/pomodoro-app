@@ -1,34 +1,36 @@
+@import '../../style/scss/variables.scss';
 .custom-select {
   position: relative;
   width: 400px;
   max-width: 100%;
-  font-size: 1.15rem;
   color: #000;
   margin-top: 3rem;
 
   .select-button {
     width: 100%;
-    font-size: 1.15rem;
     background-color: #fff;
     padding: 0.675em 1em;
     border: 1px solid #caced1;
-    border-radius: 0.25rem;
+    border-radius: 5px;
     cursor: pointer;
-
+    padding: 18px 32px 18px 14px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .selected-value {
+      text-align: left;
+      font-size: 18px;
+      font-family: $primaryFont;
+    }
+  
+    .arrow {
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #000;
+      transition: transform ease-in-out 0.3s;
+    }
   }
-  .selected-value {
-    text-align: left;
-  }
-
-  .arrow {
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 6px solid #000;
-    transition: transform ease-in-out 0.3s;
-  }
+  
 
   .select-dropdown {
     position: absolute;
@@ -70,7 +72,8 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-      
+      font-size: 18px;
+      font-family: $primaryFont;
       input {
         position: absolute;
           left: 0;
@@ -109,4 +112,6 @@
       transform: scaleY(1);
     }
   }
+
+  
 }
