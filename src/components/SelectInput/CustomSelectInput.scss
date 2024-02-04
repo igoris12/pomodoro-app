@@ -30,6 +30,7 @@
       text-align: left;
       font-size: 18px;
       font-family: $primaryFont;
+      
     }
   
     .arrow {
@@ -37,6 +38,13 @@
       border-right: 5px solid transparent;
       border-top: 6px solid #000;
       transition: transform ease-in-out 0.3s;
+    }
+    &:hover {
+      border-color: #000;
+    }
+    &:focus {
+      border-color: rgb(84, 62, 246, );
+      border-width: 2px;
     }
   }
   
@@ -49,11 +57,11 @@
     background-color: #fff;
     border: 1px solid #caced1;
     border-radius: 4px;
-    padding: 10px;
+    padding: 10px 0;
     margin-top: 10px;
     max-height: 200px;
     overflow-y: auto;
-    transition: 0.5s ease;
+    transition: 0.1s ease;
     z-index: 2;
 
     transform: scaleY(0);
