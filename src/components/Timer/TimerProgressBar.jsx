@@ -45,7 +45,7 @@ function TimerProgressBar({
     }
 
     if (time === 0) {
-      const sound = new Audio(audio[0]);
+      const sound = new Audio(audio.ringtone);
       sound.play();
 
       if (notification) {

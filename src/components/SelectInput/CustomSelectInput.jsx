@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./CustomSelectInput.scss";
+import audio from "../Timer/audio/audio.js";
+
 // import './CustomSelectInput.js'
 
 // optionsList.forEach((option) => {
@@ -20,17 +22,19 @@ import "./CustomSelectInput.scss";
 //   option.addEventListener("click", handler);
 // });
 function CustomSelectInput() {
+  const options = [
+    { name: "callToAttention", audio: audio.callToAttention, id: 0 },
+    { name: "alarmClock", audio: audio.alarmClock, id: 1 },
+    { name: "ringtone", audio: audio.ringtone, id: 2  },
+
+  ];
   const [customSelectActive, setCustomSelectActive] = useState(false);
-  const [selected, setSelected] = useState("soud1");
+  const [selected, setSelected] = useState(options[0].name);
 
   const toggleCustomSelectActive = () => {
     setCustomSelectActive(!customSelectActive);
   };
 
-  const options = [
-    { name: "soud1", id: 0 },
-    { name: "soud2", id: 1 },
-  ];
 
   return (
     <div
@@ -58,6 +62,9 @@ function CustomSelectInput() {
             <li
               onClick={(e) => {
                 setSelected(item.name);
+                setCustomSelectActive(false);
+                const sound = new Audio(item.audio);
+                sound.play();
               }}
               key={item.id}
               role="option"
@@ -66,26 +73,11 @@ function CustomSelectInput() {
             >
               <label>
                 <input type="radio" name="soud" />
-                <i className="bx bxl-github"></i>
                 {item.name}
               </label>
             </li>
           );
         })}
-
-        {/* <li role="option">
-          <label htmlFor="github">
-            <input type="radio" name="social-account" />
-            <i className="bx bxl-github"></i>GitHub
-          </label>
-        </li>
-
-        <li role="option">
-          <label htmlFor="github">
-            <input type="radio" name="social-account" />
-            <i className="bx bxl-github"></i>GitHub
-          </label>
-        </li> */}
       </ul>
     </div>
   );

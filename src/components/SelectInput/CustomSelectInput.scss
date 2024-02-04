@@ -30,6 +30,7 @@
       text-align: left;
       font-size: 18px;
       font-family: $primaryFont;
+      text-transform: capitalize;
       
     }
   
@@ -44,7 +45,7 @@
     }
     &:focus {
       border-color: rgb(84, 62, 246, );
-      border-width: 2px;
+      border-width: 1px;
     }
   }
   
@@ -91,6 +92,7 @@
       align-items: center;
       font-size: 18px;
       font-family: $primaryFont;
+      text-transform: capitalize;
       input {
         position: absolute;
           left: 0;
