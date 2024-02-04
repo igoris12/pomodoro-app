@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import './CustomSelectInput.css';
+import './CustomSelectInput.scss';
 // import './CustomSelectInput.js'
 
 
@@ -14,6 +14,7 @@ import './CustomSelectInput.css';
 // });
 function CustomSelectInput() {
   const [customSelectActive, setCustomSelectActive] = useState(false);
+  const [selected, setSelected] = useState(1)
 
   const toggleCustomSelectActive = ()=> {
     setCustomSelectActive(!customSelectActive);
@@ -21,6 +22,7 @@ function CustomSelectInput() {
 
   return (
     <div className={customSelectActive ?  "custom-select active": 'custom-select'}>
+     {/* <select></select> */}
       <button
         className="select-button"
         role="combobox"
@@ -33,44 +35,45 @@ function CustomSelectInput() {
           toggleCustomSelectActive();
         }}
       >
-        <span className="selected-value">Open this select menu</span>
+        <span className="selected-value">{selected}</span>
         <span className="arrow"></span>
       </button>
       <ul className="select-dropdown" role="listbox" id="select-dropdown">
-        <li role="option">
+        <li role="option" aria-selected={true} >
           <input type="radio" id="github" name="social-account" />
           <label htmlFor="github">
             <i className="bx bxl-github"></i>GitHub
           </label>
         </li>
-        <li role="option">
-          <input type="radio" id="instagram" name="social-account" />
-          <label htmlFor="instagram">
-            <i className="bx bxl-instagram"></i>Instagram
+        <li role="option" aria-selected={false} >
+          <input type="radio" id="github" name="social-account" />
+          <label htmlFor="github">
+            <i className="bx bxl-github"></i>GitHub
           </label>
-        </li>
-        <li role="option">
-          <input type="radio" id="facebook" name="social-account" />
-          <label htmlFor="facebook">
-            <i className="bx bxl-facebook-circle"></i>Facebook
+        </li> <li role="option"  >
+          <label htmlFor="github">
+          <input type="radio"  id="github" name="social-account" />
+            <i className="bx bxl-github"></i>GitHub
           </label>
-        </li>
-        <li role="option">
-          <input type="radio" id="linkedIn" name="social-account" />
-          <label htmlFor="linkedIn">
-            <i className="bx bxl-linkedin-square"></i>LinkedIn
+        </li> <li role="option" aria-selected={false} >
+          <label htmlFor="github">
+          <input type="radio" id="github" name="social-account" />
+            <i className="bx bxl-github"></i>GitHub
           </label>
-        </li>
-        <li role="option">
-          <input type="radio" id="twitter" name="social-account" />
-          <label htmlFor="twitter">
-            <i className="bx bxl-twitter"></i>Twitter
+        </li> <li role="option" aria-selected={false} >
+          <label htmlFor="github">
+          <input type="radio" id="github" name="social-account" />
+            <i className="bx bxl-github"></i>GitHub
           </label>
-        </li>
-        <li role="option">
-          <input type="radio" id="reddit" name="social-account" />
-          <label htmlFor="reddit">
-            <i className="bx bxl-reddit"></i>Reddit
+        </li> <li role="option" aria-selected={false} >
+          <label htmlFor="github">
+          <input type="radio" id="github" name="social-account" />
+            <i className="bx bxl-github"></i>GitHub
+          </label>
+        </li> <li role="option" aria-selected={false} >
+          <label htmlFor="github">
+          <input type="radio" id="github" name="social-account" />
+            <i className="bx bxl-github"></i>GitHub
           </label>
         </li>
       </ul>
