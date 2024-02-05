@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio.js";
 
@@ -23,24 +23,29 @@ import audio from "../Timer/audio/audio.js";
 // });
 function CustomSelectInput() {
   const options = [
-    { name: "callToAttention", audio: audio.callToAttention, id: 0 },
-    { name: "alarmClock", audio: audio.alarmClock, id: 1 },
-    { name: "ringtone", audio: audio.ringtone, id: 2  },
-
+    { name: "callToAttention", audio: new Audio(audio.callToAttention), id: 0 },
+    { name: "alarmClock", audio: new Audio(audio.alarmClock), id: 1 },
+    { name: "ringtone", audio: new Audio(audio.ringtone), id: 2 },
   ];
   const [customSelectActive, setCustomSelectActive] = useState(false);
-  const [selected, setSelected] = useState(options[0].name);
-
+  const [selected, setSelected] = useState({
+    name: options[0].name,
+    audio: options[0].audio,
+  });
+  const [audioPlay, setAudioPlay] = useState(new Audio(selected.audio));
+  console.log(audioPlay);
   const toggleCustomSelectActive = () => {
     setCustomSelectActive(!customSelectActive);
   };
 
-
+  // useEffect(() => {
+  //   audioPlay(new Audio(selected.audio));
+  // }, [selected]);
   return (
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
     >
-       <span className="name">Notificaiton sound</span>
+      <span className="name">Notificaiton sound</span>
       <button
         className="select-button"
         role="combobox"
@@ -53,7 +58,7 @@ function CustomSelectInput() {
           toggleCustomSelectActive();
         }}
       >
-        <span className="selected-value">{selected}</span>
+        <span className="selected-value">{selected.name}</span>
         <span className="arrow"></span>
       </button>
       <ul className="select-dropdown" role="listbox">
@@ -61,15 +66,21 @@ function CustomSelectInput() {
           return (
             <li
               onClick={(e) => {
-                setSelected(item.name);
+                setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
-                const sound = new Audio(item.audio);
-                sound.play();
+                // setAudioPlay(new Audio(selected.audio));
+                // if (!audioPlay.paused) {
+                //   audioPlay.pause();
+                // }
+                new Audio(selected.audio).play();
+                // audioPlay.play();
+                // audioPlay.played
+                // console.log(audioPlay.playing);
               }}
               key={item.id}
               role="option"
-              aria-selected
-              className={selected === item.name ? "active" : ""}
+              aria-selected={selected.name === item.name ? true : false}
+              className={selected.name === item.name ? "active" : ""}
             >
               <label>
                 <input type="radio" name="soud" />
