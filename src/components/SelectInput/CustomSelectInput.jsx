@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio.js";
 
@@ -32,15 +32,17 @@ function CustomSelectInput() {
     name: options[0].name,
     audio: options[0].audio,
   });
-  const [audioPlay, setAudioPlay] = useState(new Audio(selected.audio));
-  console.log(audioPlay);
+
+  // const [curiontAudio, setCuriontAudio] = useState()
+   
+
+  // const [pastAudio, setPastAudio] = useState(null);
+
   const toggleCustomSelectActive = () => {
     setCustomSelectActive(!customSelectActive);
   };
 
-  // useEffect(() => {
-  //   audioPlay(new Audio(selected.audio));
-  // }, [selected]);
+
   return (
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
@@ -59,20 +61,28 @@ function CustomSelectInput() {
         }}
       >
         <span className="selected-value">{selected.name}</span>
-        <span className="arrow"></span>
+        <span className="arrow" onClick={ selected.audio.pause()}></span>
       </button>
       <ul className="select-dropdown" role="listbox">
         {options.map((item) => {
           return (
             <li
               onClick={(e) => {
+                // if(selected.audio.paused) {
+                // console.log(selected.audio.paused);
+                  
+                //   selected.audio.pause();
+                // }
+                
                 setSelected({ name: item.name, audio: item.audio });
+                
                 setCustomSelectActive(false);
+                selected.audio.play();
                 // setAudioPlay(new Audio(selected.audio));
                 // if (!audioPlay.paused) {
                 //   audioPlay.pause();
                 // }
-                new Audio(selected.audio).play();
+                // new Audio(selected.audio).play();
                 // audioPlay.play();
                 // audioPlay.played
                 // console.log(audioPlay.playing);
