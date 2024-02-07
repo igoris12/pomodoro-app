@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio.js";
 
 
 function CustomSelectInput() {
+  const audioRef = useRef(null);
   const options = [
-    { name: "callToAttention", audio: new Audio(audio.callToAttention), id: 0 },
-    { name: "alarmClock", audio: new Audio(audio.alarmClock), id: 1 },
-    { name: "ringtone", audio: new Audio(audio.ringtone), id: 2 },
+    { name: "callToAttention", audio: audio.callToAttention, id: 0 },
+    { name: "alarmClock", audio: audio.alarmClock, id: 1 },
+    { name: "ringtone", audio:audio.ringtone, id: 2 },
   ];
   const [customSelectActive, setCustomSelectActive] = useState(false);
   const [selected, setSelected] = useState({
@@ -20,11 +21,12 @@ function CustomSelectInput() {
     setCustomSelectActive(!customSelectActive);
   };
 
-
+console.log(audioRef);
   return (
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
     >
+      
       <span className="name">Notificaiton sound</span>
       <button
         className="select-button"
@@ -39,31 +41,17 @@ function CustomSelectInput() {
         }}
       >
         <span className="selected-value">{selected.name}</span>
-        <span className="arrow" onClick={ selected.audio.pause()}></span>
+        <span className="arrow" onClick={()=> {}}></span>
       </button>
       <ul className="select-dropdown" role="listbox">
+      <audio src={selected.audio} ref={audioRef}  controls></audio>
+
         {options.map((item) => {
           return (
             <li
               onClick={(e) => {
-                // if(selected.audio.paused) {
-                // console.log(selected.audio.paused);
-                  
-                //   selected.audio.pause();
-                // }
-                
                 setSelected({ name: item.name, audio: item.audio });
-                
                 setCustomSelectActive(false);
-                // selected.audio.play();
-                // setAudioPlay(new Audio(selected.audio));
-                // if (!audioPlay.paused) {
-                //   audioPlay.pause();
-                // }
-                // new Audio(selected.audio).play();
-                // audioPlay.play();
-                // audioPlay.played
-                // console.log(audioPlay.playing);
               }}
               key={item.id}
               role="option"
