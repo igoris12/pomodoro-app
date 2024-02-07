@@ -21,7 +21,7 @@ function CustomSelectInput() {
     setCustomSelectActive(!customSelectActive);
   };
 
-console.log(audioRef);
+
   return (
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
@@ -41,7 +41,7 @@ console.log(audioRef);
         }}
       >
         <span className="selected-value">{selected.name}</span>
-        <span className="arrow" onClick={()=> {}}></span>
+        <span className="arrow" ></span>
       </button>
       <ul className="select-dropdown" role="listbox">
       <audio src={selected.audio} ref={audioRef}  controls></audio>
@@ -52,6 +52,7 @@ console.log(audioRef);
               onClick={(e) => {
                 setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
+                audioRef.current.play();
               }}
               key={item.id}
               role="option"
