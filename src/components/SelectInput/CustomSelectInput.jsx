@@ -1,36 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio.js";
 
-// import './CustomSelectInput.js'
 
-// optionsList.forEach((option) => {
-//   function handler(e) {
-//     // Click Events
-//     if (e.type === "click" && e.clientX !== 0 && e.clientY !== 0) {
-//       selectedValue.textContent = this.children[1].textContent;
-//       customSelect.classList.remove("active");
-//     }
-//     // Key Events
-//     if (e.key === "Enter") {
-//       selectedValue.textContent = this.textContent;
-//       customSelect.classList.remove("active");
-//     }
-//   }
-
-//   option.addEventListener("keyup", handler);
-//   option.addEventListener("click", handler);
-// });
 function CustomSelectInput() {
+  const audioRef = useRef(null);
   const options = [
     { name: "callToAttention", audio: audio.callToAttention, id: 0 },
     { name: "alarmClock", audio: audio.alarmClock, id: 1 },
-    { name: "ringtone", audio: audio.ringtone, id: 2  },
-
+    { name: "ringtone", audio:audio.ringtone, id: 2 },
   ];
   const [customSelectActive, setCustomSelectActive] = useState(false);
-  const [selected, setSelected] = useState(options[0].name);
+  const [selected, setSelected] = useState({
+    name: options[0].name,
+    audio: options[0].audio,
+  });
 
+ 
   const toggleCustomSelectActive = () => {
     setCustomSelectActive(!customSelectActive);
   };
@@ -40,7 +26,8 @@ function CustomSelectInput() {
     <div
       className={customSelectActive ? "custom-select active" : "custom-select"}
     >
-       <span className="name">Notificaiton sound</span>
+      
+      <span className="name">Notificaiton sound</span>
       <button
         className="select-button"
         role="combobox"
@@ -53,23 +40,24 @@ function CustomSelectInput() {
           toggleCustomSelectActive();
         }}
       >
-        <span className="selected-value">{selected}</span>
-        <span className="arrow"></span>
+        <span className="selected-value">{selected.name}</span>
+        <span className="arrow" ></span>
       </button>
       <ul className="select-dropdown" role="listbox">
+      <audio src={selected.audio} ref={audioRef}  controls></audio>
+
         {options.map((item) => {
           return (
             <li
               onClick={(e) => {
-                setSelected(item.name);
+                setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
-                const sound = new Audio(item.audio);
-                sound.play();
+                audioRef.current.play();
               }}
               key={item.id}
               role="option"
-              aria-selected
-              className={selected === item.name ? "active" : ""}
+              aria-selected={selected.name === item.name ? true : false}
+              className={selected.name === item.name ? "active" : ""}
             >
               <label>
                 <input type="radio" name="soud" />
