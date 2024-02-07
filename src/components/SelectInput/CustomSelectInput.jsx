@@ -2,25 +2,7 @@ import React, { useState } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio.js";
 
-// import './CustomSelectInput.js'
 
-// optionsList.forEach((option) => {
-//   function handler(e) {
-//     // Click Events
-//     if (e.type === "click" && e.clientX !== 0 && e.clientY !== 0) {
-//       selectedValue.textContent = this.children[1].textContent;
-//       customSelect.classList.remove("active");
-//     }
-//     // Key Events
-//     if (e.key === "Enter") {
-//       selectedValue.textContent = this.textContent;
-//       customSelect.classList.remove("active");
-//     }
-//   }
-
-//   option.addEventListener("keyup", handler);
-//   option.addEventListener("click", handler);
-// });
 function CustomSelectInput() {
   const options = [
     { name: "callToAttention", audio: new Audio(audio.callToAttention), id: 0 },
@@ -33,11 +15,7 @@ function CustomSelectInput() {
     audio: options[0].audio,
   });
 
-  // const [curiontAudio, setCuriontAudio] = useState()
-   
-
-  // const [pastAudio, setPastAudio] = useState(null);
-
+ 
   const toggleCustomSelectActive = () => {
     setCustomSelectActive(!customSelectActive);
   };
@@ -77,7 +55,7 @@ function CustomSelectInput() {
                 setSelected({ name: item.name, audio: item.audio });
                 
                 setCustomSelectActive(false);
-                selected.audio.play();
+                // selected.audio.play();
                 // setAudioPlay(new Audio(selected.audio));
                 // if (!audioPlay.paused) {
                 //   audioPlay.pause();
