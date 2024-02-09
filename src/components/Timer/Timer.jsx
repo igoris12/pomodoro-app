@@ -51,7 +51,7 @@ function Timer({ darkMode }) {
         notification={data.settings.notification}
         autoplay={data.settings.autoplay}
         timeInTitle={data.settings.timeInTitle}
-
+        audio={data.sound.audio}
       />
       <Footer darkMode={darkMode} />
     </section>
