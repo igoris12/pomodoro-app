@@ -1,9 +1,9 @@
 import React, { useState, useRef  } from "react";
 import "./CustomSelectInput.scss";
-import audio from "../Timer/audio/audio.js";
+import audio from "../Timer/audio/audio";
 
 
-function CustomSelectInput() {
+function CustomSelectInput({clickFunction= null}) {
   const audioRef = useRef(null);
   const options = [
     { name: "callToAttention", audio: audio.callToAttention, id: 0 },
@@ -44,7 +44,7 @@ function CustomSelectInput() {
         <span className="arrow" ></span>
       </button>
       <ul className="select-dropdown" role="listbox">
-      <audio src={selected.audio} ref={audioRef}  controls></audio>
+      <audio src={selected.audio} ref={audioRef}></audio>
 
         {options.map((item) => {
           return (
@@ -52,6 +52,7 @@ function CustomSelectInput() {
               onClick={(e) => {
                 setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
+                clickFunction != null&& clickFunction(selected);
                 audioRef.current.play();
               }}
               key={item.id}

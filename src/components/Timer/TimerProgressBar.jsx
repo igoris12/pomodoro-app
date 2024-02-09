@@ -5,7 +5,6 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
-import audio from "./audio/audio.js";
 function TimerProgressBar({
   darkMode,
   time,
@@ -20,6 +19,7 @@ function TimerProgressBar({
   notification,
   autoplay,
   timeInTitle,
+  audio
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
@@ -44,7 +44,7 @@ function TimerProgressBar({
     }
 
     if (time === 0) {
-      const sound = new Audio(audio.ringtone);
+      const sound = new Audio(audio);
       sound.play();
 
       if (notification) {

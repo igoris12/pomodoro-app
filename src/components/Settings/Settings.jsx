@@ -4,8 +4,8 @@ import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
-import SelectInput from "../SelectInput/SelectInput";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
+import audio from "../Timer/audio/audio";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -16,6 +16,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     notification: true,
     autoplay: false,
     timeInTitle: false,
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 }
   });
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
@@ -44,6 +45,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
         autoplay: data.autoplay,
         timeInTitle: data.timeInTitle
       },
+      sound: data.sound
     });
   }, [data, setTimerData]);
 
@@ -71,10 +73,14 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   const switchTimeInTitle = (e) => {
     setData({ ...data, timeInTitle: e.target.checked });
   };
+
+  const changeSound = (newSound) => {
+    setData({ ...data, sound: newSound });
+  }
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <CustomSelectInput/>
+      <CustomSelectInput clickFunction={changeSound}/>
 
         <RangeInput
           text={"Work duration"}
@@ -113,7 +119,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           darkMode={darkMode}
         />
 
-        {/* <SelectInput/> */}
+      
 
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}

@@ -1,9 +1,10 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef } from "react";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Timer from "./components/Timer/Timer";
 import Settings from "./components/Settings/Settings";
+import audio from "../src/components/Timer/audio/audio";
 
 export const TimerDataContext = createContext();
 
@@ -21,12 +22,15 @@ function App() {
       { time: 25 * 60, status: "focus", session: 7 },
       { time: 20 * 60, status: "breack long" },
     ],
-    settings:{
+    settings: {
       notification: true,
       autoplay: false,
-      timeInTitle: false
-    }
+      timeInTitle: false,
+    },
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
+
+
 
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
@@ -36,6 +40,8 @@ function App() {
   };
   return (
     <div className="App">
+
+
       <TimerDataContext.Provider value={[timerData, setTimerData]}>
         <Router>
           <Header
