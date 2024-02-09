@@ -1,6 +1,6 @@
 import React, { useState, useRef  } from "react";
 import "./CustomSelectInput.scss";
-import audio from "../Timer/audio/audio.js";
+import audio from "../Timer/audio/audio";
 
 
 function CustomSelectInput() {

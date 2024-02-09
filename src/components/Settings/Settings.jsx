@@ -4,7 +4,6 @@ import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
-import SelectInput from "../SelectInput/SelectInput";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
@@ -113,7 +112,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           darkMode={darkMode}
         />
 
-        {/* <SelectInput/> */}
+      
 
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
