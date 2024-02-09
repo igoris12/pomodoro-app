@@ -27,7 +27,7 @@ function App() {
       autoplay: false,
       timeInTitle: false,
     },
-    soud: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
 
   const toggleMobileHeaderActive = () => {
