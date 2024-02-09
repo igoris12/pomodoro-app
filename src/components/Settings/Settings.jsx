@@ -80,7 +80,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <CustomSelectInput/>
+      <CustomSelectInput clickFunction={changeSound}/>
 
         <RangeInput
           text={"Work duration"}

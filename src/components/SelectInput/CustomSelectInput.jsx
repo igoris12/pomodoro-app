@@ -3,7 +3,7 @@ import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio";
 
 
-function CustomSelectInput({clickFunction}) {
+function CustomSelectInput({clickFunction= null}) {
   // const audioRef = useRef(null);
   const options = [
     { name: "callToAttention", audio: audio.callToAttention, id: 0 },
@@ -52,7 +52,7 @@ function CustomSelectInput({clickFunction}) {
               onClick={(e) => {
                 setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
-                clickFunction(selected);
+                clickFunction != null && clickFunction(selected);
                 // audioRef.current.play();
               }}
               key={item.id}

@@ -29,7 +29,7 @@ function App() {
     },
     sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
-
+  console.log(timerData.sound.name);
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
