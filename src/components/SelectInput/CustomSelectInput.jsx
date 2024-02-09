@@ -4,7 +4,7 @@ import audio from "../Timer/audio/audio";
 
 
 function CustomSelectInput({clickFunction= null}) {
-  // const audioRef = useRef(null);
+  const audioRef = useRef(null);
   const options = [
     { name: "callToAttention", audio: audio.callToAttention, id: 0 },
     { name: "alarmClock", audio: audio.alarmClock, id: 1 },
@@ -44,7 +44,7 @@ function CustomSelectInput({clickFunction= null}) {
         <span className="arrow" ></span>
       </button>
       <ul className="select-dropdown" role="listbox">
-      {/* <audio src={selected.audio} ref={audioRef}  controls></audio> */}
+      <audio src={selected.audio} ref={audioRef}></audio>
 
         {options.map((item) => {
           return (
@@ -52,8 +52,8 @@ function CustomSelectInput({clickFunction= null}) {
               onClick={(e) => {
                 setSelected({ name: item.name, audio: item.audio });
                 setCustomSelectActive(false);
-                clickFunction != null && clickFunction(selected);
-                // audioRef.current.play();
+                clickFunction != null&& clickFunction(selected);
+                audioRef.current.play();
               }}
               key={item.id}
               role="option"

@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef } from "react";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -29,7 +29,9 @@ function App() {
     },
     sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
-  console.log(timerData.sound.name);
+
+
+
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
@@ -38,6 +40,8 @@ function App() {
   };
   return (
     <div className="App">
+
+
       <TimerDataContext.Provider value={[timerData, setTimerData]}>
         <Router>
           <Header
