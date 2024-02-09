@@ -1,9 +1,10 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useRef } from "react";
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Timer from "./components/Timer/Timer";
 import Settings from "./components/Settings/Settings";
+import audio from "../src/components/Timer/audio/audio";
 
 export const TimerDataContext = createContext();
 
@@ -13,20 +14,24 @@ function App() {
   const [timerData, setTimerData] = useState({
     time: [
       { time: 5, status: "focus", session: 1 },
-      { time: 5 * 60, status: "breack", session: 2 },
-      { time: 25 * 60, status: "focus", session: 3 },
+      { time: 5, status: "breack", session: 2 },
+      { time: 5, status: "focus", session: 3 },
       { time: 5 * 60, status: "breack", session: 4 },
       { time: 25 * 60, status: "focus", session: 5 },
       { time: 5 * 60, status: "breack", session: 6 },
       { time: 25 * 60, status: "focus", session: 7 },
-      { time: 20 * 60, status: "breack" },
+      { time: 20 * 60, status: "breack long" },
     ],
-    settings:{
-      notification: false,
-      autostart: false,
-      timeInTitle: false
-    }
+    settings: {
+      notification: true,
+      autoplay: false,
+      timeInTitle: false,
+    },
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
+
+
+
   const toggleMobileHeaderActive = () => {
     setMobileHeaderActive(!mobileHeaderActive);
   };
@@ -35,6 +40,8 @@ function App() {
   };
   return (
     <div className="App">
+
+
       <TimerDataContext.Provider value={[timerData, setTimerData]}>
         <Router>
           <Header

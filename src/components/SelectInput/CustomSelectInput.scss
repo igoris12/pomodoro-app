@@ -1,0 +1,136 @@
+@import '../../style/scss/variables.scss';
+.custom-select {
+  position: relative;
+  width: 400px;
+  max-width: 100%;
+  color: #000;
+  margin-top: 3rem;
+  .name {
+    background-color: white;
+    padding: 0 4px;
+    font-size: 12px;
+    font-family: $primaryFont;
+    position: absolute;
+    left: 10px;
+    top: 0;
+    transform: translateY(-50%);
+  }
+  .select-button {
+    width: 100%;
+    background-color: #fff;
+    padding: 0.675em 1em;
+    border: 1px solid #caced1;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 18px 32px 18px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .selected-value {
+      text-align: left;
+      font-size: 18px;
+      font-family: $primaryFont;
+      text-transform: capitalize;
+      
+    }
+  
+    .arrow {
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #000;
+      transition: transform ease-in-out 0.3s;
+    }
+    &:hover {
+      border-color: #000;
+    }
+    &:focus {
+      border-color: rgb(84, 62, 246, );
+      border-width: 1px;
+    }
+  }
+  
+
+  .select-dropdown {
+    position: absolute;
+    list-style: none;
+    width: 100%;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 4px;
+    padding: 10px 0;
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    transition: 0.1s ease;
+    z-index: 2;
+
+    transform: scaleY(0);
+    opacity: 0;
+    visibility: hidden;
+
+    li {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      &.active {
+        label {
+        background-color: #dfdfdf;
+
+        }
+      } 
+    }
+
+    label {
+      width: 100%;
+      padding: 8px 10px;
+      cursor: pointer;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      font-size: 18px;
+      font-family: $primaryFont;
+      text-transform: capitalize;
+      input {
+        position: absolute;
+          left: 0;
+          opacity: 0;
+        }
+        &:hover {
+          background-color: #f2f2f2;
+
+      }
+    }
+    &:focus-within {
+      box-shadow: 0 10px 25px rgba(94, 108, 233, 0.6);
+    }
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 25px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ccc;
+        border-radius: 25px;
+    }
+  }
+
+  &.active {
+    .arrow {
+      transform: rotate(180deg);
+    }
+    .select-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: scaleY(1);
+    }
+  }
+
+  
+}

@@ -4,6 +4,8 @@ import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
+import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
+import audio from "../Timer/audio/audio";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -12,6 +14,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     rounds: 4,
     longBreakDuration: 20,
     notification: true,
+    autoplay: false,
+    timeInTitle: false,
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 }
   });
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
@@ -32,7 +37,16 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       });
     }
     dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData({ ...timerData, time: dataArray,settings: {...timerData.settings, notification: data.notification} });
+    setTimerData({
+      ...timerData,
+      time: dataArray,
+      settings: {
+        notification: data.notification,
+        autoplay: data.autoplay,
+        timeInTitle: data.timeInTitle
+      },
+      sound: data.sound
+    });
   }, [data, setTimerData]);
 
   const changeWorkDuration = (e) => {
@@ -51,9 +65,23 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   const switchNotification = (e) => {
     setData({ ...data, notification: e.target.checked });
   };
+
+  const switchAutoplay = (e) => {
+    setData({ ...data, autoplay: e.target.checked });
+  };
+
+  const switchTimeInTitle = (e) => {
+    setData({ ...data, timeInTitle: e.target.checked });
+  };
+
+  const changeSound = (newSound) => {
+    setData({ ...data, sound: newSound });
+  }
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
+      <CustomSelectInput clickFunction={changeSound}/>
+
         <RangeInput
           text={"Work duration"}
           min={0.05}
@@ -90,6 +118,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
+
+      
+
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
@@ -97,7 +128,8 @@ const Settings = ({ darkMode, toggleLightMode }) => {
             text={"Timer in title"}
             name={"title"}
             darkMode={darkMode}
-            clickFunction={() => {}}
+            def={data.timeInTitle}
+            clickFunction={switchTimeInTitle}
           />
           <ToggleButton
             text={"Notifications"}
@@ -110,7 +142,8 @@ const Settings = ({ darkMode, toggleLightMode }) => {
             text={"Autostart"}
             name={"autostart"}
             darkMode={darkMode}
-            clickFunction={() => {}}
+            def={data.autoplay}
+            clickFunction={switchAutoplay}
           />
           <ToggleButton
             text={"Dark mode"}

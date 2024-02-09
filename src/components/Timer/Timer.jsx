@@ -23,10 +23,7 @@ function Timer({ darkMode }) {
   };
 
   const restartSessions = () => {
-    if (session === 1) {
-      return;
-    }
-    setTime(data.time[session - 1].time);
+      setTime(data.time[session - 1].time);
   };
 
   const reduceTime = () => {
@@ -52,6 +49,9 @@ function Timer({ darkMode }) {
         timeInSeconds={data.time[session - 1].time}
         reduceTime={reduceTime}
         notification={data.settings.notification}
+        autoplay={data.settings.autoplay}
+        timeInTitle={data.settings.timeInTitle}
+        audio={data.sound.audio}
       />
       <Footer darkMode={darkMode} />
     </section>
