@@ -6,6 +6,7 @@ import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
 import audio from "../Timer/audio/audio";
+import { useDispatch, useSelector } from "react-redux";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -18,7 +19,11 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     timeInTitle: false,
     sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
-
+  const rounds = useSelector((state) => state.rounds)
+  const dispatch = useDispatch();
+  const testD = (e)=>{ 
+    dispatch({type: 'CHANGERAUNDS', deploy:  e.target.value})
+  }
   const [timerData, setTimerData] = useContext(TimerDataContext);
 
   useEffect(() => {
@@ -80,7 +85,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-        <RangeInput
+        {/* <RangeInput
           text={"Work duration"}
           min={0.05}
           max={60}
@@ -106,14 +111,14 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
-        />
+        /> */}
         <RangeInput
           text={"Rounds"}
           min={2}
           max={15}
           defValue={4}
-          value={data.rounds}
-          change={changeRounds}
+          value={rounds}
+          change={testD}
           darkMode={darkMode}
         />
         <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
