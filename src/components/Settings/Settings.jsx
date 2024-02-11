@@ -116,7 +116,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        <CustomSelectInput clickFunction={changeSound} />
+        <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
