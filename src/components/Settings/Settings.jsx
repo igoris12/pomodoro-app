@@ -16,7 +16,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     notification: true,
     autoplay: false,
     timeInTitle: false,
-    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 }
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
 
   const [timerData, setTimerData] = useContext(TimerDataContext);
@@ -43,9 +43,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       settings: {
         notification: data.notification,
         autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle
+        timeInTitle: data.timeInTitle,
       },
-      sound: data.sound
+      sound: data.sound,
     });
   }, [data, setTimerData]);
 
@@ -76,12 +76,10 @@ const Settings = ({ darkMode, toggleLightMode }) => {
 
   const changeSound = (newSound) => {
     setData({ ...data, sound: newSound });
-  }
+  };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <CustomSelectInput clickFunction={changeSound}/>
-
         <RangeInput
           text={"Work duration"}
           min={0.05}
@@ -118,9 +116,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-
-      
-
+        <CustomSelectInput clickFunction={changeSound} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
