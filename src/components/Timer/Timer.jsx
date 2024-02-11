@@ -3,15 +3,23 @@ import { TimerDataContext } from "../../App";
 import "./Timer.scss";
 import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
+import { useSelector, useDispatch } from "react-redux";
 function Timer({ darkMode }) {
   const [data] = useContext(TimerDataContext);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
-  
-  
-  const callNotification = ()=> {
-    alert(`session ${ Math.ceil(session / 2)} ${data.time[session - 1].status} ended.`);
-  }
+
+  const rounds = useSelector((state) => state.rounds);
+  const dispatch = useDispatch()
+
+
+  const callNotification = () => {
+    alert(
+      `session ${Math.ceil(session / 2)} ${
+        data.time[session - 1].status
+      } ended.`
+    );
+  };
 
   const changeSession = () => {
     if (session === data.time.length) {
@@ -23,7 +31,7 @@ function Timer({ darkMode }) {
   };
 
   const restartSessions = () => {
-      setTime(data.time[session - 1].time);
+    setTime(data.time[session - 1].time);
   };
 
   const reduceTime = () => {
@@ -37,6 +45,7 @@ function Timer({ darkMode }) {
     <section
       className={darkMode !== true ? "timerContainer" : "timerContainer dark"}
     >
+      <span >test {rounds}</span>
       <TimerProgressBar
         callNotification={callNotification}
         darkMode={darkMode}

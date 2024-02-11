@@ -6,6 +6,7 @@ import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
 import audio from "../Timer/audio/audio";
+import { useDispatch, useSelector } from "react-redux";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
   const [data, setData] = useState({
@@ -16,9 +17,13 @@ const Settings = ({ darkMode, toggleLightMode }) => {
     notification: true,
     autoplay: false,
     timeInTitle: false,
-    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 }
+    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   });
-
+  const rounds = useSelector((state) => state.rounds)
+  const dispatch = useDispatch();
+  const testD = (e)=>{ 
+    dispatch({type: 'CHANGERAUNDS', deploy:  e.target.value})
+  }
   const [timerData, setTimerData] = useContext(TimerDataContext);
 
   useEffect(() => {
@@ -43,9 +48,9 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       settings: {
         notification: data.notification,
         autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle
+        timeInTitle: data.timeInTitle,
       },
-      sound: data.sound
+      sound: data.sound,
     });
   }, [data, setTimerData]);
 
@@ -76,13 +81,11 @@ const Settings = ({ darkMode, toggleLightMode }) => {
 
   const changeSound = (newSound) => {
     setData({ ...data, sound: newSound });
-  }
+  };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <CustomSelectInput clickFunction={changeSound}/>
-
-        <RangeInput
+        {/* <RangeInput
           text={"Work duration"}
           min={0.05}
           max={60}
@@ -108,19 +111,17 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
-        />
+        /> */}
         <RangeInput
           text={"Rounds"}
           min={2}
           max={15}
           defValue={4}
-          value={data.rounds}
-          change={changeRounds}
+          value={rounds}
+          change={testD}
           darkMode={darkMode}
         />
-
-      
-
+        <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
