@@ -22,18 +22,18 @@ const timeReducer = (state = initionState, action) => {
         data: { ...state.data, rounds: action.deploy },
       };
 
-    case "CHAGE_WORK_DURATION":
+    case "CHANGE_WORK_DURATION":
       return {
         ...state,
         data: { ...state.data, workDuration: action.deploy },
       };
 
-    case "BREAK_DURATION":
+    case "CHANGE_BREAK_DURATION":
       return {
         ...state,
         data: { ...state.data, breakDuration: action.deploy },
       };
-    case "LONG_BREAK_DURATION":
+    case "CHANGE_LONG_BREAK_DURATION":
       return {
         ...state,
         data: { ...state.data, longBreakDuration: action.deploy },
@@ -56,6 +56,12 @@ const timeReducer = (state = initionState, action) => {
             ...state,
             data: { ...state.data, autoplay: action.deploy },
           };
+
+          case "CHAGE_WORK_DURATION":
+            return {
+              ...state,
+              data: { ...state.data, autoplay: action.deploy },
+            };
 
     default:
       return state;

@@ -58,14 +58,14 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const changeWorkDuration = (e) => {
-    dispatch({ type: "CHAGE_WORK_DURATION", deploy: e.target.value });
+    dispatch({ type: "CHANGE_WORK_DURATION", deploy: e.target.value });
   };
   const changeBreakDuration = (e) => {
-    dispatch({ type: "BREAK_DURATION", deploy: e.target.value });
+    dispatch({ type: "CHANGE_BREAK_DURATION", deploy: e.target.value });
   };
 
   const changeLongBreakDuration = (e) => {
-    dispatch({ type: "LONG_BREAK_DURATION", deploy: e.target.value });
+    dispatch({ type: "CHANGE_LONG_BREAK_DURATION", deploy: e.target.value });
   };
 
   const switchNotification = (e) => {
