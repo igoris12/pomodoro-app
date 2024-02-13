@@ -19,7 +19,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   //   timeInTitle: false,
   //   sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   // });
-  const data = useSelector((state) => state.data)
+  const data = useSelector((state) => state.data);
 
   const dispatch = useDispatch();
 
@@ -53,44 +53,41 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   //   });
   // }, [data, setTimerData]);
 
-  const changeRounds = (e)=>{ 
-    dispatch({type: 'CHANGE_RAUNDS', deploy:  e.target.value})
-  }
-
+  const changeRounds = (e) => {
+    dispatch({ type: "CHANGE_RAUNDS", deploy: e.target.value });
+  };
 
   const changeWorkDuration = (e) => {
-    dispatch({type: 'CHAGE_WORK_DURATION', deploy:  e.target.value});
+    dispatch({ type: "CHAGE_WORK_DURATION", deploy: e.target.value });
   };
   const changeBreakDuration = (e) => {
-    dispatch({type: 'BREAK_DURATION', deploy:  e.target.value});
+    dispatch({ type: "BREAK_DURATION", deploy: e.target.value });
   };
- 
+
   const changeLongBreakDuration = (e) => {
-    dispatch({type: 'LONG_BREAK_DURATION', deploy:  e.target.value});
-
+    dispatch({ type: "LONG_BREAK_DURATION", deploy: e.target.value });
   };
 
-  // const switchNotification = (e) => {
-  //   setData({ ...data, notification: e.target.checked });
-  // };
+  const switchNotification = (e) => {
+    dispatch({ type: "SWITCH_NOTIFICATION", deploy: e.target.checked });
+  };
 
-  // const switchAutoplay = (e) => {
-  //   setData({ ...data, autoplay: e.target.checked });
-  // };
+  const switchAutoplay = (e) => {
+    dispatch({ type: "SWITCH_AUTOPLAY", deploy: e.target.checked });
+  };
 
-  // const switchTimeInTitle = (e) => {
-  //   setData({ ...data, timeInTitle: e.target.checked });
-  // };
+  const switchTimeInTitle = (e) => {
+    dispatch({ type: "SWITCH_TIME_IN_TITLE", deploy: e.target.checked });
+  };
 
-  // const changeSound = (newSound) => {
-  //   setData({ ...data, sound: newSound });
-  // };
+  const changeSound = (newSound) => {
+    // dispatch({type: 'LONG_BREAK_DURATION', deploy:  e.target.value});
+    // setData({ ...data, sound: newSound });
+  };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <span>{data.workDuration}</span>
-
-         <RangeInput
+        <RangeInput
           text={"Work duration"}
           min={5}
           max={60}
@@ -99,8 +96,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeWorkDuration}
           darkMode={darkMode}
         />
-      <span>{data.breakDuration}</span>
-     
+
         <RangeInput
           text={"Short break duration"}
           min={1}
@@ -110,8 +106,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeBreakDuration}
           darkMode={darkMode}
         />
-      <span>{data.longBreakDuration}</span>
-           
+
         <RangeInput
           text={"Long break duration"}
           min={1}
@@ -131,7 +126,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           darkMode={darkMode}
         />
         {/* <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} /> */}
-        {/* <div
+        <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
           <ToggleButton
@@ -162,7 +157,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
             clickFunction={toggleLightMode}
             def={darkMode}
           />
-        </div> */}
+        </div>
       </form>
       <Footer darkMode={darkMode} />
     </section>

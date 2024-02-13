@@ -39,6 +39,24 @@ const timeReducer = (state = initionState, action) => {
         data: { ...state.data, longBreakDuration: action.deploy },
       };
 
+      case "SWITCH_TIME_IN_TITLE":
+        return {
+          ...state,
+          data: { ...state.data, timeInTitle: action.deploy },
+        };
+
+        case "SWITCH_NOTIFICATION":
+        return {
+          ...state,
+          data: { ...state.data, notification: action.deploy },
+        };
+
+        case "SWITCH_AUTOPLAY":
+          return {
+            ...state,
+            data: { ...state.data, autoplay: action.deploy },
+          };
+
     default:
       return state;
   }
