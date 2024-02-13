@@ -11,37 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Settings = ({ darkMode, toggleLightMode }) => {
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
-
-  // const [timerData, setTimerData] = useContext(TimerDataContext);
-
-  // useEffect(() => {
-  //   const dataArray = [];
-
-  //   for (let i = 0; i < data.rounds; i++) {
-  //     dataArray.push({
-  //       time: data.workDuration * 60,
-  //       status: "focus" + i,
-  //       session: i,
-  //     });
-  //     dataArray.push({
-  //       time: data.breakDuration * 60,
-  //       status: "brack" + i,
-  //       session: i,
-  //     });
-  //   }
-  //   dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-  //   setTimerData({
-  //     ...timerData,
-  //     time: dataArray,
-  //     settings: {
-  //       notification: data.notification,
-  //       autoplay: data.autoplay,
-  //       timeInTitle: data.timeInTitle,
-  //     },
-  //     sound: data.sound,
-  //   });
-  // }, [data, setTimerData]);
-
   const changeRounds = (e) => {
     dispatch({ type: "CHANGE_RAUNDS", deploy: e.target.value });
   };
@@ -70,7 +39,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const changeSound = (newSound) => {
-    dispatch({type: 'LONG_BREAK_DURATION', deploy:  newSound});
+    dispatch({ type: "LONG_BREAK_DURATION", deploy: newSound });
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
@@ -113,7 +82,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
+        <CustomSelectInput clickFunction={changeSound} darkMode={darkMode} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
