@@ -10,6 +10,8 @@ function Timer({ darkMode }) {
   const [time, setTime] = useState(data.time[session - 1].time);
 
   const rounds = useSelector((state) => state.rounds);
+  const workDuration = useSelector((state) => state.workDuration);
+
   const dispatch = useDispatch()
 
 
@@ -43,9 +45,8 @@ function Timer({ darkMode }) {
   }, [session, data]);
   return (
     <section
-      className={darkMode !== true ? "timerContainer" : "timerContainer dark"}
+    className={darkMode !== true ? "timerContainer" : "timerContainer dark"}
     >
-      <span >test {rounds}</span>
       <TimerProgressBar
         callNotification={callNotification}
         darkMode={darkMode}
@@ -62,6 +63,8 @@ function Timer({ darkMode }) {
         timeInTitle={data.settings.timeInTitle}
         audio={data.sound.audio}
       />
+
+      
       <Footer darkMode={darkMode} />
     </section>
   );
