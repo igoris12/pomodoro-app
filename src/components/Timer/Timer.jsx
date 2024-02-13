@@ -1,17 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
-import { TimerDataContext } from "../../App";
+import React, { useState, useEffect} from "react";
 import "./Timer.scss";
 import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 function Timer({ darkMode }) {
-  const [data] = useContext(TimerDataContext);
+  const formatData = (data) => {
+    const dataArray = [];
+
+    for (let i = 0; i < data.rounds; i++) {
+      dataArray.push({
+        time: data.workDuration * 60,
+        status: "focus" + i,
+        session: i,
+      });
+      dataArray.push({
+        time: data.breakDuration * 60,
+        status: "brack" + i,
+        session: i,
+      });
+    }
+    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
+    return {
+      time: dataArray,
+      settings: {
+        notification: data.notification,
+        autoplay: data.autoplay,
+        timeInTitle: data.timeInTitle,
+      },
+      sound: data.sound,
+    };
+  };
+  const reduxData = useSelector((state) => state.data);
+  const data = formatData(reduxData);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
-
-  const rounds = useSelector((state) => state.rounds);
-  const dispatch = useDispatch()
-
 
   const callNotification = () => {
     alert(
@@ -43,9 +65,8 @@ function Timer({ darkMode }) {
   }, [session, data]);
   return (
     <section
-      className={darkMode !== true ? "timerContainer" : "timerContainer dark"}
+    className={darkMode !== true ? "timerContainer" : "timerContainer dark"}
     >
-      <span >test {rounds}</span>
       <TimerProgressBar
         callNotification={callNotification}
         darkMode={darkMode}
@@ -62,6 +83,8 @@ function Timer({ darkMode }) {
         timeInTitle={data.settings.timeInTitle}
         audio={data.sound.audio}
       />
+
+      
       <Footer darkMode={darkMode} />
     </section>
   );

@@ -1,99 +1,57 @@
-import React, { useState, useContext, useEffect } from "react";
-import { TimerDataContext } from "../../App";
+import React from "react";
 import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
-import audio from "../Timer/audio/audio";
 import { useDispatch, useSelector } from "react-redux";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
-  const [data, setData] = useState({
-    workDuration: 25,
-    breakDuration: 5,
-    rounds: 4,
-    longBreakDuration: 20,
-    notification: true,
-    autoplay: false,
-    timeInTitle: false,
-    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
-  });
-  const rounds = useSelector((state) => state.rounds)
+  const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
-  const testD = (e)=>{ 
-    dispatch({type: 'CHANGERAUNDS', deploy:  e.target.value})
-  }
-  const [timerData, setTimerData] = useContext(TimerDataContext);
-
-  useEffect(() => {
-    const dataArray = [];
-
-    for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({
-        time: data.workDuration * 60,
-        status: "focus" + i,
-        session: i,
-      });
-      dataArray.push({
-        time: data.breakDuration * 60,
-        status: "brack" + i,
-        session: i,
-      });
-    }
-    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    setTimerData({
-      ...timerData,
-      time: dataArray,
-      settings: {
-        notification: data.notification,
-        autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle,
-      },
-      sound: data.sound,
-    });
-  }, [data, setTimerData]);
+  const changeRounds = (e) => {
+    dispatch({ type: "CHANGE_RAUNDS", deploy: e.target.value });
+  };
 
   const changeWorkDuration = (e) => {
-    setData({ ...data, workDuration: e.target.value });
+    dispatch({ type: "CHANGE_WORK_DURATION", deploy: e.target.value });
   };
   const changeBreakDuration = (e) => {
-    setData({ ...data, breakDuration: e.target.value });
+    dispatch({ type: "CHANGE_BREAK_DURATION", deploy: e.target.value });
   };
-  const changeRounds = (e) => {
-    setData({ ...data, rounds: e.target.value });
-  };
+
   const changeLongBreakDuration = (e) => {
-    setData({ ...data, longBreakDuration: e.target.value });
+    dispatch({ type: "CHANGE_LONG_BREAK_DURATION", deploy: e.target.value });
   };
 
   const switchNotification = (e) => {
-    setData({ ...data, notification: e.target.checked });
+    dispatch({ type: "SWITCH_NOTIFICATION", deploy: e.target.checked });
   };
 
   const switchAutoplay = (e) => {
-    setData({ ...data, autoplay: e.target.checked });
+    dispatch({ type: "SWITCH_AUTOPLAY", deploy: e.target.checked });
   };
 
   const switchTimeInTitle = (e) => {
-    setData({ ...data, timeInTitle: e.target.checked });
+    dispatch({ type: "SWITCH_TIME_IN_TITLE", deploy: e.target.checked });
   };
 
   const changeSound = (newSound) => {
-    setData({ ...data, sound: newSound });
+    dispatch({ type: "LONG_BREAK_DURATION", deploy: newSound });
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-        {/* <RangeInput
+        <RangeInput
           text={"Work duration"}
-          min={0.05}
+          min={1}
           max={60}
           defValue={25}
           value={data.workDuration}
           change={changeWorkDuration}
           darkMode={darkMode}
         />
+
         <RangeInput
           text={"Short break duration"}
           min={1}
@@ -103,6 +61,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeBreakDuration}
           darkMode={darkMode}
         />
+
         <RangeInput
           text={"Long break duration"}
           min={1}
@@ -111,17 +70,17 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
-        /> */}
+        />
         <RangeInput
           text={"Rounds"}
           min={2}
           max={15}
           defValue={4}
-          value={rounds}
-          change={testD}
+          value={data.rounds}
+          change={changeRounds}
           darkMode={darkMode}
         />
-        <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
+        <CustomSelectInput clickFunction={changeSound} darkMode={darkMode} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
