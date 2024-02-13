@@ -19,12 +19,11 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   //   timeInTitle: false,
   //   sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
   // });
-  const rounds = useSelector((state) => state.rounds)
-  const workDuration = useSelector((state) => state.workDuration)
+  const data = useSelector((state) => state.data)
 
   const dispatch = useDispatch();
 
-  const [timerData, setTimerData] = useContext(TimerDataContext);
+  // const [timerData, setTimerData] = useContext(TimerDataContext);
 
   // useEffect(() => {
   //   const dataArray = [];
@@ -62,13 +61,14 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   const changeWorkDuration = (e) => {
     dispatch({type: 'CHAGE_WORK_DURATION', deploy:  e.target.value});
   };
-  // const changeBreakDuration = (e) => {
-  //   setData({ ...data, breakDuration: e.target.value });
-  // };
+  const changeBreakDuration = (e) => {
+    dispatch({type: 'BREAK_DURATION', deploy:  e.target.value});
+  };
  
-  // const changeLongBreakDuration = (e) => {
-  //   setData({ ...data, longBreakDuration: e.target.value });
-  // };
+  const changeLongBreakDuration = (e) => {
+    dispatch({type: 'LONG_BREAK_DURATION', deploy:  e.target.value});
+
+  };
 
   // const switchNotification = (e) => {
   //   setData({ ...data, notification: e.target.checked });
@@ -88,18 +88,19 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
-      <span>{workDuration}</span>
+      <span>{data.workDuration}</span>
 
          <RangeInput
           text={"Work duration"}
           min={5}
           max={60}
           defValue={25}
-          value={workDuration}
+          value={data.workDuration}
           change={changeWorkDuration}
           darkMode={darkMode}
         />
-        {/*
+      <span>{data.breakDuration}</span>
+     
         <RangeInput
           text={"Short break duration"}
           min={1}
@@ -109,6 +110,8 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeBreakDuration}
           darkMode={darkMode}
         />
+      <span>{data.longBreakDuration}</span>
+           
         <RangeInput
           text={"Long break duration"}
           min={1}
@@ -117,13 +120,13 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
-        /> */}
+        />
         <RangeInput
           text={"Rounds"}
           min={2}
           max={15}
           defValue={4}
-          value={rounds}
+          value={data.rounds}
           change={changeRounds}
           darkMode={darkMode}
         />
