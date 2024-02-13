@@ -1,11 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
-import { TimerDataContext } from "../../App";
+import React from "react";
 import "./Settings.scss";
 import Footer from "../Footer/Footer";
 import RangeInput from "./RangeInput";
 import ToggleButton from "../ToggleButton/ToggleButton";
 import CustomSelectInput from "../SelectInput/CustomSelectInput.jsx";
-import audio from "../Timer/audio/audio";
 import { useDispatch, useSelector } from "react-redux";
 
 const Settings = ({ darkMode, toggleLightMode }) => {

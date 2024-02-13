@@ -1,19 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
-import { TimerDataContext } from "../../App";
+import React, { useState, useEffect} from "react";
 import "./Timer.scss";
 import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
 import { useSelector, useDispatch } from "react-redux";
 function Timer({ darkMode }) {
-  const [data] = useContext(TimerDataContext);
+  const formatData = (data) => {
+    const dataArray = [];
+
+    for (let i = 0; i < data.rounds; i++) {
+      dataArray.push({
+        time: data.workDuration * 60,
+        status: "focus" + i,
+        session: i,
+      });
+      dataArray.push({
+        time: data.breakDuration * 60,
+        status: "brack" + i,
+        session: i,
+      });
+    }
+    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
+    return {
+      time: dataArray,
+      settings: {
+        notification: data.notification,
+        autoplay: data.autoplay,
+        timeInTitle: data.timeInTitle,
+      },
+      sound: data.sound,
+    };
+  };
+  const reduxData = useSelector((state) => state.data);
+  const data = formatData(reduxData);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
-
-  const rounds = useSelector((state) => state.rounds);
-  const workDuration = useSelector((state) => state.workDuration);
-
-  const dispatch = useDispatch()
-
 
   const callNotification = () => {
     alert(
