@@ -10,7 +10,7 @@ const initionState = {
     notification: true,
     autoplay: false,
     timeInTitle: false,
-    sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
+    sound: { name: "callToAttention", audio: audio.callToAttention},
   },
 };
 
@@ -57,10 +57,10 @@ const timeReducer = (state = initionState, action) => {
             data: { ...state.data, autoplay: action.deploy },
           };
 
-          case "CHAGE_WORK_DURATION":
+          case "CHAGE_SOUND":
             return {
               ...state,
-              data: { ...state.data, autoplay: action.deploy },
+              data: { ...state.data, sound: action.deploy },
             };
 
     default:

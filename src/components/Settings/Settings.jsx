@@ -9,18 +9,7 @@ import audio from "../Timer/audio/audio";
 import { useDispatch, useSelector } from "react-redux";
 
 const Settings = ({ darkMode, toggleLightMode }) => {
-  // const [data, setData] = useState({
-  //   workDuration: 25,
-  //   breakDuration: 5,
-  //   rounds: 4,
-  //   longBreakDuration: 20,
-  //   notification: true,
-  //   autoplay: false,
-  //   timeInTitle: false,
-  //   sound: { name: "callToAttention", audio: audio.callToAttention, id: 0 },
-  // });
   const data = useSelector((state) => state.data);
-
   const dispatch = useDispatch();
 
   // const [timerData, setTimerData] = useContext(TimerDataContext);
@@ -81,8 +70,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const changeSound = (newSound) => {
-    // dispatch({type: 'LONG_BREAK_DURATION', deploy:  e.target.value});
-    // setData({ ...data, sound: newSound });
+    dispatch({type: 'LONG_BREAK_DURATION', deploy:  newSound});
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
@@ -125,7 +113,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           change={changeRounds}
           darkMode={darkMode}
         />
-        {/* <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} /> */}
+        <CustomSelectInput clickFunction={changeSound}  darkMode={darkMode} />
         <div
           className={darkMode !== true ? "buttonsGroup" : "buttonsGroup dark"}
         >
