@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import "./Timer.scss";
 import TimerProgressBar from "./TimerProgressBar";
 import Footer from "../Footer/Footer";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 function Timer({ darkMode }) {
   const formatData = (data) => {
     const dataArray = [];
