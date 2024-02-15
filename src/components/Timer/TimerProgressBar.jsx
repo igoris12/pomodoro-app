@@ -5,32 +5,100 @@ import { VscDebugRestart } from "react-icons/vsc";
 import { IoMdPlay } from "react-icons/io";
 import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
+import { useSelector } from "react-redux";
+
 function TimerProgressBar({
   darkMode,
-  time,
-  session,
-  status,
-  sessionCount,
-  changeSession,
-  restartSessions,
-  timeInSeconds,
-  reduceTime,
-  callNotification,
-  notification,
-  autoplay,
-  timeInTitle,
-  audio
+  // time,
+  // session,
+  // status,
+  // sessionCount,
+  // changeSession,
+  // restartSessions,
+  // timeInSeconds,
+  // reduceTime,
+  // callNotification,
+  // notification,
+  // autoplay,
+  // timeInTitle,
+  // audio,
 }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const minutes = Math.floor(time / 60);
-  const seconds = time - minutes * 60;
-  const formatting = (data) => {
-    return data <= 9 ? "0" + data : data;
+
+  const formatData = (data) => {
+    const dataArray = [];
+
+    for (let i = 0; i < data.rounds; i++) {
+      dataArray.push({
+        time: data.workDuration * 60,
+        status: "focus" + i,
+        session: i,
+      });
+      dataArray.push({
+        time: data.breakDuration * 60,
+        status: "brack" + i,
+        session: i,
+      });
+    }
+    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
+    return {
+      time: dataArray,
+      settings: {
+        notification: data.notification,
+        autoplay: data.autoplay,
+        timeInTitle: data.timeInTitle,
+      },
+      sound: data.sound,
+    };
   };
+  const reduxData = useSelector((state) => state.data);
+  const data = formatData(reduxData);
+  const [session, setSession] = useState(1);
+  const [time, setTime] = useState(data.time[session - 1].time);
+
+  const [dinamicTime, setDinamincTime] = useState(time);
+
+  const minutes = Math.floor(dinamicTime / 60);
+  const seconds = dinamicTime - minutes * 60;
+
+  const changeSession = () => {
+    if (session === data.time.length) {
+      setSession(1);
+      setDinamincTime(time)
+    }
+    if (session < data.time.length) {
+      setSession((prev) => prev + 1);
+      setDinamincTime(time)
+
+    }
+  };
+
   const togglePlay = () => {
     setPlay(!play);
+  };
+
+  const callNotification = () => {
+    alert(
+      `session ${Math.ceil(session / 2)} ${
+        data.time[session - 1].status
+      } ended.`
+    );
+  };
+
+  useEffect(() => {
+    setTime(data.time[session - 1].time);
+  }, [session, data]);
+
+  const reduceTime = () => {
+    setDinamincTime((prevTime) => prevTime - 1);
+  };
+  const restartSessions = () => {
+    setDinamincTime(time);
+  };
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
   };
 
   const infoText = (session, sessionCount) => {
@@ -38,26 +106,29 @@ function TimerProgressBar({
       ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
       : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
   };
+
+
+
   useEffect(() => {
     if (play !== true) {
       return;
     }
 
-    if (time === 0) {
-      const sound = new Audio(audio);
+    if (dinamicTime === 0) {
+      const sound = new Audio(data.sound);
       sound.play();
 
-      if (notification) {
+      if (data.settings.notification) {
         callNotification();
       }
 
-      if (!autoplay) {
+      if (!data.settings.autoplay) {
         togglePlay();
         changeSession();
         setStrokeDashoffset(0);
       }
     }
-    if (time <= 0) {
+    if (dinamicTime <= 0) {
       const timer = setTimeout(() => {
         changeSession();
         setStrokeDashoffset(0);
@@ -65,7 +136,7 @@ function TimerProgressBar({
       return () => clearTimeout(timer);
     }
 
-    if (timeInTitle) {
+    if (data.settings.timeInTitle) {
       document.title = `${
         formatting(minutes) + ":" + formatting(seconds)
       } | 👨‍💻 Pamedoro`;
@@ -75,7 +146,7 @@ function TimerProgressBar({
       reduceTime();
       setStrokeDashoffset(
         tistrokeDashoffsetme +
-          (screenSize.width >= 900 ? 867 : 572) / timeInSeconds
+          (screenSize.width >= 900 ? 867 : 572) / time
       );
     }, 1000);
 
@@ -83,13 +154,15 @@ function TimerProgressBar({
   }, [
     time,
     play,
-    reduceTime,
-    changeSession,
-    timeInSeconds,
     tistrokeDashoffsetme,
     screenSize,
-    autoplay,
-    timeInTitle,
+    data,
+    dinamicTime,
+    minutes,
+    seconds,
+    changeSession,
+    callNotification,
+    togglePlay
   ]);
 
   return (
@@ -111,17 +184,19 @@ function TimerProgressBar({
         </svg>
         <div className="time">
           {formatting(minutes) + ":" + formatting(seconds)}
-          <span>{status}</span>
+          <span>{data.time[session - 1].status}</span>
         </div>
       </div>
       <div className="timeControls">
         <button
-          className={time === timeInSeconds ? "restart" : "restart active"}
+          className={
+            dinamicTime === time ? "restart" : "restart active"
+          }
           onClick={() => {
             setPlay(false);
             restartSessions();
             setStrokeDashoffset(0);
-            if (timeInTitle) {
+            if (time) {
               document.title = `${
                 formatting(minutes) + ":" + formatting(seconds)
               } | 👨‍💻 Pamedoro`;
@@ -146,9 +221,7 @@ function TimerProgressBar({
         </button>
       </div>
       <div className="info">
-        <span>
-          {infoText(session, sessionCount)}
-        </span>
+        <span>{infoText(session, data.time.length)}</span>
         <span>sessions</span>
       </div>
     </section>
