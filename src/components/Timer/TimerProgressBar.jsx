@@ -66,10 +66,25 @@ function TimerProgressBar({
   const changeSession = () => {
     if (session === data.time.length) {
       setSession(1);
+      setDinamincTime(time)
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
+      setDinamincTime(time)
+
     }
+  };
+
+  const togglePlay = () => {
+    setPlay(!play);
+  };
+
+  const callNotification = () => {
+    alert(
+      `session ${Math.ceil(session / 2)} ${
+        data.time[session - 1].status
+      } ended.`
+    );
   };
 
   useEffect(() => {
@@ -85,9 +100,6 @@ function TimerProgressBar({
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
-  const togglePlay = () => {
-    setPlay(!play);
-  };
 
   const infoText = (session, sessionCount) => {
     return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
@@ -95,13 +107,7 @@ function TimerProgressBar({
       : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
   };
 
-  const callNotification = () => {
-    alert(
-      `session ${Math.ceil(session / 2)} ${
-        data.time[session - 1].status
-      } ended.`
-    );
-  };
+
 
   useEffect(() => {
     if (play !== true) {
