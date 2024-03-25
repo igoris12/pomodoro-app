@@ -58,7 +58,7 @@ function TimerProgressBar({
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
 
-  const [dinamicTime, setDinamincTime] = useState(time);
+  const [dinamicTime, setDinamincTime] = useState(data.time[session - 1].time);
 
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
@@ -66,12 +66,9 @@ function TimerProgressBar({
   const changeSession = () => {
     if (session === data.time.length) {
       setSession(1);
-      setDinamincTime(time)
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
-      setDinamincTime(time)
-
     }
   };
 
@@ -89,6 +86,7 @@ function TimerProgressBar({
 
   useEffect(() => {
     setTime(data.time[session - 1].time);
+    setDinamincTime(time)
   }, [session, data]);
 
   const reduceTime = () => {
