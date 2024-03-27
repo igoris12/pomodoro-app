@@ -84,11 +84,7 @@ function TimerProgressBar({
     );
   };
 
-  useEffect(() => {
-    setTime(data.time[session - 1].time);
-    setDinamincTime(time)
-  }, [session, data]);
-
+  
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
@@ -98,14 +94,19 @@ function TimerProgressBar({
   const formatting = (data) => {
     return data <= 9 ? "0" + data : data;
   };
-
+  
   const infoText = (session, sessionCount) => {
     return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
-      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
-      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+    ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+    : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
   };
+  
+  useEffect(() => {
+    setTime(data.time[session - 1].time);
+    setDinamincTime(time);
+    setDinamincTime(dinamicTime);
 
-
+  }, [session, data, time,dinamicTime]);
 
   useEffect(() => {
     if (play !== true) {
@@ -162,7 +163,7 @@ function TimerProgressBar({
     callNotification,
     togglePlay
   ]);
-
+  console.log(dinamicTime);
   return (
     <section
       className={
