@@ -7,22 +7,7 @@ import { IoPause } from "react-icons/io5";
 import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
 
-function TimerProgressBar({
-  darkMode,
-  // time,
-  // session,
-  // status,
-  // sessionCount,
-  // changeSession,
-  // restartSessions,
-  // timeInSeconds,
-  // reduceTime,
-  // callNotification,
-  // notification,
-  // autoplay,
-  // timeInTitle,
-  // audio,
-}) {
+function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
@@ -62,57 +47,14 @@ function TimerProgressBar({
 
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
-
-  const changeSession = () => {
-    if (session === data.time.length) {
-      setSession(1);
-    }
-    if (session < data.time.length) {
-      setSession((prev) => prev + 1);
-    }
-  };
-
-  const togglePlay = () => {
-    setPlay(!play);
-  };
-
-  const callNotification = () => {
-    alert(
-      `session ${Math.ceil(session / 2)} ${
-        data.time[session - 1].status
-      } ended.`
-    );
-  };
-
-  
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  const restartSessions = () => {
-    setDinamincTime(time);
-  };
-  const formatting = (data) => {
-    return data <= 9 ? "0" + data : data;
-  };
-  
-  const infoText = (session, sessionCount) => {
-    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
-    ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
-    : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
-  };
-  
-  useEffect(() => {
+  useEffect(()=> {
     setTime(data.time[session - 1].time);
-    setDinamincTime(time);
-    setDinamincTime(dinamicTime);
-
-  }, [session, data, time,dinamicTime]);
-
+    setDinamincTime(data.time[session - 1].time);
+  },[session, data])
   useEffect(() => {
-    if (play !== true) {
-      return;
-    }
-
     if (dinamicTime === 0) {
       const sound = new Audio(data.sound);
       sound.play();
@@ -140,12 +82,14 @@ function TimerProgressBar({
         formatting(minutes) + ":" + formatting(seconds)
       } | 👨‍💻 Pamedoro`;
     }
-
+    
+    if (play !== true) {
+      return;
+    }
     const timer = setInterval(() => {
       reduceTime();
       setStrokeDashoffset(
-        tistrokeDashoffsetme +
-          (screenSize.width >= 900 ? 867 : 572) / time
+        tistrokeDashoffsetme + (screenSize.width >= 900 ? 867 : 572) / time
       );
     }, 1000);
 
@@ -159,11 +103,45 @@ function TimerProgressBar({
     dinamicTime,
     minutes,
     seconds,
-    changeSession,
-    callNotification,
-    togglePlay
   ]);
-  console.log(dinamicTime);
+
+
+  const changeSession = () => {
+    if (session === data.time.length) {
+      setSession(1);
+      console.log(session, "return");
+    }
+    if (session < data.time.length) {
+      setSession((prev) => prev + 1);
+      console.log(session);
+    }
+  };
+
+  const togglePlay = () => {
+    setPlay(!play);
+  };
+
+  const callNotification = () => {
+    alert(
+      `session ${Math.ceil(session / 2)} ${
+        data.time[session - 1].status
+      } ended.`
+    );
+  };
+
+ 
+  const restartSessions = () => {
+    setDinamincTime(time);
+  };
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
+  };
+
+  const infoText = (session, sessionCount) => {
+    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
+      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+  };
   return (
     <section
       className={
@@ -188,18 +166,11 @@ function TimerProgressBar({
       </div>
       <div className="timeControls">
         <button
-          className={
-            dinamicTime === time ? "restart" : "restart active"
-          }
+          className={dinamicTime === time ? "restart" : "restart active"}
           onClick={() => {
             setPlay(false);
             restartSessions();
             setStrokeDashoffset(0);
-            if (time) {
-              document.title = `${
-                formatting(minutes) + ":" + formatting(seconds)
-              } | 👨‍💻 Pamedoro`;
-            }
           }}
         >
           <VscDebugRestart />
