@@ -11,7 +11,7 @@ function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-
+  
   const formatData = (data) => {
     const dataArray = [];
 
@@ -42,6 +42,9 @@ function TimerProgressBar({ darkMode }) {
   const data = formatData(reduxData);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
+
+  console.log(data.sound.name);
+  console.log(data.time[0]);
 
   const [dinamicTime, setDinamincTime] = useState(time);
 
