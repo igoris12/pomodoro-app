@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Settings = ({ darkMode, toggleLightMode }) => {
   const data = useSelector((state) => state.data);
   const dispatch = useDispatch();
+
   const changeRounds = (e) => {
     dispatch({ type: "CHANGE_RAUNDS", deploy: e.target.value });
   };
@@ -37,14 +38,15 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const changeSound = (newSound) => {
-    dispatch({ type: "LONG_BREAK_DURATION", deploy: newSound });
+    console.log(newSound);
+    dispatch({ type: "CHAGE_SOUND", deploy: newSound });
   };
   return (
     <section className={darkMode !== true ? "settings" : "settings dark"}>
       <form>
         <RangeInput
           text={"Work duration"}
-          min={1}
+          min={0.1}
           max={60}
           defValue={25}
           value={data.workDuration}

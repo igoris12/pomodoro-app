@@ -11,7 +11,7 @@ function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-
+  
   const formatData = (data) => {
     const dataArray = [];
 
@@ -42,12 +42,12 @@ function TimerProgressBar({ darkMode }) {
   const data = formatData(reduxData);
   const [session, setSession] = useState(1);
   const [time, setTime] = useState(data.time[session - 1].time);
-
   const [dinamicTime, setDinamincTime] = useState(time);
 
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
+  const sound = new Audio(data.sound.audio);
 
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
@@ -55,11 +55,10 @@ function TimerProgressBar({ darkMode }) {
   useEffect(()=> {
     setTime(data.time[session - 1].time);
   },[session, data])
+
   useEffect(() => {
     if (dinamicTime === 0) {
-      const sound = new Audio(data.sound);
       sound.play();
-
       if (data.settings.notification) {
         callNotification();
       }
@@ -119,6 +118,8 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const togglePlay = () => {
+    sound.pause();
+
     setPlay(!play);
   };
 
