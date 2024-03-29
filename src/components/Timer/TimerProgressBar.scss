@@ -36,7 +36,7 @@
       .backCircle {
         stroke: #2d27dc;
         stroke-dasharray: 572;
-        stroke-dashoffset:0;
+        stroke-dashoffset: 0;
         transition: stroke-dashoffset 0.8s;
       }
     }
@@ -76,14 +76,14 @@
         background-color: rgba(45, 39, 220, 0.04);
       }
       &.restart {
-        cursor:auto;
+        cursor: auto;
         opacity: 0.5;
         &.active {
-          cursor:pointer;
+          cursor: pointer;
           opacity: 1;
         }
       }
-      
+
       &.play {
         color: #2d27dc;
         border-color: #2d27dc;
@@ -92,7 +92,6 @@
         padding: 12px;
       }
       &.next {
-        
         position: relative;
         span {
           content: "";
@@ -130,14 +129,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    span{
+    span {
       font-family: $primaryFont;
       font-weight: 600;
       font-size: 14px;
     }
   }
-
-  
 }
 
 @media screen and (min-width: 900px) {
@@ -157,11 +154,15 @@
         }
         .backCircle {
           stroke-dasharray: 867;
-          stroke-dashoffset:867;
+          stroke-dashoffset: 867;
         }
       }
       .time {
         font-size: 54px;
+        span {
+          font-size: 24px;
+          font-weight: bolder;
+        }
       }
     }
   }
