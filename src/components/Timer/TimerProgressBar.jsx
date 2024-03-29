@@ -57,14 +57,14 @@ function TimerProgressBar({ darkMode }) {
   },[session, data])
   useEffect(() => {
     if (dinamicTime === 0) {
-      const sound = new Audio(data.sound);
+      const sound = new Audio(data.sound.audio);
       sound.play();
 
       if (data.settings.notification) {
         callNotification();
       }
 
-      if (!data.settings.autoplay) {
+      if (data.settings.autoplay) {
         togglePlay();
         changeSession();
         setStrokeDashoffset(0);
