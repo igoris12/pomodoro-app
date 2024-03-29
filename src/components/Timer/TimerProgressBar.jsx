@@ -64,7 +64,7 @@ function TimerProgressBar({ darkMode }) {
         callNotification();
       }
 
-      if (data.settings.autoplay) {
+      if (!data.settings.autoplay) {
         togglePlay();
         changeSession();
         setStrokeDashoffset(0);
