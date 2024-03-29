@@ -47,14 +47,14 @@ function TimerProgressBar({ darkMode }) {
 
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
-  console.log(dinamicTime);
+
 
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
   useEffect(()=> {
     setTime(data.time[session - 1].time);
-  },[session, data, time])
+  },[session, data])
   useEffect(() => {
     if (dinamicTime === 0) {
       const sound = new Audio(data.sound);
@@ -110,13 +110,11 @@ function TimerProgressBar({ darkMode }) {
   const changeSession = () => {
     if (session === data.time.length) {
     setSession(1);
-    setDinamincTime(data.time[session].time);
-      
+    setDinamincTime(data.time[0].time);
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
       setDinamincTime(data.time[session].time);
-
     }
   };
 
