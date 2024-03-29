@@ -18,12 +18,12 @@ function TimerProgressBar({ darkMode }) {
     for (let i = 0; i < data.rounds; i++) {
       dataArray.push({
         time: data.workDuration * 60,
-        status: "focus" + i,
+        status: "focus",
         session: i,
       });
       dataArray.push({
         time: data.breakDuration * 60,
-        status: "brack" + i,
+        status: "brack",
         session: i,
       });
     }
