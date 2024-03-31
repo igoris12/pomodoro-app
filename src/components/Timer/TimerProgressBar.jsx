@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./TimerProgressBar.scss";
 import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
@@ -8,10 +8,11 @@ import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
 
 function TimerProgressBar({ darkMode }) {
+  const audioRef = useRef(null);
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  
+
   const formatData = (data) => {
     const dataArray = [];
 
@@ -47,23 +48,20 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
-  const sound = new Audio(data.sound.audio);
-
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  useEffect(()=> {
+  useEffect(() => {
     setTime(data.time[session - 1].time);
-  },[session, data])
+  }, [session, data]);
 
   useEffect(() => {
     if (dinamicTime === 0) {
-      sound.play();
-      if (data.settings.notification) {
-        callNotification();
-      }
-
+      audioRef.current.play();
       if (!data.settings.autoplay) {
+        if (data.settings.notification) {
+          callNotification();
+        }
         togglePlay();
         changeSession();
         setStrokeDashoffset(0);
@@ -78,11 +76,15 @@ function TimerProgressBar({ darkMode }) {
     }
 
     if (data.settings.timeInTitle) {
-      document.title = `${
-        formatting(minutes) + ":" + formatting(seconds)
-      } | 👨‍💻 Pamedoro`;
+      data.time[session - 1].status === "focus"
+        ? (document.title = `${
+            formatting(minutes) + ":" + formatting(seconds)
+          } | 👨‍💻 Pomodor`)
+        : (document.title = `${
+            formatting(minutes) + ":" + formatting(seconds)
+          } | ☕️ Pomodor`);
     }
-    
+
     if (play !== true) {
       return;
     }
@@ -105,11 +107,10 @@ function TimerProgressBar({ darkMode }) {
     seconds,
   ]);
 
-
   const changeSession = () => {
     if (session === data.time.length) {
-    setSession(1);
-    setDinamincTime(data.time[0].time);
+      setSession(1);
+      setDinamincTime(data.time[0].time);
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
@@ -118,20 +119,19 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const togglePlay = () => {
-    sound.pause();
-
     setPlay(!play);
   };
 
   const callNotification = () => {
-    alert(
-      `session ${Math.ceil(session / 2)} ${
-        data.time[session - 1].status
-      } ended.`
-    );
+    if (data.time[session - 1].status === "brack") {
+      alert(
+        `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
+      );
+    } else {
+      alert(`Session ${Math.ceil(session / 2)} ended, time to have some rest!`);
+    }
   };
 
- 
   const restartSessions = () => {
     setDinamincTime(time);
   };
@@ -150,6 +150,8 @@ function TimerProgressBar({ darkMode }) {
         darkMode !== true ? "timerProgressBar" : "timerProgressBar dark"
       }
     >
+      <audio src={data.sound.audio} ref={audioRef}></audio>
+
       <div className="circle">
         <svg>
           <circle cx={91} cy={84} r={91}></circle>
@@ -177,7 +179,13 @@ function TimerProgressBar({ darkMode }) {
         >
           <VscDebugRestart />
         </button>
-        <button className="play" onClick={togglePlay}>
+        <button
+          className="play"
+          onClick={(e) => {
+            togglePlay(e);
+            audioRef.current.load();
+          }}
+        >
           {play === false ? <IoMdPlay /> : <IoPause />}
         </button>
         <button
@@ -186,6 +194,7 @@ function TimerProgressBar({ darkMode }) {
             setPlay(false);
             changeSession();
             setStrokeDashoffset(0);
+            audioRef.current.load();
           }}
         >
           <span></span>

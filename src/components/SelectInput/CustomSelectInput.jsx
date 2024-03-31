@@ -21,7 +21,11 @@ function CustomSelectInput({ clickFunction = null, darkMode }) {
   };
 
   return (
-    <div className={darkMode ? 'customSelectContaner darkMode' : 'customSelectContaner'}>
+    <div
+      className={
+        darkMode ? "customSelectContaner darkMode" : "customSelectContaner"
+      }
+    >
       <div
         className={
           customSelectActive ? "custom-select active" : "custom-select"
