@@ -73,14 +73,6 @@ function CustomSelectInput({ clickFunction = null, darkMode }) {
           })}
         </ul>
       </div>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          audioRef.current.load();
-        }}
-      >
-        pouse
-      </button>
     </div>
   );
 }
