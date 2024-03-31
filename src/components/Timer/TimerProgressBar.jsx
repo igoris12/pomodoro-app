@@ -120,11 +120,16 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const callNotification = () => {
-    alert(
-      `session ${Math.ceil(session / 2)} ${
-        data.time[session - 1].status
-      } ended.`
-    );
+    if (data.time[session - 1].status === 'brack') {
+      alert(
+        `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
+      );
+    }
+    else{
+      alert(
+        `Session ${Math.ceil(session / 2)} ended, time to have some rest!`
+      );
+    }
   };
 
   const restartSessions = () => {
