@@ -58,15 +58,15 @@ function TimerProgressBar({ darkMode }) {
   useEffect(() => {
     if (dinamicTime === 0) {
       audioRef.current.play();
-      if (data.settings.notification) {
-        callNotification();
-      }
-
       if (!data.settings.autoplay) {
+        if (data.settings.notification) {
+          callNotification();
+        }
         togglePlay();
         changeSession();
         setStrokeDashoffset(0);
       }
+
     }
     if (dinamicTime <= 0) {
       const timer = setTimeout(() => {
