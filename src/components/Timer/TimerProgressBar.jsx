@@ -66,7 +66,6 @@ function TimerProgressBar({ darkMode }) {
         changeSession();
         setStrokeDashoffset(0);
       }
-
     }
     if (dinamicTime <= 0) {
       const timer = setTimeout(() => {
@@ -77,9 +76,13 @@ function TimerProgressBar({ darkMode }) {
     }
 
     if (data.settings.timeInTitle) {
-      document.title = `${
-        formatting(minutes) + ":" + formatting(seconds)
-      } | 👨‍💻 Pamedoro`;
+      data.time[session - 1].status === "focus"
+        ? (document.title = `${
+            formatting(minutes) + ":" + formatting(seconds)
+          } | 👨‍💻 Pomodor`)
+        : (document.title = `${
+            formatting(minutes) + ":" + formatting(seconds)
+          } | ☕️ Pomodor`);
     }
 
     if (play !== true) {
@@ -120,15 +123,12 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const callNotification = () => {
-    if (data.time[session - 1].status === 'brack') {
+    if (data.time[session - 1].status === "brack") {
       alert(
         `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
       );
-    }
-    else{
-      alert(
-        `Session ${Math.ceil(session / 2)} ended, time to have some rest!`
-      );
+    } else {
+      alert(`Session ${Math.ceil(session / 2)} ended, time to have some rest!`);
     }
   };
 
