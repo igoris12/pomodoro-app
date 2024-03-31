@@ -21,7 +21,11 @@ function CustomSelectInput({ clickFunction = null, darkMode }) {
   };
 
   return (
-    <div className={darkMode ? 'customSelectContaner darkMode' : 'customSelectContaner'}>
+    <div
+      className={
+        darkMode ? "customSelectContaner darkMode" : "customSelectContaner"
+      }
+    >
       <div
         className={
           customSelectActive ? "custom-select active" : "custom-select"
@@ -69,6 +73,14 @@ function CustomSelectInput({ clickFunction = null, darkMode }) {
           })}
         </ul>
       </div>
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          audioRef.current.load();
+        }}
+      >
+        pouse
+      </button>
     </div>
   );
 }

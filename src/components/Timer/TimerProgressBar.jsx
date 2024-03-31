@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./TimerProgressBar.scss";
 import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
@@ -8,10 +8,11 @@ import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
 
 function TimerProgressBar({ darkMode }) {
+  const audioRef = useRef(null);
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  
+
   const formatData = (data) => {
     const dataArray = [];
 
@@ -47,18 +48,19 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
-  const sound = new Audio(data.sound.audio);
+  // const sound = new Audio(data.sound.audio);
 
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  useEffect(()=> {
+  useEffect(() => {
     setTime(data.time[session - 1].time);
-  },[session, data])
+  }, [session, data]);
 
   useEffect(() => {
     if (dinamicTime === 0) {
-      sound.play();
+      // console.log(audioRef);
+      audioRef.current.play();
       if (data.settings.notification) {
         callNotification();
       }
@@ -82,7 +84,7 @@ function TimerProgressBar({ darkMode }) {
         formatting(minutes) + ":" + formatting(seconds)
       } | 👨‍💻 Pamedoro`;
     }
-    
+
     if (play !== true) {
       return;
     }
@@ -105,11 +107,10 @@ function TimerProgressBar({ darkMode }) {
     seconds,
   ]);
 
-
   const changeSession = () => {
     if (session === data.time.length) {
-    setSession(1);
-    setDinamincTime(data.time[0].time);
+      setSession(1);
+      setDinamincTime(data.time[0].time);
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
@@ -118,7 +119,7 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const togglePlay = () => {
-    sound.pause();
+    // sound.src = data.sound.audio;
 
     setPlay(!play);
   };
@@ -131,7 +132,6 @@ function TimerProgressBar({ darkMode }) {
     );
   };
 
- 
   const restartSessions = () => {
     setDinamincTime(time);
   };
@@ -150,6 +150,10 @@ function TimerProgressBar({ darkMode }) {
         darkMode !== true ? "timerProgressBar" : "timerProgressBar dark"
       }
     >
+      {/*  */}
+      <audio src={data.sound.audio} ref={audioRef}></audio>
+
+      {/*  */}
       <div className="circle">
         <svg>
           <circle cx={91} cy={84} r={91}></circle>

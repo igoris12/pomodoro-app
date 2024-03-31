@@ -38,7 +38,6 @@ const Settings = ({ darkMode, toggleLightMode }) => {
   };
 
   const changeSound = (newSound) => {
-    console.log(newSound);
     dispatch({ type: "CHAGE_SOUND", deploy: newSound });
   };
   return (
