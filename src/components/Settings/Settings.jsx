@@ -55,7 +55,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
 
         <RangeInput
           text={"Short break duration"}
-          min={1}
+          min={0.1}
           max={30}
           defValue={5}
           value={data.breakDuration}

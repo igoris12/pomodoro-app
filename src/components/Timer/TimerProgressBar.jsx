@@ -48,8 +48,6 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
-  // const sound = new Audio(data.sound.audio);
-
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
@@ -59,7 +57,6 @@ function TimerProgressBar({ darkMode }) {
 
   useEffect(() => {
     if (dinamicTime === 0) {
-      // console.log(audioRef);
       audioRef.current.play();
       if (data.settings.notification) {
         callNotification();
@@ -119,8 +116,6 @@ function TimerProgressBar({ darkMode }) {
   };
 
   const togglePlay = () => {
-    // sound.src = data.sound.audio;
-
     setPlay(!play);
   };
 
@@ -150,10 +145,8 @@ function TimerProgressBar({ darkMode }) {
         darkMode !== true ? "timerProgressBar" : "timerProgressBar dark"
       }
     >
-      {/*  */}
       <audio src={data.sound.audio} ref={audioRef}></audio>
 
-      {/*  */}
       <div className="circle">
         <svg>
           <circle cx={91} cy={84} r={91}></circle>
@@ -181,7 +174,13 @@ function TimerProgressBar({ darkMode }) {
         >
           <VscDebugRestart />
         </button>
-        <button className="play" onClick={togglePlay}>
+        <button
+          className="play"
+          onClick={(e) => {
+            togglePlay(e);
+            audioRef.current.load();
+          }}
+        >
           {play === false ? <IoMdPlay /> : <IoPause />}
         </button>
         <button
@@ -190,6 +189,7 @@ function TimerProgressBar({ darkMode }) {
             setPlay(false);
             changeSession();
             setStrokeDashoffset(0);
+            audioRef.current.load();
           }}
         >
           <span></span>
