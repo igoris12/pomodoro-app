@@ -2,12 +2,18 @@ import React from "react";
 import "./NavigationLink.scss";
 import { NavLink, Link } from "react-router-dom";
 
-function NavigationLink({ icon, text, to = "", darkMode = false }) {
+function NavigationLink({
+  calssName = "",
+  icon,
+  text,
+  to = "",
+  darkMode = false,
+}) {
   return "" !== to ? (
     <NavLink
       to={to}
       className={
-        !true === darkMode ? `navigationLink ` : `navigationLink dark`
+        !true === darkMode ? `navigationLink` : `navigationLink dark `
       }
     >
       {icon} {text}
@@ -15,7 +21,9 @@ function NavigationLink({ icon, text, to = "", darkMode = false }) {
   ) : (
     <Link
       className={
-        !true === darkMode ? `navigationLink ` : `navigationLink dark `
+        !true === darkMode
+          ? `navigationLink ${calssName}`
+          : `navigationLink dark ${calssName}`
       }
     >
       {icon} {text}

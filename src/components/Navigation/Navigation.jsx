@@ -12,8 +12,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
     <div
       className={active === true ? "navigation active" : "navigation"}
       onClick={(e) => {
-        console.log(e.target);
-        if (e.target.tagName !== "NAV") {
+        if (e.target.tagName !== "NAV" && !e.target.classList.contains('lightModes')) {
           closeNavigation();
         }
       }}
@@ -88,6 +87,7 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
           </div>
           <div onClick={toggleLightMode}>
             <NavigationLink
+              calssName={'lightModes'}
               darkMode={darkMode}
               icon={
                 !darkMode === true ? <MdOutlineLightMode /> : <MdNightsStay />
