@@ -4,15 +4,25 @@ import NavigationLink from "./NavigationLink";
 import { IoMdClose } from "react-icons/io";
 import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
-import { MdOutlineLightMode ,MdNightsStay } from "react-icons/md";
+import { MdOutlineLightMode, MdNightsStay } from "react-icons/md";
 import { Link } from "react-router-dom";
-
 
 function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
   return (
-    <div className={active === true ? "navigation active" : "navigation"}>
-      <nav className={!true === darkMode ? '': 'dark'}>
-        <button className={!true === darkMode ? 'close': 'close dark'} onClick={closeNavigation}>
+    <div
+      className={active === true ? "navigation active" : "navigation"}
+      onClick={(e) => {
+        console.log(e.target);
+        if (e.target.tagName !== "NAV") {
+          closeNavigation();
+        }
+      }}
+    >
+      <nav className={!true === darkMode ? "" : "dark"}>
+        <button
+          className={!true === darkMode ? "close" : "close dark"}
+          onClick={closeNavigation}
+        >
           <IoMdClose />
         </button>
         <Link to="/pomodoro-app" className="logo">
@@ -62,16 +72,28 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
           </svg>
         </Link>
         <div className="links">
-          <div className="navigationLinks" >
-            <NavigationLink  darkMode={darkMode} icon={<LuAlarmClock />} text={"Timer"} to={"/pomodoro-app"} />
-            <NavigationLink darkMode={darkMode}
+          <div className="navigationLinks">
+            <NavigationLink
+              darkMode={darkMode}
+              icon={<LuAlarmClock />}
+              text={"Timer"}
+              to={"/pomodoro-app"}
+            />
+            <NavigationLink
+              darkMode={darkMode}
               icon={<FiSettings />}
               text={"Settings"}
               to={"/pomodoro-app/settings"}
             />
           </div>
-          <div onClick={toggleLightMode} >
-            <NavigationLink darkMode={darkMode} icon={!darkMode === true ? < MdOutlineLightMode /> : < MdNightsStay />} text={!darkMode === true ? "Light mone" : 'Dark mode'} />
+          <div onClick={toggleLightMode}>
+            <NavigationLink
+              darkMode={darkMode}
+              icon={
+                !darkMode === true ? <MdOutlineLightMode /> : <MdNightsStay />
+              }
+              text={!darkMode === true ? "Light mone" : "Dark mode"}
+            />
           </div>
         </div>
       </nav>
