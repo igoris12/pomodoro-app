@@ -9,6 +9,7 @@ function RangeInput({
   defValue,
   change,
   darkMode,
+  subText= ''
 }) {
   ///this number variable is for slider Thumb layout be in best position
   const [number, setNumber] = useState(7.5);
@@ -59,7 +60,7 @@ function RangeInput({
           left: percentCounterForPosition(defValue, min, max, 7.5),
         }}
       >
-        <span className="min">{defValue} min</span>
+        <span className="min">{defValue} {subText}</span>
       </span>
 
       <span
@@ -68,7 +69,7 @@ function RangeInput({
           left: "1px",
         }}
       >
-        <span className="min">{min} min</span>
+        <span className="min">{min} {subText}</span>
       </span>
       <span
         className={value >= max ? "marker light" : "marker"}
@@ -76,7 +77,7 @@ function RangeInput({
           right: "1px",
         }}
       >
-        <span className="max">{max} min</span>
+        <span className="max">{max} {subText}</span>
       </span>
       <div
         className="costomeElements"

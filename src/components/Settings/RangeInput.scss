@@ -48,7 +48,7 @@
     -webkit-appearance: none;
     width: 100%;
     height: 1.5px;
-    background-color: rgba(84, 62, 246, 0.38);
+    background-color: rgb(114, 97, 241);
     border-radius: 1px;
     cursor: pointer;
     padding-top: 1px;
@@ -72,14 +72,12 @@
   }
  .marker {
   position: absolute;
-  background-color: #2D27DC;
+  background-color: rgb(56, 33, 203);
   width: 2px;
   height: 1.5px;
   bottom: 0;
   z-index: 1;
   border-radius: 1px;
-  opacity: 0.8;
-
   &.light {
     background-color: #fff;
     opacity: 1;
@@ -123,17 +121,19 @@
     width: 60px;
     height: 20px;
     bottom: -25px;
-    left: -20px;
+    left: -5px;
     font-size: 14px;
     font-family: $primaryFont;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     color: #575757;
   }
   .max {
     left: unset;
-    right: -20px;
+    right: 0px;
+    justify-content: right;
+
   }
   input:hover  + .value {
     transform: translateX(-50%) scale(1.1);
