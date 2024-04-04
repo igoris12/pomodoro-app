@@ -51,6 +51,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.workDuration}
           change={changeWorkDuration}
           darkMode={darkMode}
+          subText="min"
         />
 
         <RangeInput
@@ -61,6 +62,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.breakDuration}
           change={changeBreakDuration}
           darkMode={darkMode}
+          subText="min"
         />
 
         <RangeInput
@@ -71,6 +73,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
           value={data.longBreakDuration}
           change={changeLongBreakDuration}
           darkMode={darkMode}
+          subText="min"
         />
         <RangeInput
           text={"Rounds"}
