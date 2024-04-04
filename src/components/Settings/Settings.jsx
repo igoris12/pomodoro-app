@@ -45,7 +45,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
       <form>
         <RangeInput
           text={"Work duration"}
-          min={0.1}
+          min={5}
           max={60}
           defValue={25}
           value={data.workDuration}
@@ -56,7 +56,7 @@ const Settings = ({ darkMode, toggleLightMode }) => {
 
         <RangeInput
           text={"Short break duration"}
-          min={0.1}
+          min={1}
           max={30}
           defValue={5}
           value={data.breakDuration}

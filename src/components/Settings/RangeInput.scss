@@ -79,7 +79,6 @@
   z-index: 1;
   border-radius: 1px;
   opacity: 0.8;
-
   &.light {
     background-color: #fff;
     opacity: 1;
@@ -123,17 +122,19 @@
     width: 60px;
     height: 20px;
     bottom: -25px;
-    left: -20px;
+    left: -5px;
     font-size: 14px;
     font-family: $primaryFont;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     color: #575757;
   }
   .max {
     left: unset;
-    right: -20px;
+    right: 0px;
+    justify-content: right;
+
   }
   input:hover  + .value {
     transform: translateX(-50%) scale(1.1);
