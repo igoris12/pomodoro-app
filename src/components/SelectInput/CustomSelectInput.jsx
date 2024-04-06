@@ -1,15 +1,20 @@
 import React, { useState, useRef } from "react";
 import "./CustomSelectInput.scss";
 import audio from "../Timer/audio/audio";
+import useClickOutside from "../../customHooks/useClickOutside";
 
 function CustomSelectInput({ clickFunction = null, darkMode }) {
+  const [customSelectActive, setCustomSelectActive] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useClickOutside(dropdownRef, ()=>{setCustomSelectActive(false)})
+  
   const audioRef = useRef(null);
   const options = [
     { name: "callToAttention", audio: audio.callToAttention, id: 0 },
     { name: "alarmClock", audio: audio.alarmClock, id: 1 },
     { name: "ringtone", audio: audio.ringtone, id: 2 },
   ];
-  const [customSelectActive, setCustomSelectActive] = useState(false);
 
   const [selected, setSelected] = useState({
     name: options[0].name,
@@ -22,6 +27,7 @@ function CustomSelectInput({ clickFunction = null, darkMode }) {
 
   return (
     <div
+    ref={dropdownRef}
       className={
         darkMode ? "customSelectContaner darkMode" : "customSelectContaner"
       }
