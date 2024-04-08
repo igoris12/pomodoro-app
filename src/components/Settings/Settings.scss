@@ -28,3 +28,13 @@
         }
     }
 }
+
+@media screen and (max-width: 550px) {
+    .settings {
+        background-color: red;
+        form {
+            background-color: orange;
+            padding: 24px 32px 0px 32px;
+        }
+    }
+}
