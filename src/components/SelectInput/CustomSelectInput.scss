@@ -1,6 +1,7 @@
 @import "../../style/scss/variables.scss";
 
 .customSelectContaner {
+  width: 100%;
   &.darkMode {
     .custom-select {
       color: white;
@@ -39,7 +40,7 @@
   }
   .custom-select {
     position: relative;
-    width: 400px;
+    width: 100%;
     max-width: 100%;
     color: #000;
     margin-top: 3rem;
@@ -66,7 +67,7 @@
       align-items: center;
       .selected-value {
         text-align: left;
-        font-size: 18px;
+        font-size: 16px;
         font-family: $primaryFont;
         text-transform: capitalize;
       }
@@ -125,7 +126,7 @@
         display: flex;
         gap: 1rem;
         align-items: center;
-        font-size: 18px;
+        font-size: 16px;
         font-family: $primaryFont;
         text-transform: capitalize;
         input {

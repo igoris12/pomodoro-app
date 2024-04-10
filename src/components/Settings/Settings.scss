@@ -1,30 +1,56 @@
-.settings  {
-    display: inline-block;
-    width: 100%;
-    height: 100%;
+.settings {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 64px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width:  2px;
+    height: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(58, 55, 55, 0.8);
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &.dark {
+    background-color: #111;
+  }
+  form {
+    width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding-top: 64px;
-    overflow-y: scroll;
-    &.dark {
-        background-color:  #111;;
+    justify-content: center;
+    gap: 40px;
+    .buttonsGroup {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      &.dark {
+        color: white;
+      }
     }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .settings {
     form {
-        width: 400px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 40px;
-        .buttonsGroup {
-         width: 100%;  
-         display: flex;
-         flex-direction: column;
-         &.dark {
-            color: white;
-        }
-        }
+      width: 250px;
     }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .settings {
+    form {
+      padding: 0px 32px 0px 32px;
+    }
+  }
 }
