@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback  } from "react";
 import "./TimerProgressBar.scss";
 import { MdSkipNext } from "react-icons/md";
 import { VscDebugRestart } from "react-icons/vsc";
@@ -48,6 +48,17 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
+  const changeSession = useCallback(() => {
+    if (session === data.time.length) {
+      setSession(1);
+      setDinamincTime(data.time[0].time);
+    }
+    if (session < data.time.length) {
+      setSession((prev) => prev + 1);
+      setDinamincTime(data.time[session].time);
+    }
+  },[data.time, session])
+
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
@@ -56,13 +67,24 @@ function TimerProgressBar({ darkMode }) {
   }, [session, data]);
 
   useEffect(() => {
+
+    const callNotification = () => {
+      if (data.time[session - 1].status === "brack") {
+        alert(
+          `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
+        );
+      } else {
+        alert(`Session ${Math.ceil(session / 2)} ended, time to have some rest!`);
+      }
+    };
+
     if (dinamicTime === 0) {
       audioRef.current.play();
       if (!data.settings.autoplay) {
         if (data.settings.notification) {
           callNotification();
         }
-        togglePlay();
+        setPlay(!play);
         changeSession();
         setStrokeDashoffset(0);
       }
@@ -105,31 +127,13 @@ function TimerProgressBar({ darkMode }) {
     dinamicTime,
     minutes,
     seconds,
+    session,
+    changeSession
   ]);
 
-  const changeSession = () => {
-    if (session === data.time.length) {
-      setSession(1);
-      setDinamincTime(data.time[0].time);
-    }
-    if (session < data.time.length) {
-      setSession((prev) => prev + 1);
-      setDinamincTime(data.time[session].time);
-    }
-  };
-
+ 
   const togglePlay = () => {
     setPlay(!play);
-  };
-
-  const callNotification = () => {
-    if (data.time[session - 1].status === "brack") {
-      alert(
-        `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
-      );
-    } else {
-      alert(`Session ${Math.ceil(session / 2)} ended, time to have some rest!`);
-    }
   };
 
   const restartSessions = () => {
