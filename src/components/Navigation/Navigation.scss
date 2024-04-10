@@ -22,9 +22,16 @@
     align-items: center;
     justify-content: center;
     overflow: scroll;
-    scrollbar-width: 2px;
-    scrollbar-color: red blue;
-    scrollbar-track-color: orange;
+    &::-webkit-scrollbar {
+      width:  2px;
+      height: 2px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(58, 55, 55, 0.8);
+    }
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
     &.dark {
       background-color:  #111;
          a {
@@ -117,8 +124,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      overflow-y: hidden;
-
+      overflow: hidden;
+  
       .close {
         display: none;
       }
