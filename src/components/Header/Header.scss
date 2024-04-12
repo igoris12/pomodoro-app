@@ -19,37 +19,9 @@
       }
     }
   }
-  .hamburger {
-    &.active {
-      width: 64px;
-      height: 64px;
-      border: none;
-      display: flex;
-      padding: 6px 8px;
-      cursor: pointer;
-      border-radius: 5px;
-      align-items: center;
-      justify-content: center;
-      background-color: inherit;
-      transition: background-color, 250ms;
-      &:hover {
-        text-decoration: none;
-        background-color: rgba(18, 18, 18, 0.04);
-      }
-      svg {
-        font-size: 28px;
-      }
-    }
-    display: none;
-  }
+
   &.dark {
-    background-color:  #111;
-    .hamburger{
-      color: white;
-      &:hover {
-        background-color: rgba(255, 255, 255, 0.08);
-      }
-    }
+    background-color: #111;
   }
 }
 
@@ -58,9 +30,9 @@
     height: 100%;
 
     a {
-     &.logo {
+      &.logo {
         display: none;
-     }
+      }
     }
     .hamburger {
       display: none;
