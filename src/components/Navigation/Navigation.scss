@@ -5,13 +5,46 @@
   right: 0;
   bottom: 0;
   left: 0;
-  opacity: 1;
   box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2),
-  0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
-  opacity: 0;    
+    0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+  opacity: 1;
   left: auto;
   transform: translateX(225px);
   transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  .hamburger {
+    position: absolute;
+    left: -64px;
+    top: 0;
+    opacity: 1;
+    &.active {
+      width: 64px;
+      height: 64px;
+      border: none;
+      display: flex;
+      padding: 6px 8px;
+      cursor: pointer;
+      border-radius: 5px;
+      align-items: center;
+      justify-content: center;
+      background-color: inherit;
+      transition: background-color, 250ms;
+      background-color: transparent;
+      &:hover {
+        text-decoration: none;
+        background-color: rgba(18, 18, 18, 0.04);
+      }
+      svg {
+        font-size: 28px;
+      }
+    }
+    &.dark {
+      color: white;
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+          }
+    }
+    display: none;
+  }
   nav {
     float: right;
     background-color: white;
@@ -23,7 +56,7 @@
     justify-content: center;
     overflow: scroll;
     &::-webkit-scrollbar {
-      width:  2px;
+      width: 2px;
       height: 2px;
     }
     &::-webkit-scrollbar-thumb {
@@ -33,15 +66,15 @@
       background: transparent;
     }
     &.dark {
-      background-color:  #111;
-         a {
+      background-color: #111;
+      a {
         &:hover {
-            background-color: rgba(255, 255, 255, 0.08);
+          background-color: rgba(255, 255, 255, 0.08);
         }
         &.active {
-            color: white;
+          color: white;
         }
-    }
+      }
     }
     .close {
       color: rgba(0, 0, 0, 0.54);
@@ -62,12 +95,12 @@
         background-color: rgba(0, 0, 0, 0.04);
       }
       &.dark {
-       svg {
-        color: white;
-       }
+        svg {
+          color: white;
+        }
         &:hover {
           background-color: rgba(255, 255, 255, 0.08);
-      }
+        }
       }
     }
     .logo {
@@ -95,13 +128,11 @@
     }
   }
   &.active {
-    opacity: 1;    
+    opacity: 1;
     left: -225px;
     transform: translateX(0px);
     z-index: 2;
-    
   }
-  
 }
 
 @media screen and (min-width: 900px) {
@@ -111,7 +142,7 @@
     border-right: 1px solid rgba(0, 0, 0, 0.12);
     box-shadow: none;
     opacity: 1;
-    transform:  none;
+    transform: none;
     &.active {
       transform: none;
       opacity: 1;
@@ -125,7 +156,7 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-  
+
       .close {
         display: none;
       }
@@ -141,6 +172,12 @@
         padding-bottom: 55px;
         justify-content: space-between;
       }
+    }
+  }
+  .hamburger {
+    display: none;
+    &.active {
+      display: none;
     }
   }
 }
