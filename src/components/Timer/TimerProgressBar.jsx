@@ -24,19 +24,29 @@ function TimerProgressBar({ darkMode }) {
     if (session === data.time.length) {
       setSession(1);
       setDinamincTime(data.time[0].time);
+      setTime(data.time[0].time)
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
       setDinamincTime(data.time[session].time);
+      setTime(data.time[session].time)
     }
   }, [data.time, session]);
 
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  useEffect(() => {
-    setTime(data.time[session - 1].time);
-  }, [session, data]);
+
+  const togglePlay = () => {
+    setPlay(!play);
+  };
+
+  const restartSessions = () => {
+    setDinamincTime(time);
+  };
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
+  };
 
   useEffect(() => {
     const callNotification = () => {
@@ -104,16 +114,7 @@ function TimerProgressBar({ darkMode }) {
     changeSession,
   ]);
 
-  const togglePlay = () => {
-    setPlay(!play);
-  };
-
-  const restartSessions = () => {
-    setDinamincTime(time);
-  };
-  const formatting = (data) => {
-    return data <= 9 ? "0" + data : data;
-  };
+ 
 
   const infoText = (session, sessionCount) => {
     return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
