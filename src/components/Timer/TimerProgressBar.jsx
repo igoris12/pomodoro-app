@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./TimerProgressBar.scss";
+import formatData from "./formatData.js";
 import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
 import TimerProgressBarIndex from "./TimerProgressBarIndex.jsx";
@@ -9,32 +10,7 @@ function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const formatData = (data) => {
-    const dataArray = [];
-
-    for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({
-        time: data.workDuration * 60,
-        status: "focus",
-        session: i,
-      });
-      dataArray.push({
-        time: data.breakDuration * 60,
-        status: "brack",
-        session: i,
-      });
-    }
-    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    return {
-      time: dataArray,
-      settings: {
-        notification: data.notification,
-        autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle,
-      },
-      sound: data.sound,
-    };
-  };
+  
   const reduxData = useSelector((state) => state.data);
   const data = formatData(reduxData);
   const [session, setSession] = useState(1);
@@ -44,23 +20,39 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
+  const infoText = (session, sessionCount) => {
+    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
+      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+  };
+  
   const changeSession = useCallback(() => {
     if (session === data.time.length) {
       setSession(1);
       setDinamincTime(data.time[0].time);
+      setTime(data.time[0].time)
     }
     if (session < data.time.length) {
       setSession((prev) => prev + 1);
       setDinamincTime(data.time[session].time);
+      setTime(data.time[session].time)
     }
   }, [data.time, session]);
 
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  useEffect(() => {
-    setTime(data.time[session - 1].time);
-  }, [session, data]);
+
+  const togglePlay = () => {
+    setPlay(!play);
+  };
+
+  const restartSessions = () => {
+    setDinamincTime(time);
+  };
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
+  };
 
   useEffect(() => {
     const callNotification = () => {
@@ -128,22 +120,6 @@ function TimerProgressBar({ darkMode }) {
     changeSession,
   ]);
 
-  const togglePlay = () => {
-    setPlay(!play);
-  };
-
-  const restartSessions = () => {
-    setDinamincTime(time);
-  };
-  const formatting = (data) => {
-    return data <= 9 ? "0" + data : data;
-  };
-
-  const infoText = (session, sessionCount) => {
-    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
-      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
-      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
-  };
   return (
     <TimerProgressBarIndex
       darkMode={darkMode}
