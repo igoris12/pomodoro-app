@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import "./TimerProgressBar.scss";
+import formatData from "./formatData.js";
 import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
 import TimerProgressBarIndex from "./TimerProgressBarIndex.jsx";
@@ -9,32 +10,7 @@ function TimerProgressBar({ darkMode }) {
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-  const formatData = (data) => {
-    const dataArray = [];
-
-    for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({
-        time: data.workDuration * 60,
-        status: "focus",
-        session: i,
-      });
-      dataArray.push({
-        time: data.breakDuration * 60,
-        status: "brack",
-        session: i,
-      });
-    }
-    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    return {
-      time: dataArray,
-      settings: {
-        notification: data.notification,
-        autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle,
-      },
-      sound: data.sound,
-    };
-  };
+  
   const reduxData = useSelector((state) => state.data);
   const data = formatData(reduxData);
   const [session, setSession] = useState(1);
