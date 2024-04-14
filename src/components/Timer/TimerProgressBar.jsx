@@ -20,6 +20,12 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
+  const infoText = (session, sessionCount) => {
+    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
+      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+  };
+  
   const changeSession = useCallback(() => {
     if (session === data.time.length) {
       setSession(1);
@@ -114,13 +120,6 @@ function TimerProgressBar({ darkMode }) {
     changeSession,
   ]);
 
- 
-
-  const infoText = (session, sessionCount) => {
-    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
-      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
-      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
-  };
   return (
     <TimerProgressBarIndex
       darkMode={darkMode}
