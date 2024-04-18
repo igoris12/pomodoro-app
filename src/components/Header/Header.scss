@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: right;
   position: relative;
+  top: 0;
+  left: 0;
   height: 64px;
   a {
     &.logo {
@@ -15,30 +17,25 @@
       border-radius: 5px;
       &:hover {
         text-decoration: none;
-        background-color: rgba(18, 18, 18, 0.04);
+        background-color:  rgba(18, 18, 18, 0.04);
+       
       }
     }
   }
 
   &.dark {
     background-color: #111;
+    a {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.08);
+        
+      }
+    }
   }
 }
 
 @media screen and (min-width: 900px) {
   .header {
-    height: 100%;
-
-    a {
-      &.logo {
-        display: none;
-      }
-    }
-    .hamburger {
-      display: none;
-      &.active {
-        display: none;
-      }
-    }
+    display: none;
   }
 }
