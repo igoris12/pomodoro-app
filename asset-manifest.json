@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pomodoro-app/static/css/main.f8fd4aad.css",
-    "main.js": "/pomodoro-app/static/js/main.5f13d663.js",
+    "main.css": "/pomodoro-app/static/css/main.968829cf.css",
+    "main.js": "/pomodoro-app/static/js/main.1c625c37.js",
     "static/media/oversimplified-alarm-clock-113180.mp3": "/pomodoro-app/static/media/oversimplified-alarm-clock-113180.102bf327bf9086cfecc3.mp3",
     "static/media/ringtone-126505.mp3": "/pomodoro-app/static/media/ringtone-126505.464cc45992f202d5ea62.mp3",
     "static/media/call-to-attention-123107.mp3": "/pomodoro-app/static/media/call-to-attention-123107.58c72150a136e1349dc9.mp3",
     "index.html": "/pomodoro-app/index.html",
-    "main.f8fd4aad.css.map": "/pomodoro-app/static/css/main.f8fd4aad.css.map",
-    "main.5f13d663.js.map": "/pomodoro-app/static/js/main.5f13d663.js.map"
+    "main.968829cf.css.map": "/pomodoro-app/static/css/main.968829cf.css.map",
+    "main.1c625c37.js.map": "/pomodoro-app/static/js/main.1c625c37.js.map"
   },
   "entrypoints": [
-    "static/css/main.f8fd4aad.css",
-    "static/js/main.5f13d663.js"
+    "static/css/main.968829cf.css",
+    "static/js/main.1c625c37.js"
   ]
 }
