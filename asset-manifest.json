@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/pomodoro-app/static/css/main.4c86b6e1.css",
+    "main.css": "/pomodoro-app/static/css/main.f0270e72.css",
     "main.js": "/pomodoro-app/static/js/main.e30609d8.js",
     "static/media/oversimplified-alarm-clock-113180.mp3": "/pomodoro-app/static/media/oversimplified-alarm-clock-113180.102bf327bf9086cfecc3.mp3",
     "static/media/ringtone-126505.mp3": "/pomodoro-app/static/media/ringtone-126505.464cc45992f202d5ea62.mp3",
     "static/media/call-to-attention-123107.mp3": "/pomodoro-app/static/media/call-to-attention-123107.58c72150a136e1349dc9.mp3",
     "index.html": "/pomodoro-app/index.html",
-    "main.4c86b6e1.css.map": "/pomodoro-app/static/css/main.4c86b6e1.css.map",
+    "main.f0270e72.css.map": "/pomodoro-app/static/css/main.f0270e72.css.map",
     "main.e30609d8.js.map": "/pomodoro-app/static/js/main.e30609d8.js.map"
   },
   "entrypoints": [
-    "static/css/main.4c86b6e1.css",
+    "static/css/main.f0270e72.css",
     "static/js/main.e30609d8.js"
   ]
 }
