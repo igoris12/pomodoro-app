@@ -1,44 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "./TimerProgressBar.scss";
-import { MdSkipNext } from "react-icons/md";
-import { VscDebugRestart } from "react-icons/vsc";
-import { IoMdPlay } from "react-icons/io";
-import { IoPause } from "react-icons/io5";
+import formatData from "./formatData.js";
 import useScreenSize from "../../js/useScreenSize.js";
 import { useSelector } from "react-redux";
+import TimerProgressBarIndex from "./TimerProgressBarIndex.jsx";
 
 function TimerProgressBar({ darkMode }) {
   const audioRef = useRef(null);
   const [play, setPlay] = useState(false);
   const screenSize = useScreenSize();
   const [tistrokeDashoffsetme, setStrokeDashoffset] = useState(0);
-
-  const formatData = (data) => {
-    const dataArray = [];
-
-    for (let i = 0; i < data.rounds; i++) {
-      dataArray.push({
-        time: data.workDuration * 60,
-        status: "focus",
-        session: i,
-      });
-      dataArray.push({
-        time: data.breakDuration * 60,
-        status: "brack",
-        session: i,
-      });
-    }
-    dataArray.push({ time: data.longBreakDuration * 60, status: "long brake" });
-    return {
-      time: dataArray,
-      settings: {
-        notification: data.notification,
-        autoplay: data.autoplay,
-        timeInTitle: data.timeInTitle,
-      },
-      sound: data.sound,
-    };
-  };
+  
   const reduxData = useSelector((state) => state.data);
   const data = formatData(reduxData);
   const [session, setSession] = useState(1);
@@ -48,21 +20,60 @@ function TimerProgressBar({ darkMode }) {
   const minutes = Math.floor(dinamicTime / 60);
   const seconds = dinamicTime - minutes * 60;
 
+  const infoText = (session, sessionCount) => {
+    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
+      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
+      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
+  };
+  
+  const changeSession = useCallback(() => {
+    if (session === data.time.length) {
+      setSession(1);
+      setDinamincTime(data.time[0].time);
+      setTime(data.time[0].time)
+    }
+    if (session < data.time.length) {
+      setSession((prev) => prev + 1);
+      setDinamincTime(data.time[session].time);
+      setTime(data.time[session].time)
+    }
+  }, [data.time, session]);
+
   const reduceTime = () => {
     setDinamincTime((prevTime) => prevTime - 1);
   };
-  useEffect(() => {
-    setTime(data.time[session - 1].time);
-  }, [session, data]);
+
+  const togglePlay = () => {
+    setPlay(!play);
+  };
+
+  const restartSessions = () => {
+    setDinamincTime(time);
+  };
+  const formatting = (data) => {
+    return data <= 9 ? "0" + data : data;
+  };
 
   useEffect(() => {
+    const callNotification = () => {
+      if (data.time[session - 1].status === "brack") {
+        alert(
+          `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
+        );
+      } else {
+        alert(
+          `Session ${Math.ceil(session / 2)} ended, time to have some rest!`
+        );
+      }
+    };
+
     if (dinamicTime === 0) {
       audioRef.current.play();
       if (!data.settings.autoplay) {
         if (data.settings.notification) {
           callNotification();
         }
-        togglePlay();
+        setPlay(!play);
         changeSession();
         setStrokeDashoffset(0);
       }
@@ -105,107 +116,30 @@ function TimerProgressBar({ darkMode }) {
     dinamicTime,
     minutes,
     seconds,
+    session,
+    changeSession,
   ]);
 
-  const changeSession = () => {
-    if (session === data.time.length) {
-      setSession(1);
-      setDinamincTime(data.time[0].time);
-    }
-    if (session < data.time.length) {
-      setSession((prev) => prev + 1);
-      setDinamincTime(data.time[session].time);
-    }
-  };
-
-  const togglePlay = () => {
-    setPlay(!play);
-  };
-
-  const callNotification = () => {
-    if (data.time[session - 1].status === "brack") {
-      alert(
-        `Bracke ${Math.ceil(session / 2)} ended, time to get beck to work!`
-      );
-    } else {
-      alert(`Session ${Math.ceil(session / 2)} ended, time to have some rest!`);
-    }
-  };
-
-  const restartSessions = () => {
-    setDinamincTime(time);
-  };
-  const formatting = (data) => {
-    return data <= 9 ? "0" + data : data;
-  };
-
-  const infoText = (session, sessionCount) => {
-    return Math.ceil(session / 2) < Math.floor(sessionCount / 2)
-      ? Math.ceil(session / 2) + " of " + Math.floor(sessionCount / 2)
-      : Math.floor(sessionCount / 2) + " of " + Math.floor(sessionCount / 2);
-  };
   return (
-    <section
-      className={
-        darkMode !== true ? "timerProgressBar" : "timerProgressBar dark"
-      }
-    >
-      <audio src={data.sound.audio} ref={audioRef}></audio>
-
-      <div className="circle">
-        <svg>
-          <circle cx={91} cy={84} r={91}></circle>
-          <circle
-            style={{ strokeDashoffset: tistrokeDashoffsetme }}
-            className="backCircle"
-            cx={91}
-            cy={84}
-            r={91}
-          ></circle>
-        </svg>
-        <div className="time">
-          {formatting(minutes) + ":" + formatting(seconds)}
-          <span>{data.time[session - 1].status}</span>
-        </div>
-      </div>
-      <div className="timeControls">
-        <button
-          className={dinamicTime === time ? "restart" : "restart active"}
-          onClick={() => {
-            setPlay(false);
-            restartSessions();
-            setStrokeDashoffset(0);
-          }}
-        >
-          <VscDebugRestart />
-        </button>
-        <button
-          className="play"
-          onClick={(e) => {
-            togglePlay(e);
-            audioRef.current.load();
-          }}
-        >
-          {play === false ? <IoMdPlay /> : <IoPause />}
-        </button>
-        <button
-          className="next"
-          onClick={() => {
-            setPlay(false);
-            changeSession();
-            setStrokeDashoffset(0);
-            audioRef.current.load();
-          }}
-        >
-          <span></span>
-          <MdSkipNext />
-        </button>
-      </div>
-      <div className="info">
-        <span>{infoText(session, data.time.length)}</span>
-        <span>sessions</span>
-      </div>
-    </section>
+    <TimerProgressBarIndex
+      darkMode={darkMode}
+      data={data}
+      audioRef={audioRef}
+      tistrokeDashoffsetme={tistrokeDashoffsetme}
+      formatting={formatting}
+      minutes={minutes}
+      seconds={seconds}
+      session={session}
+      dinamicTime={dinamicTime}
+      time={time}
+      play={play}
+      setPlay={setPlay}
+      restartSessions={restartSessions}
+      setStrokeDashoffset={setStrokeDashoffset}
+      togglePlay={togglePlay}
+      changeSession={changeSession}
+      infoText={infoText}
+    />
   );
 }
 

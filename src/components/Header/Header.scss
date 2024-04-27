@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: right;
   position: relative;
+  top: 0;
+  left: 0;
   height: 64px;
   a {
     &.logo {
@@ -15,39 +17,18 @@
       border-radius: 5px;
       &:hover {
         text-decoration: none;
-        background-color: rgba(18, 18, 18, 0.04);
+        background-color:  rgba(18, 18, 18, 0.04);
+       
       }
     }
   }
-  .hamburger {
-    &.active {
-      width: 64px;
-      height: 64px;
-      border: none;
-      display: flex;
-      padding: 6px 8px;
-      cursor: pointer;
-      border-radius: 5px;
-      align-items: center;
-      justify-content: center;
-      background-color: inherit;
-      transition: background-color, 250ms;
-      &:hover {
-        text-decoration: none;
-        background-color: rgba(18, 18, 18, 0.04);
-      }
-      svg {
-        font-size: 28px;
-      }
-    }
-    display: none;
-  }
+
   &.dark {
-    background-color:  #111;
-    .hamburger{
-      color: white;
+    background-color: #111;
+    a {
       &:hover {
         background-color: rgba(255, 255, 255, 0.08);
+        
       }
     }
   }
@@ -55,18 +36,6 @@
 
 @media screen and (min-width: 900px) {
   .header {
-    height: 100%;
-
-    a {
-     &.logo {
-        display: none;
-     }
-    }
-    .hamburger {
-      display: none;
-      &.active {
-        display: none;
-      }
-    }
+    display: none;
   }
 }

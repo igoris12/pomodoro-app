@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Navigation.scss";
 import NavigationLink from "./NavigationLink";
 import { IoMdClose } from "react-icons/io";
@@ -6,21 +6,32 @@ import { LuAlarmClock } from "react-icons/lu";
 import { FiSettings } from "react-icons/fi";
 import { MdOutlineLightMode, MdNightsStay } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
 
-function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
+function Navigation({ toggleLightMode, darkMode }) {
+  const [mobileHeaderActive, setMobileHeaderActive] = useState(false);
+
+  const toggleMobileHeaderActive = () => {
+    setMobileHeaderActive(!mobileHeaderActive);
+  };
   return (
     <div
-      className={active === true ? "navigation active" : "navigation"}
+      className={
+        mobileHeaderActive === true ? "navigation active" : "navigation"
+      }
       onClick={(e) => {
-        if (e.target.tagName !== "NAV" && !e.target.classList.contains('lightModes')) {
-          closeNavigation();
+        if (
+          e.target.tagName !== "NAV" &&
+          !e.target.classList.contains("lightModes")
+        ) {
+          toggleMobileHeaderActive();
         }
       }}
     >
       <nav className={!true === darkMode ? "" : "dark"}>
         <button
           className={!true === darkMode ? "close" : "close dark"}
-          onClick={closeNavigation}
+          onClick={toggleMobileHeaderActive}
         >
           <IoMdClose />
         </button>
@@ -87,16 +98,24 @@ function Navigation({ active, closeNavigation, toggleLightMode, darkMode }) {
           </div>
           <div onClick={toggleLightMode}>
             <NavigationLink
-              calssName={'lightModes'}
+              calssName={"lightModes"}
               darkMode={darkMode}
               icon={
                 !darkMode === true ? <MdOutlineLightMode /> : <MdNightsStay />
               }
-              text={!darkMode === true ? "Light mone" : "Dark mode"}
+              text={!darkMode === true ? "Light mode" : "Dark mode"}
             />
           </div>
         </div>
       </nav>
+      <button
+        className={
+          !true === darkMode ? "hamburger active" : "hamburger active  dark"
+        }
+        onClick={toggleMobileHeaderActive}
+      >
+        <RxHamburgerMenu />
+      </button>
     </div>
   );
 }

@@ -1,9 +1,8 @@
 import React from "react";
 import "./Header.scss";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 
-function Header({ openNavigation, darkMode}) {
+function Header({ darkMode }) {
   return (
     <header className={!darkMode === true ? "header" : "header dark"}>
       <Link className="logo" to="/pomodoro-app">
@@ -52,9 +51,6 @@ function Header({ openNavigation, darkMode}) {
           ></path>
         </svg>
       </Link>
-      <button className="hamburger active" onClick={openNavigation}>
-        <RxHamburgerMenu />
-      </button>
     </header>
   );
 }
