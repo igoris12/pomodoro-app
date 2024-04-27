@@ -103,7 +103,7 @@ function Navigation({ toggleLightMode, darkMode }) {
               icon={
                 !darkMode === true ? <MdOutlineLightMode /> : <MdNightsStay />
               }
-              text={!darkMode === true ? "Light mone" : "Dark mode"}
+              text={!darkMode === true ? "Light mode" : "Dark mode"}
             />
           </div>
         </div>

@@ -16,6 +16,7 @@
     cursor: pointer;
     color: rgb(87, 87, 87);
     text-decoration: none;
+    word-break: break-word;
     &.active {
         color: black;
     }
