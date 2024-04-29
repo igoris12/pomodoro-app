@@ -10,7 +10,6 @@ This project is for educational porpuses only. In this project I try to make pom
 
 Site published at: [Project](https://igoris12.github.io/pomodoro-app/)
 
-https://igoris12.github.io/pomodoro-app/
 
 Design: [Example site](https://pomodor.app/timer)
 
